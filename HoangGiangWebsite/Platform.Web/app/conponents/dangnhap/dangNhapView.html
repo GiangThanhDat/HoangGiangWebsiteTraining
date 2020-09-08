@@ -1,0 +1,45 @@
+﻿
+<script src="../../../Assets/sinhvien/js/pages/ChangPass.js"></script>
+<link href="../../../Assets/sinhvien/css/dangnhap.css" rel="stylesheet" />
+<div class="container">
+
+    <div class="row" >
+
+        <div class="col-md-12 khungdangnhap" style="margin-top:100px">
+            <div class=" fadeInDown" style="margin:auto">
+                <div id="formContent" style="margin:auto">
+                    <!-- Tabs Titles -->
+                    <!-- Icon -->
+                    <div class="fadeIn first">
+                        <div style="font-weight:bold;margin-top:10px">CỔNG THÔNG TIN</div><br />
+                        <div style="font-weight:bold">QUẢN LÝ DOANH NGHIỆP</div>
+
+                    </div>
+
+                    <!-- Login Form -->
+                    <form role="form" method="post" ng-submit="loginSubmit()">
+                        <input type="text" id="login" class="fadeIn second  pass_show" name="login" placeholder="Tên tài khoản" ng-model="loginData.userName">
+                        <input type="password" id="password" class="fadeIn third  pass_show" name="login" placeholder="Mật khẩu" ng-model="loginData.password">
+                        <div class="checkbox">
+                            <!--<label><input type="checkbox"> Lưu thông tin</label>-->
+                        </div>
+
+                        <button type="submit" class="fadeIn fourth btn btn-primary">Đăng nhập</button>
+                    </form>
+
+                    <!-- Remind Passowrd -->
+                    <div id="formFooter">
+                        <!--<span>
+                            <a class="underlineHover" ui-sref="quenmatkhau">Quên mật khẩu</a> &nbsp;
+                            <a class="underlineHover" ui-sref="kichhoattaikhoan">Kích hoạt tài khoản</a>
+                            &nbsp;
+                            <a class="underlineHover" ui-sref="trogiupdangnhap">Trợ giúp đăng nhập</a>
+                        </span>-->
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

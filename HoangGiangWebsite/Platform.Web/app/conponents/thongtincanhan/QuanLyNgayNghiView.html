@@ -1,0 +1,110 @@
+﻿  <!-- Content Header (Page header) -->
+<section class="content-header">
+
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li><a ui-sref="quanlyngaynghi">Quản lý ngày nghỉ</a></li>
+
+    </ol>
+</section>
+
+
+
+    <div class="container-fluid" style="margin-bottom:20px">
+        <h1 style="margin-bottom:20px;text-align:center">Quản lý ngày nghỉ</h1>
+        <div class="row">
+
+            <div class="col-md-10" style="margin:auto">
+                <div class="table-responsive">
+                    <table class="table  table-bordered chu">
+                        <tr style="background:#74b9ff">
+                            <th>Mã số nhân viên</th>
+                            <th>Tên nhân viên</th>
+
+                            <th>Giờ bắt đầu </th>
+                            <th>Ngày bắt đầu</th>
+                            <th>Giờ kết thúc </th>
+                            <th>Ngày kết thúc</th>
+                            <th>Loại nghỉ</th>
+                            <th>Tổng giờ</th>
+                            <th>Tổng ngày làm việc nghỉ</th>
+                            <th>Tổng ngày nghỉ</th>
+
+
+
+
+                        </tr>
+                        <tr ng-repeat=" item in QuanLyNgayNghi">
+                            <th>{{item.MaSoNhanVien}}</th>
+                            <th>{{tennhanvien}}</th>
+
+
+                            <td>
+
+
+                                <input  ng-show="Edit " ng-model="QuanLyNgayNghi[$index].GioBatDau" type="text" />
+                                <span ng-show="hide">{{item.GioBatDau}}</span>
+
+
+                            </td>
+
+                            <td>
+
+                                <input  ng-show="Edit " ng-model="QuanLyNgayNghi[$index].NgayBatDau" ng-value="QuanLyNgayNghi[$index].NgayBatDau" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+                                <span ng-show="hide">{{item.NgayBatDau|date:'dd/MM/yyyy' }}</span>
+
+                            </td>
+                            <td>
+                                <input  ng-show="Edit " ng-model="QuanLyNgayNghi[$index].GioKetThuc" type="text" />
+                                <span ng-show="hide">{{item.GioKetThuc}}</span>
+
+                            </td>
+                            <td>
+                                <input  ng-show="Edit " ng-model="QuanLyNgayNghi[$index].NgayKetThuc" ng-value="QuanLyNgayNghi[$index].NgayKetThuc" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+                                <span ng-show="hide">{{item.NgayKetThuc|date:'dd/MM/yyyy' }}</span>
+
+                            </td>
+                            <td>
+                                <input ng-show="Edit " ng-model="QuanLyNgayNghi[$index].LoaiNghi" type="text" />
+                                <span ng-show="hide">{{item.LoaiNghi}}</span>
+
+                            </td>
+                            <td>
+                                <input pattern="[0-9]{1,12}" maxlength="3"  title="Nhập số không được nhập ký tự" ng-show="Edit " ng-model="QuanLyNgayNghi[$index].TongGio" type="tel" />
+                                <span ng-show="hide">{{item.TongGio}}</span>
+
+                            </td>
+                            <td>
+                                <input pattern="[0-9]{1,12}" maxlength="3"  title="Nhập số không được nhập ký tự" ng-show="Edit " ng-model="QuanLyNgayNghi[$index].TongNgayLamViecNghi" type="tel" />
+                                <span ng-show="hide">{{item.TongNgayLamViecNghi}}</span>
+
+                            </td>
+                            <td>
+                                <input pattern="[0-9]{1,12}" maxlength="3"  title="Nhập số không được nhập ký tự" ng-show="Edit " ng-model="QuanLyNgayNghi[$index].TongNgayNghi" type="tel" />
+                                <span ng-show="hide">{{item.TongNgayNghi}}</span>
+
+                            </td>
+
+
+
+                        </tr>
+
+
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--<div class="center-block  text-center">
+        <button ng-show="close" type="button" class="btn btn-primary " style="background:#74b9ff;" ng-click="mobang()">Thay đổi thông tin cá nhân</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
+    <div class="row" style="margin-top:10px" ng-show="save">
+        <div class="col-md-5" style="margin-left:710px">
+            <button type="button" ng-click="UpDateQuanLyNgayNghi()" class="btn btn-primary " >Lưu</button>
+            <button type="button" class="btn btn-danger" ng-show="closehuy" ng-click="huy()">Hủy</button>
+        </div>
+    </div>-->
+
+

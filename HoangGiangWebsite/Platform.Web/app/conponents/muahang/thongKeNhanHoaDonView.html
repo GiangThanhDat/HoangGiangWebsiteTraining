@@ -1,0 +1,333 @@
+﻿<!-- Content Header (Page header) -->
+
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li><a href="">Kế toán</a></li>
+        <li><a href="">Nghiệp vụ</a></li>
+        <li><a ui-sref="thongkenhanhoadon">Thống kê nhận hóa đơn</a></li>
+    </ol>
+</section>
+
+
+
+
+<div class="container-fluid">
+    <div class="row" style="margin-bottom:20px">
+        <div class=" col-md-2" style="max-width:130px">
+            <button type="button" class="btn btn-primary" ui-sref="muahang">Thống kê đơn mua hàng</button> &nbsp;&nbsp;
+        </div>
+        <div class=" col-md-2" style="max-width:155px">
+            <button type="button" class="btn btn-primary" ui-sref="thongkehopdongmuahang">Thống kê hợp đồng mua hàng</button> &nbsp;&nbsp;
+        </div>
+        <div class=" col-md-2" style="max-width:160px">
+            <button type="button" class="btn btn-primary" ui-sref="thongkechungtumuadichvu">Thống kê chứng từ mua dịch vụ</button> &nbsp;&nbsp;
+
+        </div>
+        <div class=" col-md-2" style="max-width:125px">
+            <button type="button" class="btn btn-secondary" ui-sref="thongkenhanhoadon">Thống kê nhận hóa đơn</button> &nbsp;&nbsp;
+
+        </div>
+        <div class=" col-md-2" style="max-width:135px">
+            <button type="button" class="btn btn-primary" ui-sref="thongketralaihangmua">Thống kê trả lại hàng mua</button> &nbsp;&nbsp;
+
+        </div>
+        <div class=" col-md-2" style="max-width:130px">
+            <button type="button" class="btn btn-primary" ui-sref="thongkegiamgiahangmua">Thống kê giảm giá hàng mua</button> &nbsp;&nbsp;
+        </div>
+
+
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+
+
+            <span class="input-group slectphanloai">
+
+
+                <span class="input-group-append">
+                    <span class="input-group-text"><b>Kỳ : </b></span>
+                </span>
+
+
+                <select class="selectpicker form-control " ng-change="filterdate(ky)" ng-model="ky">
+                    <option value="" disabled>tùy chọn</option>
+                    <option value="nextmonth">tháng trước</option>
+                    <option value="lastmonth">tháng sau</option>
+                    <option value="tuantruoc">tuần trước</option>
+                    <option value="tuansau">tuần sau</option>
+                    <option value="quytruoc">quý trước</option>
+                    <option value="quysau">quý sau</option>
+                    <option value="namtruoc">năm trước</option>
+                    <option value="namsau">năm sau</option>
+                    <option value="">Xem tất cả</option>
+                </select>
+            </span>
+
+
+        </div>
+
+
+        <div class="col-md-2">
+            <span class="input-group slectPhanLoai">
+                <span class="input-group-append">
+                    <span class="input-group-text"><b>Từ : </b></span>
+                </span>
+
+                <input class="form-control" type="date" name="ngaydau" ng-model="ngaydau" ng-model-options="{timezone:'UTC',}" />
+            </span>
+        </div>
+        <div class="col-md-2">
+            <span class="input-group slectPhanLoai">
+                <span class="input-group-append">
+                    <span class="input-group-text"><b>Đến : </b></span>
+                </span>
+                <input class="form-control" type="date" name="ngaycuoi" ng-model="ngaycuoi" ng-model-options="{timezone:'UTC',}" />
+            </span>
+        </div>
+        <div class="col-md-2"><button class="btn btn-primary" ng-click="getfromtoday(ngaydau,ngaycuoi)">Lọc dữ liệu</button></div>
+        <div class="col-md-4"></div>
+
+    </div>
+
+
+    <div class="row" style="margin:20px 0px">
+        <div class="col-md-2">
+
+
+        </div>
+
+
+
+
+        <div class="col-md-2">
+
+
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-6"></div>
+
+    </div>
+
+
+</div>
+
+<div class="container">
+    <div class="row" id="of">
+
+
+        <div class="modal fade bs-example-modal-lg" id="off" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="static" data-keyboard="false" data-focus-on="input:first">
+
+            <div class="modal-dialog modal-lg" role="document" style="max-width: 1305px;">
+                <div class="modal-content" style="border-radius: 10px;min-height:670px
+                     ">
+                    <div class="modal-header">
+                        <h3 style="text-align:center;color:red">Thông tin chi tiết phiếu thu</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                            <span aria-hidden="true" style="color:red">&times; Đóng</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="form1" role="form">
+                            <div class="row">
+                                <div class=" col-md-6 col-md-offset-6 input-group justify-content-end ">
+
+                                    <div class="input-group-append   ">
+                                        <span class="input-group-text "><b>Hiển thị trên sổ </b></span>
+                                    </div>
+                                    <select class="selectpicker">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+                                </div>
+                                <div class="col-md-9 table-responsive">
+                                    <fieldset class="well">
+                                        <legend class="well-legend">Thông tin chung</legend>
+
+                                        <table class="table table-bordered" style="border:solid #ddd 1px">
+                                            <tr>
+                                                <td> <b>Nhà cung cấp</b></td>
+                                                <td width="80%">
+                                                    <div class="input-group">
+                                                        <input disabled ng-model="singer.TenNhaCungCap" type="text" class="form-control">
+
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Địa chỉ </b></td>
+                                                <td><input ng-model="singer.DiaChi" disabled type="text" class="form-control"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Mã số thuế</b></td>
+                                                <td><input disabled ng-model=" " type="text" class="form-control"></td>
+                                            </tr>
+                                            <tr>
+                                                <td> <b>Diển giải</b></td>
+                                                <td>
+                                                    <div class="input-group">
+
+                                                        <input disabled ng-model="singer.DienGiai" type="text" class="form-control">
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td> <b>Nhân viên mua hàng</b></td>
+                                                <td width="80%">
+                                                    <div class="input-group">
+                                                        <input disabled ng-model="singer.HoVaTen" type="text" class="form-control">
+
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td> <b>Tham chiếu</b></td>
+                                                <td width="80%">
+                                                    <div class="input-group">
+
+
+
+                                                        <input ng-model="" disabled pattern="[0-9]{1,12}" title="phải nhập số" type="text" class="form-control">
+
+
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+
+                                        </table>
+
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-3 table-responsive">
+                                    <fieldset class="well">
+                                        <legend class="well-legend">Đon hàng</legend>
+                                        <table class="table table-bordered" style="border:solid #ddd 1px">
+                                            <tr>
+                                                <td> <b>Ngày đơn hàng </b></td>
+                                                <td width="60%">
+                                                    <input ng-model="singer.NgayDonHang" disabled type="text" class="form-control">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td> <b>Số đơn hàng </b></td>
+                                                <td>
+                                                    <input ng-model="singer.MaDonMuaHang" disabled type="text" class="form-control">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Tình trạng</b></td>
+                                                <td><input ng-model="singer.TenTinhTrang" disabled type="text" class="form-control"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Ngày giao hàng</b></td>
+                                                <td><input ng-model="singer.NgayGiaoHang" disabled type="text" class="form-control"></td>
+                                            </tr>
+
+
+
+                                        </table>
+                                    </fieldset>
+                                </div>
+                            </div>
+
+
+                            <div class=" col-md-6 col-md-offset-6 input-group justify-content-end ">
+
+                                <div class="input-group-append   ">
+                                    <span class="input-group-text "><b>Loại tiền </b></span>
+                                </div>
+                                <input disabled ng-model="singer.TenLoaiTien" type="text" class="form-control">
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <div class="input-group-append   ">
+                                    <span class="input-group-text "><b>Tỷ giá </b></span>
+                                </div>
+                                <div class="input-group-append">
+                                    <input disabled type="text" ng-model="singer.TyGia" name="name" format="number" ng-change="luutygia(TyGia.TyGia_VND)" />
+                                </div>
+
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </div>
+
+                            <div class="col-md-12" style="overflow-x:auto;background-color:#f5f5f5">
+                                <table border="1">
+                                    <caption style="caption-side:top">Hoạch toán</caption>
+                                    <tr style="background:#74b9ff">
+
+                                        <th width="20%">Diễn giải</th>
+                                        <th>TK Nợ</th>
+                                        <th>TK Có</th>
+                                        <th>Số tiền</th>
+                                        <th>Đối tượng</th>
+                                        <th>Tên đối tượng</th>
+                                        <th>TK ngân hàng</th>
+                                        <th>Mục thu/chi</th>
+                                        <th>Đơn vị</th>
+                                        <th>Công trình</th>
+                                        <th>Hợp đồng bán</th>
+                                        <th>Mã thống kê</th>
+                                    </tr>
+                                    <tr ng-repeat="item in ChitietPT">
+
+
+                                        <td width="20%"> {{item.DienGiai}}</td>
+
+
+
+
+
+
+                                        <td>{{item.SoTaiKhoanNo}}</td>
+                                        <td>{{item.SoTaiKhoanCo}}</td>
+                                        <td>{{item.SoTien}}</td>
+                                        <td>{{item.TenKhachHang}}</td>
+                                        <td>{{item.TenKhachHang}}</td>
+                                        <td>{{item.TaiKhoanNganHang}}</td>
+                                        <td>{{item.MucThuChi}}</td>
+                                        <td>{{item.DonVi}}</td>
+                                        <td>{{item.CongTrinh}}</td>
+                                        <td>{{item.HopDongBan}}</td>
+                                        <td>{{item.MaThongKe}}</td>
+
+                                    </tr>
+
+                                </table>
+
+
+                            </div>
+
+
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class=" col-md-1" style="max-width:10px;padding:0px"></div>
+        <div class=" col-md-11"><div ui-grid="gridOptions" style="width:110%;height:400px;margin:auto" ui-grid-resize-columns class="grid" ui-grid-pinning></div></div>
+
+
+
+    </div>
+</div>
+
+
+

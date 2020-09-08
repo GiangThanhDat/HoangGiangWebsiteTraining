@@ -1,0 +1,324 @@
+﻿  <!-- Content Header (Page header) -->
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li><a ui-sref="thongtincanhan">Thông tin cá nhân</a></li>
+
+    </ol>
+</section>
+<!-- Main content -->
+
+
+<div class="container-fluid" style="margin-bottom:20px">
+    <h1 style="margin-bottom:20px;text-align:center">Lý lịch cá nhân</h1>
+    <div class="row">
+
+        <div class="col-md-10" style="margin:auto">
+            <md-content class="page-container">
+                <md-card class="page">
+                    <div class="table-responsive">
+                        <table class="table  table-bordered chuphai">
+                            <tr>
+
+                                <td width="25%">
+                                    <b ng-show="hide">Họ và tên:</b>
+                                    <md-input-container ng-show="Edit" class="md-block">
+                                        <label>Họ và tên:</label>
+                                        <input disabled type="text" ng-model="LyLichNhanVien.HoVaTen">
+                                    </md-input-container>
+                                    <span ng-show="hide">{{LyLichNhanVien.HoVaTen}}</span>
+                                    <!--<input class="form-control" ng-show="Edit" disabled ng-model="LyLichNhanVien.HoVaTen" type="text" />-->
+                                </td>
+                                <td width="25%" colspan="2">
+                                    <b ng-show="hide">Số hiệu nhân viên:</b>
+                                    <md-input-container ng-show="Edit" class="md-block">
+                                        <label>Số hiệu nhân viên:</label>
+                                        <input disabled type="text" ng-model="ChucVu.TenChucVu">
+                                    </md-input-container>
+                                    <!--<input class="form-control" ng-show="Edit" disabled ng-model="ChucVu.TenChucVu" type="text" />-->
+                                    <span ng-show="hide">{{LyLichNhanVien.MaSoNhanVien}} ({{ChucVu.TenChucVu}})</span>
+
+                                </td>
+                                <td width="30%" rowspan="4">
+
+                                    <img class="img-fluid" src="{{LyLichNhanVien.Hinh}}" /><br />
+                                    <button style="margin-top:20px;margin-left:180px" class="btn btn-primary" ng-click="ChooseImage()"> <i class="fa fa-image"></i>Tải ảnh lên</button>
+
+
+
+                                </td>
+
+                            </tr>
+                            <tr>
+
+                                <td>
+                                    <b ng-show="hide">Phái:</b>
+                                    <span ng-show="hide">{{LyLichNhanVien.GioiTinh}}</span>
+
+
+                                    <md-input-container ng-show="Edit" class="md-block">
+                                        <label>Phái:</label>
+                                        <md-select name="favoriteColor" ng-model="LyLichNhanVien.GioiTinh" required>
+                                            <md-option value="Nam">Nam</md-option>
+                                            <md-option value="Nữ">Nữ</md-option>
+
+                                        </md-select>
+                                        <div class="errors" ng-messages="myForm.favoriteColor.$error">
+                                            <div ng-message="required">Required</div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <!--<select class="form-control" ng-show="Edit" ng-model="LyLichNhanVien.GioiTinh">
+
+
+                             <option disabled value="">Chọn</option>
+                            <option>Nam</option>
+                                 <option>Nữ</option>
+
+                                          </select>-->
+                                    <!--<input class="form-control" ng-show="Edit" disabled ng-model="LyLichNhanVien.GioiTinh" type="text" />-->
+
+                                </td>
+                                <td colspan="2">
+                                    <b ng-show="hide">CMND:</b>
+                                    <md-input-container flex-gt-sm class="md-block" ng-show="Edit">
+                                        <label>CMND:</label>
+                                        <input ng-model="LyLichNhanVien.SoCMND" type="text" placeholder="CMND number" aria-label="CMND number">
+                                    </md-input-container>
+                                    <!--<input class="form-control" ng-show="Edit" ng-model="LyLichNhanVien.SoCMND" type="text" name="Hocten" />-->
+                                    <span ng-show="hide">{{LyLichNhanVien.SoCMND}}</span>
+
+
+                                </td>
+
+
+                            </tr>
+                            <tr>
+
+                                <td>
+                                    <b ng-show="hide">Ngày Cấp:</b>
+                                    <md-input-container ng-show="Edit" class="md-block">
+                                        <label>Ngày Cấp:</label>
+                                        <input class="form-control" ng-show="Edit" ng-model="LyLichNhanVien.NgayCapCMND" ng-value="LyLichNhanVien.NgayCapCMND" type="date" style="height:22px" ng-model-options="{timezone:'UTC',}" />
+
+                                    </md-input-container>
+                                    <!--<input class="form-control" ng-show="Edit" ng-model="LyLichNhanVien.NgayCapCMND" ng-value="LyLichNhanVien.NgayCapCMND" type="date" style="height:22px" ng-model-options="{timezone:'UTC',}" />-->
+                                    <span ng-show="hide">{{LyLichNhanVien.NgayCapCMND|date:'dd/MM/yyyy'}}</span>
+
+
+
+                                </td>
+                                <td colspan="2">
+                                    <b ng-show="hide">Nơi cấp:</b>
+
+                                    <md-input-container ng-show="Edit" class="md-block">
+                                        <label>Nơi cấp:</label>
+                                        <input type="text" ng-model="LyLichNhanVien.NoiCapCMND">
+                                    </md-input-container>
+                                    <!--<input class="form-control" ng-show="Edit" ng-model="LyLichNhanVien.NoiCapCMND" type="text" name="Hocten" />-->
+                                    <span ng-show="hide">{{LyLichNhanVien.NoiCapCMND}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>
+                                    <b ng-show="hide">Ngày sinh:</b>
+
+                                    <md-input-container ng-show="Edit" class="md-block">
+                                        <label>Ngày Cấp:</label>
+                                        <input class="form-control" ng-model="LyLichNhanVien.NgaySinh" type="date" ng-value="LyLichNhanVien.NgaySinh" ng-model-options="{timezone:'UTC',}" />
+
+                                    </md-input-container>
+                                    <span ng-show="hide">{{LyLichNhanVien.NgaySinh|date:'dd/MM/yyyy' }}</span>
+
+                                </td>
+                                <td colspan="2">
+                                    <b ng-show="hide">Tình trạng hôn nhân:</b>
+
+                                    <md-input-container ng-show="Edit" class="md-block">
+                                        <label>Tình trạng hôn nhân:</label>
+                                        <input type="text" ng-model="LyLichNhanVien.TinhTrangHonNhan">
+                                    </md-input-container>
+                                    <!--<input class="form-control" ng-show="Edit" ng-model="LyLichNhanVien.TinhTrangHonNhan" type="text" name="Hocten" />-->
+                                    <span ng-show="hide">{{LyLichNhanVien.TinhTrangHonNhan}}</span>
+
+
+
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>
+                                    <b ng-show="hide">Quốc tịch:</b>
+                                    <md-input-container ng-show="Edit" class="md-block">
+                                        <label>Quốc tịch:</label>
+                                        <input type="text" ng-model="LyLichNhanVien.QuocTich">
+                                    </md-input-container>
+                                    <!--<input class="form-control" ng-show="Edit" ng-model="LyLichNhanVien.QuocTich" type="text" name="Hocten" />-->
+                                    <span ng-show="hide">{{LyLichNhanVien.QuocTich}}</span>
+
+
+
+                                </td>
+                                <td colspan="2">
+                                    <b ng-show="hide">Địa chỉ:</b>
+
+                                    <md-input-container ng-show="Edit" class="md-block">
+                                        <label>Địa chỉ:</label>
+                                        <input type="text" ng-model="LyLichNhanVien.DiaChi">
+                                    </md-input-container>
+                                    <!--<input class="form-control" ng-show="Edit" ng-model="LyLichNhanVien.DiaChi" type="text" name="Hocten" />-->
+                                    <span ng-show="hide">{{LyLichNhanVien.DiaChi}}</span>
+
+
+                                </td>
+                                <td>
+                                    <b ng-show="hide">Họ tên liên hệ khẩn cấp:</b>
+
+                                    <md-input-container ng-show="Edit" class="md-block">
+                                        <label>Họ tên liên hệ khẩn cấp:</label>
+                                        <input type="text" ng-model="LyLichNhanVien.HoTenLienHeKhanCap">
+                                    </md-input-container>
+                                    <!--<input class="form-control" ng-show="Edit" ng-model="LyLichNhanVien.HoTenLienHeKhanCap" type="text" name="Hocten" />-->
+                                    <span ng-show="hide">{{LyLichNhanVien.HoTenLienHeKhanCap}}</span>
+
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>
+                                    <b ng-show="hide">Số điện thoại:</b>
+
+                                    <md-input-container flex-gt-sm class="md-block" ng-show="Edit">
+                                        <label>Số điện thoại:</label>
+
+                                        <input ng-model="LyLichNhanVien.SoDienThoai" type="text" placeholder="Phone Number" aria-label="Phone Number">
+                                    </md-input-container>
+
+                                    <!--<input class="form-control" ng-show="Edit" ng-model="LyLichNhanVien.SoDienThoai" type="text" name="Hocten" />-->
+                                    <span ng-show="hide">{{LyLichNhanVien.SoDienThoai}}</span>
+
+                                </td>
+                                <td colspan="2">
+
+                                    <b ng-show="hide">Email:</b>
+                                    <!--<input class="form-control" ng-show="Edit" ng-model="LyLichNhanVien.Email" type="email" name="Hocten" />-->
+                                    <md-input-container class="md-block" flex-gt-sm ng-show="Edit">
+                                        <label>Email</label>
+                                        <input name="email" ng-model="LyLichNhanVien.Email"
+                                               required minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+
+                                        <div class="hint" ng-show="showHints">How can we reach you?</div>
+
+                                        <div ng-messages="userForm.email.$error" ng-hide="showHints">
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Your email must be between 10 and 100 characters long and look like an e-mail address.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                    <span ng-show="hide">{{LyLichNhanVien.Email}}</span>
+
+                                </td>
+
+                                <td>
+                                    <b ng-show="hide">Quan hệ liên hệ khẩn cấp:</b>
+                                    <md-input-container ng-show="Edit" class="md-block">
+                                        <label>Quan hệ liên hệ khẩn cấp:</label>
+                                        <input type="text" ng-model="LyLichNhanVien.QuanHeLienHeKhanCap">
+                                    </md-input-container>
+                                    <!--<input class="form-control" ng-show="Edit" ng-model="LyLichNhanVien.QuanHeLienHeKhanCap" type="text" name="Hocten" />-->
+                                    <span ng-show="hide">{{LyLichNhanVien.QuanHeLienHeKhanCap}}</span>
+
+                                </td>
+                            </tr>
+
+
+                            <tr>
+
+                                <td colspan="4">
+                                    <b ng-show="hide">Địa chỉ liên hệ khẩn cấp:</b>
+
+                                    <md-input-container ng-show="Edit" class="md-block">
+                                        <label>Địa chỉ liên hệ khẩn cấp:</label>
+                                        <input type="text" ng-model="LyLichNhanVien.DiaChiLienHeKhanCap">
+                                    </md-input-container>
+                                    <!--<input class="form-control" ng-show="Edit" ng-model="LyLichNhanVien.DiaChiLienHeKhanCap" type="text" name="Hocten" />-->
+                                    <span ng-show="hide">{{LyLichNhanVien.DiaChiLienHeKhanCap}}</span>
+
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td colspan="4">
+                                    <b ng-show="hide">Số điện thoại liên hệ khẩn cấp:</b>
+                                    <md-input-container ng-show="Edit" class="md-block">
+                                        <label>Số điện thoại liên hệ khẩn cấp:</label>
+                                        <input type="text" ng-model="LyLichNhanVien.SDTLienHeKhanCap">
+                                    </md-input-container>
+                                    <!--<input class="form-control" ng-show="Edit" ng-model="LyLichNhanVien.SDTLienHeKhanCap" type="text" name="Hocten" />-->
+                                    <span ng-show="hide">{{LyLichNhanVien.SDTLienHeKhanCap}}</span>
+
+                                </td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+                </md-card>
+            </md-content>
+        </div>
+
+
+    </div>
+</div>
+
+<div class="center-block  text-center">
+    <button type="submit" class="btn btn-primary " ng-show="close" style="background:#74b9ff;" ng-click="mobang()">Thay đổi thông tin cá nhân</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</div>
+<div class="row" style="margin-top:10px" ng-show="save">
+    <div class="col-md-1  btn-group " style="margin:auto">
+        <!--<md-button class="md-raised md-primary" ng-click="UpDateLyLichNhanVien()">Lưu</md-button>
+        <md-button class="md-raised md-accent"  ng-show="closehuy" ng-click="huy()">Hủy</md-button>-->
+        <button type="button" class="btn btn-primary " ng-disabled="form.$invalid" ng-click="UpDateLyLichNhanVien()">Lưu</button>
+        <button type="submit" class="btn btn-danger" ng-show="closehuy" ng-click="huy()">Hủy</button>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="center-block  text-center">
+    <button type="submit" class="btn btn-primary " style="background:#74b9ff;" ng-click="mobang()">Thay đổi thông tin cá nhân</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+</div>
+<div class="row" style="margin-top:10px" ng-show="save">
+    <div class="col-md-5" style="margin-left:710px">
+        <button type="button" class="btn btn-primary " ng-disabled="form.$invalid" ng-click="updateall()">Lưu</button>
+        <button type="submit" class="btn btn-danger" ng-show="closehuy" ng-click="huy()">Hủy</button>
+
+
+
+    </div>-->
+<!--</div>-->
+<!--pull-right-->

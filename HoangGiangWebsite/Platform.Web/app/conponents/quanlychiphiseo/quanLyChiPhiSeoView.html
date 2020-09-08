@@ -1,0 +1,128 @@
+﻿  <!-- Content Header (Page header) -->
+<section class="content-header">
+
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <
+        <li><a ui-sref="quanlychiphiseo">Quản lý chi phí seo</a></li>
+        <!--<li class="active">Danh mục quyền</li>-->
+    </ol>
+</section>
+<!-- Main content -->
+<div class="container-fluid">
+    <div class="row print">
+        <div class="input-group  col-md-12 hidden-xs justify-content-center">
+            <form class="">
+                <div class="input-group ">
+
+                    <div class="input-group-append">
+                        <a ng-click="gettatca()" class="form-control btn btn-primary text-white"> Xem tất cả</a>
+
+                    </div>
+                    &nbsp;&nbsp;&nbsp;
+                    <!--<div class="input-group-append">
+                        <span class="input-group-text"><b>Phân loại khách hàng: </b></span>
+                    </div>
+                    <select class="selectpicker form-control" ng-model="PhanLoai">
+                        <option disabled value="">Chọn phân loại</option>
+                        <option value="Cá nhân">Cá nhân</option>
+                        <option value="Tổ chức">Tổ chức</option>
+                        <option value="">Xem tất cả</option>
+                    </select>-->
+                    &nbsp;&nbsp;&nbsp;
+
+                    <div class="input-group-append">
+                        <span class="input-group-text"><b>Tìm kiếm: </b></span>
+                    </div>
+
+                    <div class="input-group-append">
+                        <input ng-model="keyword" type="text" class="form-control" placeholder="Nhập từ khóa tìm kiếm">
+
+
+                    </div>  <div class="input-group-append">
+                        <a ng-click="getbykeyword(keyword)" class=" form-control btn btn-primary text-white"> Tìm</a>
+                    </div>
+                </div>
+
+            </form>
+
+
+            <br /><br /><br /><br />
+
+
+        </div>
+        <!-- Bảng cơ sở -->
+        <div class="col-md-12 table-responsive" ng-show="bangxem">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr style="background:#74b9ff">
+                        <th>STT</th>
+                        <th>Mã cơ sở</th>
+                        <th>Tên cơ sở</th>
+                        <th>Địa chỉ</th>
+                        <th>Cấp tổ chức</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in CoSo">
+
+                        <th>{{$index+1}}</th>
+                        <td>{{item.MaCoSo}}</td>
+                        <td><a href="" ng-click="GetThongTinChiTietCoSo(item.MaCoSo)">{{item.TenCoSo}}</a></td>
+                        <td>{{item.DiaChi}}</td>
+                        <td>{{item.CapToChuc}}</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+        </div>
+        <!-- End - bảng cơ sở -->
+        <!-- Chi tiết cơ sở -->
+        <div class="col-md-6 col-md-offset-3 table-responsive" ng-show="bangchitiet">
+            <table class="table table-hover table-bordered">
+                <tr class="text-left">
+                    <td>Mã cơ sở:</td>
+                    <th ng-show="view">{{ChiTietCoSo.MaCoSo}}</th>
+                    <th ng-show="edit">{{ChiTietCoSo.MaCoSo}}</th>
+                </tr>
+                <tr class="text-left">
+                    <td>Tên cơ sở</td>
+                    <th ng-show="view">{{ChiTietCoSo.TenCoSo}}</th>
+                    <th ng-show="edit">
+                        <input type="text" class="form-control"
+                               ng-model="ChiTietCoSo.TenCoSo" name="name" />
+                    </th>
+                </tr>
+                <tr class="text-left">
+                    <td>Chi nhánh</td>
+                    <th ng-show="view">{{ChiTietCoSo.DiaChi}}</th>
+                    <th ng-show="edit">
+                        <input type="text" class="form-control"
+                               ng-model="ChiTietCoSo.DiaChi" name="name" />
+                    </th>
+                </tr>
+                <tr class="text-left">
+                    <td>Địa chỉ</td>
+                    <th ng-show="view">{{ChiTietCoSo.CapToChuc}}</th>
+                    <th ng-show="edit">
+                        <input type="text" class="form-control"
+                               ng-model="ChiTietCoSo.CapToChuc" name="name" />
+                    </th>
+                </tr>
+            </table>
+
+            <div class="col-md-6 col-md-offset-3 justify-content-center btn-block text-center">
+                <button type="button" class="btn btn-danger" ng-show="view" ng-click="trove()">Trở về</button> &nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-primary " ng-show="view" ng-click="thaydoithongtin()">Thay đổi thông tin cơ sở</button>
+                <button type="button" class="btn btn-danger" ng-show="edit" ng-click="remove()">Xóa</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-primary" ng-show="edit" ng-click="Update()">Lưu</button>
+                <button type="button" class="btn btn-danger" ng-show="edit" ng-click="huy()">Hủy</button>&nbsp;&nbsp;&nbsp;
+
+            </div>
+
+        </div>
+        <!-- End - chi tiết cơ sở -->
+
+    </div>
+</div>

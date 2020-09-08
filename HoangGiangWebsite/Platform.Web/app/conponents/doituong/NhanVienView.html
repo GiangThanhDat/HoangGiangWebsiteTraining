@@ -1,0 +1,1530 @@
+﻿  <!-- Content Header (Page header) -->
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li><a ui-sref="thongtincanhan">Thông tin cá nhân</a></li>
+
+    </ol>
+</section>
+<!-- Main content -->
+
+
+<div class="container-fluid" style="margin-bottom:20px">
+    <h1 style="margin:20px 0px;text-align:center">Xem thông tin nhân viên</h1>
+
+    <div class="row" style="margin:40px 0px">
+
+        <div class="col-md-5" style="margin:auto">
+            <div class="input-group">
+                <div class="input-group-append">
+                    <a ng-click="showlistNhanVien()" class=" form-control btn btn-primary text-white"> Xem tất cả</a>
+                </div>
+                <div class="input-group-append">
+                    <span class="input-group-text"><b>Tìm kiếm: </b></span>
+                </div>
+
+                <div class="input-group-append">
+                    <input ng-model="keyword" style="width:250px" type="text" class="form-control" placeholder="nhập mã số nhân viên hoặc một từ trong họ và tên">
+
+                </div>
+
+                <div class="input-group-append">
+                    <a ng-click="search(keyword)" class=" form-control btn btn-primary text-white"> Tìm</a>
+                </div>
+                &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               
+
+                <div class="input-group-append">
+                    <input type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg" value=" Thêm nhân viên" />
+
+
+                </div>
+
+
+            </div>
+        </div>
+      
+
+
+    </div>
+
+    <div class="row" ng-show="listNhanVien">
+
+        <div class="col-md-6 table-responsive" style="margin:auto">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr style="background:#74b9ff">
+
+                            <th>STT</th>
+                            <th>Mã số nhân viên</th>
+                            <th>Họ và tên</th>
+                            <th>Chức vụ</th>
+                            <th>Cơ sở</th>
+                            <th>Xem chi tiết</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat=" item in listNhanvien">
+                            <td>{{$index+1}}</td>
+                            <td>{{item.MaSoNhanVien}}</td>
+                            <td> <a href="" ng-click="GetAll(item.MaSoNhanVien);GetChucVu(item.MaSoNhanVien)">{{item.HoVaTen}}</a></td>
+                            <td>{{item.TenChucVu}}</td>
+                            <td><span ng-if="item.MaCoSo==null"></span><span ng-if="item.MaCoSo!=null">({{item.MaCoSo}}) {{item.TenCoSo}} </span></td>
+                            <td><button ng-click="GetAll(item.MaSoNhanVien);GetChucVu(item.MaSoNhanVien)" class="btn btn-primary btn-sm">Xem chi tiết</button></td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div ng-show="TTCN">
+        <h1 style="margin-bottom:20px;text-align:center">Lý lịch cá nhân</h1>
+        <div class="row">
+
+            <div class="col-md-10" style="margin:auto">
+                <div class="table-responsive">
+                    <table class="table  table-bordered chuphai">
+                        <tr>
+
+                            <td width="25%">
+                                <b>Họ và tên:</b>
+                                <span ng-show="viewTTCN">{{LyLichNhanVien.HoVaTen}}</span>
+                                <input class="form-control" ng-show="EditTTCN" disabled ng-model="LyLichNhanVien.HoVaTen" type="text" />
+                            </td>
+                            <td width="25%" colspan="2">
+                                <b>Số hiệu nhân viên:</b>
+
+                                <input class="form-control" ng-show="EditTTCN" disabled ng-model="ChucVu.TenChucVu" type="text" />
+                                <span ng-show="viewTTCN">{{LyLichNhanVien.MaSoNhanVien}} ({{ChucVu.TenChucVu}})</span>
+
+                            </td>
+                            <td width="30%" rowspan="6">
+
+                                <img class="img-fluid" src="{{LyLichNhanVien.Hinh}}" /><br />
+                                <button style="margin-top:20px;margin-left:180px" class="btn btn-primary" ng-click="ChooseImage()"> <i class="fa fa-image"></i>Tải ảnh lên</button>
+
+
+
+                            </td>
+
+                        </tr>
+                        <tr>
+
+                            <td>
+                                <b>Phái:</b>
+                                <select class="form-control" ng-show="EditTTCN" ng-model="LyLichNhanVien.GioiTinh">
+
+
+                                    <option disabled value="">Chọn</option>
+                                    <option>Nam</option>
+                                    <option>Nữ</option>
+
+                                </select>
+                                <!--<input class="form-control" ng-show="EditTTCN" disabled ng-model="LyLichNhanVien.GioiTinh" type="text" />-->
+                                <span ng-show="viewTTCN">{{LyLichNhanVien.GioiTinh}}</span>
+                            </td>
+                            <td colspan="2">
+                                <b>CMND:</b>
+
+                                <input class="form-control" ng-show="EditTTCN" ng-model="LyLichNhanVien.SoCMND" type="text" name="Hocten" />
+                                <span ng-show="viewTTCN">{{LyLichNhanVien.SoCMND}}</span>
+
+
+                            </td>
+
+
+                        </tr>
+                        <tr>
+
+                            <td>
+                                <b>Ngày Cấp:</b>
+
+                                <input class="form-control" ng-show="EditTTCN" ng-model="LyLichNhanVien.NgayCapCMND" ng-value="LyLichNhanVien.NgayCapCMND" type="date" style="height:22px" ng-model-options="{timezone:'UTC',}" />
+                                <span ng-show="viewTTCN">{{LyLichNhanVien.NgayCapCMND|date:'dd/MM/yyyy'}}</span>
+
+
+
+                            </td>
+                            <td colspan="2">
+                                <b>Nơi cấp:</b>
+                                <input class="form-control" ng-show="EditTTCN" ng-model="LyLichNhanVien.NoiCapCMND" type="text" name="Hocten" />
+                                <span ng-show="viewTTCN">{{LyLichNhanVien.NoiCapCMND}}</span>
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td>
+                                <b>Ngày sinh:</b>
+                                <input class="form-control" ng-show="EditTTCN" ng-model="LyLichNhanVien.NgaySinh" ng-value="LyLichNhanVien.NgaySinh" type="date" ng-model-options="{timezone:'UTC',}" />
+                                <span ng-show="viewTTCN">{{LyLichNhanVien.NgaySinh|date:'dd/MM/yyyy' }}</span>
+
+                            </td>
+                            <td colspan="2">
+                                <b>Tình trạng hôn nhân:</b>
+                                <input class="form-control" ng-show="EditTTCN" ng-model="LyLichNhanVien.TinhTrangHonNhan" type="text" name="Hocten" />
+                                <span ng-show="viewTTCN">{{LyLichNhanVien.TinhTrangHonNhan}}</span>
+
+
+
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td>
+                                <b>Quốc tịch:</b>
+                                <input class="form-control" ng-show="EditTTCN" ng-model="LyLichNhanVien.QuocTich" type="text" name="Hocten" />
+                                <span ng-show="viewTTCN">{{LyLichNhanVien.QuocTich}}</span>
+
+
+
+                            </td>
+                            <td colspan="2">
+                                <b>Địa chỉ:</b>&nbsp;
+                                <input class="form-control" ng-show="EditTTCN" ng-model="LyLichNhanVien.DiaChi" type="text" name="Hocten" />
+                                <span ng-show="viewTTCN">{{LyLichNhanVien.DiaChi}}</span>
+
+
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td>
+                                <b>Số điện thoại:</b>
+                                <input class="form-control" ng-show="EditTTCN" ng-model="LyLichNhanVien.SoDienThoai" type="text" name="Hocten" />
+                                <span ng-show="viewTTCN">{{LyLichNhanVien.SoDienThoai}}</span>
+
+                            </td>
+                            <td colspan="2">
+                                <b>Cơ sở:</b>
+                                <input class="form-control" ng-show="EditTTCN" ng-model="LyLichNhanVien.MaCoSo" type="text" name="Hocten" />
+                                <span ng-show="viewTTCN">{{LyLichNhanVien.MaCoSo}}</span>
+
+                            </td>
+
+
+                        </tr>
+                        <tr>
+
+                            <td colspan="4">
+                                <b>Email:</b>
+                                <input class="form-control" ng-show="EditTTCN" ng-model="LyLichNhanVien.Email" type="email" name="Hocten" />
+                                <span ng-show="viewTTCN">{{LyLichNhanVien.Email}}</span>
+
+
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td colspan="4">
+                                <b>Họ tên liên hệ khẩn cấp:</b>
+                                <input class="form-control" ng-show="EditTTCN" ng-model="LyLichNhanVien.HoTenLienHeKhanCap" type="text" name="Hocten" />
+                                <span ng-show="viewTTCN">{{LyLichNhanVien.HoTenLienHeKhanCap}}</span>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+
+
+                            <td colspan="4">
+                                <b>Quan hệ liên hệ khẩn cấp:</b>
+                                <input class="form-control" ng-show="EditTTCN" ng-model="LyLichNhanVien.QuanHeLienHeKhanCap" type="text" name="Hocten" />
+                                <span ng-show="viewTTCN">{{LyLichNhanVien.QuanHeLienHeKhanCap}}</span>
+
+                            </td>
+
+                        </tr>
+                        <tr>
+
+                            <td colspan="4">
+                                <b>Địa chỉ liên hệ khẩn cấp:</b>
+                                <input class="form-control" ng-show="EditTTCN" ng-model="LyLichNhanVien.DiaChiLienHeKhanCap" type="text" name="Hocten" />
+                                <span ng-show="viewTTCN">{{LyLichNhanVien.DiaChiLienHeKhanCap}}</span>
+
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td colspan="4">
+                                <b>Số điện thoại liên hệ khẩn cấp:</b>
+                                <input class="form-control" ng-show="EditTTCN" ng-model="LyLichNhanVien.SDTLienHeKhanCap" type="text" name="Hocten" />
+                                <span ng-show="viewTTCN">{{LyLichNhanVien.SDTLienHeKhanCap}}</span>
+
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="center-block  text-center">
+            <button type="submit" class="btn btn-primary " ng-show="closeTTCN" style="background:#74b9ff;" ng-click="mobangTTCN()">Thay đổi thông tin cá nhân</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <div class="row" style="margin-top:10px" ng-show="saveTNCN">
+            <div class="col-md-1  btn-group " style="margin:auto">
+
+                <button type="button" class="btn btn-primary " ng-click="UpDateLyLichNhanVien()">Lưu</button>
+                <button type="submit" class="btn btn-danger" ng-click="huyTNCN()">Hủy</button>
+
+            </div>
+
+        </div>
+
+
+        <h1 style="margin:20px 0px;text-align:center">Quá trình đào tạo</h1>
+
+
+        <div class="row">
+
+            <div class="col-md-10" style="margin:auto">
+                <div class="table-responsive">
+                    <table class="table  table-bordered chu">
+                        <tr style="background:#74b9ff">
+                            <th>Mã số nhân viên</th>
+                            <th>Tên nhân viên</th>
+
+                            <th>Ngày bắt đầu</th>
+                            <th>Ngày kết thúc</th>
+                            <th>Tên trường</th>
+                            <th>Loại bằng</th>
+                            <th>Chuyên ngành</th>
+                            <th>Xếp loại</th>
+                            <th ng-show="delete">Xóa</th>
+
+                        </tr>
+                        <tr ng-repeat=" item in QuaTrinhDaotao">
+                            <th>{{LyLichNhanVien.MaSoNhanVien}}</th>
+                            <th>{{LyLichNhanVien.HoVaTen}}</th>
+
+
+                            <td>
+                                <input ng-show="editQuaTrinhDaoTao " ng-model="QuaTrinhDaotao[$index].NgayBatDau" style="height:22px" ng-value="newarr[$index].NgayBatDau" type="date" ng-model-options="{timezone:'UTC',}" />
+                                <span ng-show="viewQuaTrinhDaoTao">{{item.NgayBatDau}}</span>
+
+                            </td>
+
+                            <td>
+
+
+                                <input ng-show="editQuaTrinhDaoTao " ng-model="QuaTrinhDaotao[$index].NgayKetThuc" style="height:22px" ng-value="newarr[$index].NgayKetThuc" type="date" ng-model-options="{timezone:'UTC',}" />
+                                <span ng-show="viewQuaTrinhDaoTao">{{item.NgayKetThuc}}</span>
+
+                            </td>
+                            <td>
+                                <input ng-show="editQuaTrinhDaoTao " ng-model="QuaTrinhDaotao[$index].TenTruong" type="text" />
+                                <span ng-show="viewQuaTrinhDaoTao">{{item.TenTruong}}</span>
+                            </td>
+                            <td>
+                                <input ng-show="editQuaTrinhDaoTao " ng-model="QuaTrinhDaotao[$index].LoaiBang" type="text" />
+                                <span ng-show="viewQuaTrinhDaoTao">{{item.LoaiBang}}</span>
+                            </td>
+                            <td>
+                                <input ng-show="editQuaTrinhDaoTao " ng-model="QuaTrinhDaotao[$index].ChuyenNganh" type="text" />
+                                <span ng-show="viewQuaTrinhDaoTao">{{item.ChuyenNganh}}</span>
+                            </td>
+                            <td>
+                                <input ng-show="editQuaTrinhDaoTao " ng-model="QuaTrinhDaotao[$index].XepLoai" type="text" />
+                                <span ng-show="viewQuaTrinhDaoTao">{{item.XepLoai}}</span>
+                            </td>
+
+
+                        </tr>
+
+                        <tr ng-repeat=" item in solanlapQTDT">
+                            <th>{{LyLichNhanVien.MaSoNhanVien}}</th>
+                            <th>{{LyLichNhanVien.HoVaTen}}</th>
+
+
+                            <td>
+                                <input required name="NBD" ng-model="AddQuaTrinhDaotao [$index].NgayBatDau" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+
+
+                            </td>
+
+                            <td>
+
+
+                                <input required name="NKT" ng-model="AddQuaTrinhDaotao [$index].NgayKetThuc" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+
+
+                            </td>
+                            <td>
+                                <input required ng-model="AddQuaTrinhDaotao [$index].TenTruong" type="text" name="tentruong" />
+
+                            </td>
+                            <td>
+                                <input required ng-model="AddQuaTrinhDaotao[$index] .LoaiBang" type="text" name="loaibang" />
+
+                            </td>
+                            <td>
+                                <input required ng-model="AddQuaTrinhDaotao [$index].ChuyenNganh" type="text" name="chuyennganh" />
+
+                            </td>
+                            <td>
+                                <input required ng-model="AddQuaTrinhDaotao [$index].XepLoai" type="text" name="xep" />
+
+                            </td>
+
+
+                        </tr>
+
+
+                    </table>
+
+
+
+                </div>
+                <button type="button" class="btn btn-primary " ng-show="insertQTDT" ng-click="myFunctionQTDT()" style="background:#74b9ff;">Thêm mới</button>
+            </div>
+
+            <div class="col-md-6 col-md-offset-3 justify-content-center btn-block text-center" style="margin-top:10px">
+                <button type="button" class="btn btn-primary " ng-show="viewQuaTrinhDaoTao" ng-click="suaQuaTrinhDaoTao()">Sửa quá trình đào tạo</button>
+                <button type="button" class="btn btn-danger" ng-show="editQuaTrinhDaoTao" ng-click="huyQuaTrinhDaoTao()">Hủy</button>&nbsp;&nbsp;&nbsp;
+                <button type="submit" class="btn btn-primary" ng-show="editQuaTrinhDaoTao" ng-click="kiemtraQTDT()">Lưu</button>
+
+            </div>
+        </div>
+
+
+        <h1 style="margin:20px 0px;text-align:center">Ngôn ngữ</h1>
+
+        <form class="form-horizontal" data-toggle="validator" name="formtestngongngu" role="form" ng-submit="kiemtra()">
+            <div class="row">
+
+                <div class="col-md-10" style="margin:auto">
+                    <div class="table-responsive">
+                        <table class="table  table-bordered chu">
+                            <tr style="background:#74b9ff">
+                                <th>Mã số nhân viên</th>
+                                <th>Tên nhân viên</th>
+
+                                <th>Tên ngôn ngữ</th>
+                                <th>Nghe</th>
+                                <th>Nói</th>
+                                <th>Đọc</th>
+                                <th>Viết</th>
+
+
+
+                            </tr>
+                            <tr ng-repeat=" item in NgonNgu">
+                                <th>{{LyLichNhanVien.MaSoNhanVien}}</th>
+                                <th>{{LyLichNhanVien.HoVaTen}}</th>
+                                <td>
+
+                                    <input ng-show="EditNgonNgu " ng-model="NgonNgu[$index].TenNgonNgu" type="text" />
+                                    <span ng-show="viewNgonNgu">{{item.TenNgonNgu}}</span>
+
+
+                                </td>
+                                <td>
+                                    <input ng-show="EditNgonNgu " ng-model="NgonNgu[$index].Nghe" type="text" />
+                                    <span ng-show="viewNgonNgu">{{item.Nghe}}</span>
+
+
+                                </td>
+                                <td>
+                                    <input ng-show="EditNgonNgu " ng-model="NgonNgu[$index].Noi" type="text" />
+                                    <span ng-show="viewNgonNgu">{{item.Noi}}</span>
+
+
+                                </td>
+                                <td>
+                                    <input ng-show="EditNgonNgu " ng-model="NgonNgu[$index].Doc" type="text" />
+                                    <span ng-show="viewNgonNgu">{{item.Doc}}</span>
+
+
+                                </td>
+                                <td>
+                                    <input ng-show="EditNgonNgu " ng-model="NgonNgu[$index].Viet" type="text" />
+                                    <span ng-show="viewNgonNgu">{{item.Viet}}</span>
+
+
+                                </td>
+
+
+
+                            </tr>
+                            <tr ng-repeat=" item in solanlapNN">
+                                <th>{{LyLichNhanVien.MaSoNhanVien}}</th>
+                                <th>{{LyLichNhanVien.HoVaTen}}</th>
+                                <td>
+
+                                    <input required name="tenNN" ng-model="AddNgonNgu[$index].TenNgonNgu" type="text" />
+
+
+
+                                </td>
+                                <td>
+                                    <input required name="nghe" ng-model="AddNgonNgu[$index].Nghe" type="text" />
+
+
+
+                                </td>
+                                <td>
+                                    <input required name="noi" ng-model="AddNgonNgu[$index].Noi" type="text" />
+
+
+
+                                </td>
+                                <td>
+                                    <input required name="doc" ng-model="AddNgonNgu[$index].Doc" type="text" />
+
+
+
+                                </td>
+                                <td>
+                                    <input required name="viet" ng-model="AddNgonNgu[$index].Viet" type="text" />
+
+
+
+                                </td>
+
+
+                            </tr>
+
+                        </table>
+
+
+                    </div>
+                    <button type="button" class="btn btn-primary " ng-show="insertNgonNgu" ng-click="myFunctionNN()" style="background:#74b9ff;">Thêm mới</button>
+                </div>
+
+            </div>
+
+
+            <div class="center-block  text-center">
+                <button type="button" class="btn btn-primary " ng-show="closeNgonNgu" style="background:#74b9ff;" ng-click="mobangNgonNgu()">Thay đổi ngôn ngữ</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="row" style="margin-top:10px" ng-show="saveNgonNgu">
+                <div class="col-md-1  btn-group " style="margin:auto">
+
+                    <button type="submit" class="btn btn-primary ">Lưu</button>
+                    <button type="button" class="btn btn-danger" ng-click="huyNgonNgu()">Hủy</button>
+
+                </div>
+
+            </div>
+        </form>
+
+
+
+        <h1 style="margin:20px 0px;text-align:center">Lịch sử làm việc</h1>
+
+
+        <div class="row">
+
+            <div class="col-md-10" style="margin:auto">
+                <div class="table-responsive">
+                    <table class="table  table-bordered chu">
+                        <tr style="background:#74b9ff">
+                            <th>Mã số nhân viên</th>
+                            <th>Tên nhân viên</th>
+
+                            <th>Ngày bắt đầu</th>
+                            <th>Ngày kết thúc</th>
+                            <th>Tên công ty</th>
+                            <th>Vị trí làm việc</th>
+                            <th>Nội dung công việc</th>
+
+
+                        </tr>
+                        <tr ng-repeat=" item in LichSulamViec">
+                            <th>{{LyLichNhanVien.MaSoNhanVien}}</th>
+                            <th>{{LyLichNhanVien.HoVaTen}}</th>
+
+
+
+                            <td>
+
+                                <input ng-show="editLichSuLamViec " ng-model="LichSulamViec[$index].NgayBatDau" ng-value="newLS[$index].NgayBatDau" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+                                <span ng-show="viewLichSuLamViec">{{item.NgayBatDau|date:'dd/MM/yyyy'}}</span>
+
+
+                            </td>
+                            <td>
+                                <input ng-show="editLichSuLamViec " ng-model="LichSulamViec[$index].NgayKetThuc" ng-value="newLS[$index].NgayKetThuc" style="height:22px" type="date" ng-model-options="{timezone:'UTC',} " />
+                                <span ng-show="viewLichSuLamViec">{{item.NgayKetThuc |date:'dd/MM/yyyy'}}</span>
+
+
+                            </td>
+                            <td>
+                                <input ng-show="editLichSuLamViec " ng-model="LichSulamViec[$index].TenCongTy" type="text" />
+                                <span ng-show="viewLichSuLamViec">{{item.TenCongTy}}</span>
+
+                            </td>
+                            <td>
+                                <input ng-show="editLichSuLamViec " ng-model="LichSulamViec[$index].ViTriLamViec" type="text" />
+                                <span ng-show="viewLichSuLamViec">{{item.ViTriLamViec}}</span>
+
+                            </td>
+                            <td>
+                                <input ng-show="editLichSuLamViec " ng-model="LichSulamViec[$index].NoiDungCongViec" type="text" />
+                                <span ng-show="viewLichSuLamViec">{{item.NoiDungCongViec}}</span>
+
+                            </td>
+
+                        </tr>
+                        <tr ng-repeat=" item in solanlapLS">
+                            <th>{{LyLichNhanVien.MaSoNhanVien}}</th>
+                            <th>{{LyLichNhanVien.HoVaTen}}</th>
+
+
+
+                            <td>
+
+                                <input ng-model="AddLichSulamViec[$index].NgayBatDau" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+
+
+
+                            </td>
+                            <td>
+                                <input ng-model="AddLichSulamViec[$index].NgayKetThuc" style="height:22px" type="date" ng-model-options="{timezone:'UTC',} " />
+
+
+
+                            </td>
+                            <td>
+                                <input ng-model="AddLichSulamViec[$index].TenCongTy" type="text" />
+
+
+                            </td>
+                            <td>
+                                <input ng-model="AddLichSulamViec[$index].ViTriLamViec" type="text" />
+
+
+                            </td>
+                            <td>
+                                <input ng-model="AddLichSulamViec[$index].NoiDungCongViec" type="text" />
+
+
+                            </td>
+
+                        </tr>
+
+                    </table>
+
+                </div>
+                <button type="button" class="btn btn-primary " ng-show="AddLS" ng-click="myFunctionLS()" style="background:#74b9ff;">Thêm mới</button>
+
+            </div>
+            <div class="col-md-6 col-md-offset-3 justify-content-center btn-block text-center" style="margin-top:10px">
+                <button type="button" class="btn btn-primary " ng-show="btnsua" ng-click="suaLichSuLamViec()">Sửa lịch sử làm việc</button>
+                <button type="button" class="btn btn-danger" ng-show="btnhuy" ng-click="huyLichSulamViec()">Hủy</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-primary" ng-show="btnsave" ng-click="kiemtraLS()">Lưu</button>
+
+            </div>
+        </div>
+
+
+
+
+        <h1 style="margin:20px 0px;text-align:center">Thông tin tuyển dụng</h1>
+
+
+        <div class="row">
+
+            <div class="col-md-10" style="margin:auto">
+                <div class="table-responsive">
+                    <table class="table  table-bordered chu">
+                        <tr style="background:#74b9ff">
+                            <th>Mã số nhân viên</th>
+                            <th>Tên nhân viên</th>
+
+                            <th>Ngày tuyển</th>
+                            <th>Loại hợp đồng</th>
+                            <th>Địa điểm làm việc</th>
+                            <th>Ngày bắt đầu</th>
+                            <th>Ngày kết thúc</th>
+                            <th>Hình thức lương</th>
+                            <th>Số tiền lương</th>
+
+
+                        </tr>
+                        <tr ng-repeat=" item in ThongTinTuyenDung">
+                            <th>{{LyLichNhanVien.MaSoNhanVien}}</th>
+                            <th>{{LyLichNhanVien.HoVaTen}}</th>
+
+
+
+                            <td>
+
+
+                                <input ng-show="Edit " ng-model="ThongTinTuyenDung[$index].NgayTuyen" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+                                <span ng-show="hide">{{item.NgayTuyen |date:'dd/MM/yyyy'}}</span>
+
+
+                            </td>
+
+                            <td>
+
+                                <input ng-show="Edit " ng-model="ThongTinTuyenDung[$index].LoaiHopDong" type="text" />
+                                <span ng-show="hide">{{item.LoaiHopDong}}</span>
+
+                            </td>
+                            <td>
+                                <input ng-show="Edit " ng-model="ThongTinTuyenDung[$index].DiaDiemLamViec" type="text" />
+                                <span ng-show="hide">{{item.DiaDiemLamViec}}</span>
+
+                            </td>
+                            <td>
+                                <input ng-show="Edit " ng-model="ThongTinTuyenDung[$index].NgayBatDau" style="height:22px" type="date" ng-model-options="{timezone:'UTC'}" />
+                                <span ng-show="hide">{{item.NgayBatDau |date:'dd/MM/yyyy'}}</span>
+
+                            </td>
+                            <td>
+                                <input ng-show="Edit " ng-model="ThongTinTuyenDung[$index].NgayKetThuc" style="height:22px" type="date" ng-model-options="{timezone:'UTC'}" />
+                                <span ng-show="hide">{{item.NgayKetThuc |date:'dd/MM/yyyy'}}</span>
+
+                            </td>
+                            <td>
+                                <input ng-show="Edit " placeholder="dd-mm-yyyy" style="height:22px" ng-model="ThongTinTuyenDung[$index].HinhThucLuong" type="text" />
+                                <span ng-show="hide">{{item.HinhThucLuong}}</span>
+
+                            </td>
+                            <td>
+                                <input ng-show="Edit " style="height:22px" ng-model="ThongTinTuyenDung[$index].SoTienLuong" type="text" />
+                                <span ng-show="hide">{{item.SoTienLuong}}</span>
+
+                            </td>
+
+
+                        </tr>
+
+
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <h1 style="margin:20px 0px;text-align:center">Quản lý công tác</h1>
+
+        <div class="row">
+
+            <div class="col-md-10" style="margin:auto">
+                <div class="table-responsive">
+                    <table class="table  table-bordered chu">
+                        <tr style="background:#74b9ff">
+                            <th>Mã số nhân viên</th>
+                            <th>Tên nhân viên</th>
+
+                            <th>Giờ bắt đầu </th>
+                            <th>Ngày bắt đầu</th>
+                            <th>Giờ kết thúc </th>
+                            <th>Ngày kết thúc</th>
+
+                            <th>Tổng giờ</th>
+
+                            <th>Tổng ngày làm việc </th>
+                            <th>Tổng ngày</th>
+                            <th>Địa điểm </th>
+                            <th>Nội dung </th>
+
+
+
+
+                        </tr>
+                        <tr ng-repeat=" item in QuanLyCongTac ">
+                            <th>{{LyLichNhanVien.MaSoNhanVien}}</th>
+                            <th>{{LyLichNhanVien.HoVaTen}}</th>
+
+
+
+                            <td>
+
+
+                                <input ng-show="Edit " ng-model="QuanLyCongTac[$index].GioBatDau" type="text" />
+                                <span ng-show="hide">{{item.GioBatDau}}</span>
+
+
+                            </td>
+
+                            <td>
+
+                                <input ng-show="Edit " ng-model="QuanLyCongTac[$index].NgayBatDau" ng-value="QuanLyCongTac[$index].NgayBatDau" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+                                <span ng-show="hide">{{item.NgayBatDau|date:'dd/MM/yyyy' }}</span>
+
+                            </td>
+                            <td>
+                                <input ng-show="Edit " ng-model="QuanLyCongTac[$index].GioKetThuc" type="text" />
+                                <span ng-show="hide">{{item.GioKetThuc}}</span>
+
+                            </td>
+                            <td>
+                                <input ng-show="Edit " ng-model="QuanLyCongTac[$index].NgayKetThuc" ng-value="QuanLyCongTac[$index].NgayKetThuc" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+                                <span ng-show="hide">{{item.NgayKetThuc|date:'dd/MM/yyyy' }}</span>
+
+                            </td>
+                            <td>
+                                <input pattern="[0-9]{1,12}" maxlength="3" title="nhập số không được nhập ký tự " ng-show="Edit " ng-model="QuanLyCongTac[$index].TongGio" type="text" />
+                                <span ng-show="hide">{{item.TongGio}}</span>
+
+                            </td>
+                            <td>
+                                <input pattern="[0-9]{1,12}" maxlength="3" title="nhập số không được nhập ký tự " ng-show="Edit " ng-model="QuanLyCongTac[$index].TongNgayLamViec" type="text" />
+                                <span ng-show="hide">{{item.TongNgayLamViec}}</span>
+
+                            </td>
+                            <td>
+                                <input pattern="[0-9]{1,12}" maxlength="3" title="nhập số không được nhập ký tự " ng-show="Edit " ng-model="QuanLyCongTac[$index].TongNgay" type="text" />
+                                <span ng-show="hide">{{item.TongNgay}}</span>
+
+                            </td>
+                            <td>
+                                <input ng-show="Edit " ng-model="QuanLyCongTac[$index].DiaDiem" type="text" />
+                                <span ng-show="hide">{{item.DiaDiem}}</span>
+
+                            </td>
+                            <td>
+                                <input ng-show="Edit " ng-model="QuanLyCongTac[$index].NoiDung" type="text" />
+                                <span ng-show="hide">{{item.NoiDung}}</span>
+
+                            </td>
+
+
+
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <h1 style="margin:20px 0px;text-align:center">Quản lý thẻ</h1>
+
+        <div class="row">
+
+            <div class="col-md-10" style="margin:auto">
+                <div class="table-responsive">
+                    <table class="table  table-bordered chu">
+                        <tr style="background:#74b9ff">
+                            <th>Mã số nhân viên</th>
+                            <th>Tên nhân viên</th>
+
+                            <th>Mã thẻ </th>
+                            <th>Loại thẻ</th>
+                            <th>Ngày yêu cầu </th>
+                            <th>Ngày cấp</th>
+                            <th>Ngày hết hạn</th>
+                            <th>Trạng thái</th>
+
+
+
+
+                        </tr>
+                        <tr ng-repeat=" item in The">
+                            <th>{{LyLichNhanVien.MaSoNhanVien}}</th>
+                            <th>{{LyLichNhanVien.HoVaTen}}</th>
+
+
+
+                            <td>
+
+
+                                <input ng-show="Edit " ng-model="The[$index].MaThe" type="text" />
+                                <span ng-show="hide">{{item.MaThe}}</span>
+
+
+                            </td>
+
+                            <td>
+
+                                <input ng-show="Edit " ng-model="The[$index].LoaiThe" type="text" />
+                                <span ng-show="hide">{{item.LoaiThe}}</span>
+
+                            </td>
+                            <td>
+                                <input ng-show="Edit " ng-model="The[$index].NgayYeuCau" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+                                <span ng-show="hide">{{item.NgayYeuCau |date:'dd/MM/yyyy'}}</span>
+
+                            </td>
+                            <td>
+                                <input ng-show="Edit " ng-model="The[$index].NgayCap" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+                                <span ng-show="hide">{{item.NgayCap |date:'dd/MM/yyyy'}}</span>
+
+                            </td>
+                            <td>
+                                <input ng-show="Edit " ng-model="The[$index].NgayHetHan" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+                                <span ng-show="hide">{{item.NgayHetHan  |date:'dd/MM/yyyy'}}</span>
+
+                            </td>
+                            <td>
+                                <input ng-show="Edit " ng-model="The[$index].TrangThai" type="text" />
+                                <span ng-show="hide">{{item.TrangThai }}</span>
+
+                            </td>
+
+
+
+                        </tr>
+
+
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+
+        <h1 style="margin:20px 0px;text-align:center">Hoàn thành công việc</h1>
+
+        <div class="row">
+
+            <div class="col-md-10" style="margin:auto">
+                <div class="table-responsive">
+                    <table class="table  table-bordered chu">
+                        <tr style="background:#74b9ff">
+                            <th>Mã số nhân viên</th>
+                            <th>Tên nhân viên</th>
+
+                            <th>Loại đánh giá</th>
+                            <th>Ngày bắt đầu</th>
+                            <th>Ngày kết thúc</th>
+                            <th>Xếp loại</th>
+
+
+
+                        </tr>
+                        <tr ng-repeat=" item in HoanThanhCongViec">
+                            <th>{{LyLichNhanVien.MaSoNhanVien}}</th>
+                            <th>{{tenNhanVien}}</th>
+
+
+
+                            <td>
+
+
+                                <input ng-show="Edit " ng-model="HoanThanhCongViec[$index].LoaiDanhGia" type="text" />
+                                <span ng-show="hide">{{item.LoaiDanhGia }}</span>
+
+
+                            </td>
+
+                            <td>
+
+                                <input ng-show="Edit " ng-model="HoanThanhCongViec[$index].NgayBatDau" ng-value="HoanThanhCongViec[$index].NgayBatDau" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+                                <span ng-show="hide">{{item.NgayBatDau|date:'dd/MM/yyyy'}}</span>
+
+                            </td>
+                            <td>
+                                <input ng-show="Edit " ng-model="HoanThanhCongViec[$index].NgayKetThuc" ng-value="HoanThanhCongViec[$index].NgayKetThuc" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+                                <span ng-show="hide">{{item.NgayKetThuc|date:'dd/MM/yyyy'}}</span>
+
+                            </td>
+                            <td>
+                                <input ng-show="Edit " ng-model="HoanThanhCongViec[$index].XepLoai" type="text" />
+                                <span ng-show="hide">{{item.XepLoai}}</span>
+
+                            </td>
+
+
+
+                        </tr>
+
+
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+
+        <h1 style="margin:20px 0px;text-align:center">Quản lý ngày nghỉ</h1>
+
+        <div class="row">
+
+            <div class="col-md-10" style="margin:auto">
+                <div class="table-responsive">
+                    <table class="table  table-bordered chu">
+                        <tr style="background:#74b9ff">
+                            <th>Mã số nhân viên</th>
+                            <th>Tên nhân viên</th>
+
+                            <th>Giờ bắt đầu </th>
+                            <th>Ngày bắt đầu</th>
+                            <th>Giờ kết thúc </th>
+                            <th>Ngày kết thúc</th>
+                            <th>Loại nghỉ</th>
+                            <th>Tổng giờ</th>
+                            <th>Tổng ngày làm việc nghỉ</th>
+                            <th>Tổng ngày nghỉ</th>
+
+
+
+
+                        </tr>
+                        <tr ng-repeat=" item in QuanLyNgayNghi">
+                            <th>{{LyLichNhanVien.MaSoNhanVien}}</th>
+                            <th>{{LyLichNhanVien.HoVaTen}}</th>
+
+
+                            <td>
+
+
+                                <input ng-show="Edit " ng-model="QuanLyNgayNghi[$index].GioBatDau" type="text" />
+                                <span ng-show="hide">{{item.GioBatDau}}</span>
+
+
+                            </td>
+
+                            <td>
+
+                                <input ng-show="Edit " ng-model="QuanLyNgayNghi[$index].NgayBatDau" ng-value="QuanLyNgayNghi[$index].NgayBatDau" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+                                <span ng-show="hide">{{item.NgayBatDau|date:'dd/MM/yyyy' }}</span>
+
+                            </td>
+                            <td>
+                                <input ng-show="Edit " ng-model="QuanLyNgayNghi[$index].GioKetThuc" type="text" />
+                                <span ng-show="hide">{{item.GioKetThuc}}</span>
+
+                            </td>
+                            <td>
+                                <input ng-show="Edit " ng-model="QuanLyNgayNghi[$index].NgayKetThuc" ng-value="QuanLyNgayNghi[$index].NgayKetThuc" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+                                <span ng-show="hide">{{item.NgayKetThuc|date:'dd/MM/yyyy' }}</span>
+
+                            </td>
+                            <td>
+                                <input ng-show="Edit " ng-model="QuanLyNgayNghi[$index].LoaiNghi" type="text" />
+                                <span ng-show="hide">{{item.LoaiNghi}}</span>
+
+                            </td>
+                            <td>
+                                <input pattern="[0-9]{1,12}" maxlength="3" title="Nhập số không được nhập ký tự" ng-show="Edit " ng-model="QuanLyNgayNghi[$index].TongGio" type="tel" />
+                                <span ng-show="hide">{{item.TongGio}}</span>
+
+                            </td>
+                            <td>
+                                <input pattern="[0-9]{1,12}" maxlength="3" title="Nhập số không được nhập ký tự" ng-show="Edit " ng-model="QuanLyNgayNghi[$index].TongNgayLamViecNghi" type="tel" />
+                                <span ng-show="hide">{{item.TongNgayLamViecNghi}}</span>
+
+                            </td>
+                            <td>
+                                <input pattern="[0-9]{1,12}" maxlength="3" title="Nhập số không được nhập ký tự" ng-show="Edit " ng-model="QuanLyNgayNghi[$index].TongNgayNghi" type="tel" />
+                                <span ng-show="hide">{{item.TongNgayNghi}}</span>
+
+                            </td>
+
+
+
+                        </tr>
+
+
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+
+        <h1 style="margin:20px 0px;text-align:center">Quản lý quá giờ</h1>
+
+        <div class="row">
+
+            <div class="col-md-10" style="margin:auto">
+                <div class="table-responsive">
+                    <table class="table  table-bordered chu">
+                        <tr style="background:#74b9ff">
+                            <th>Mã số nhân viên</th>
+                            <th>Tên nhân viên</th>
+
+                            <th>Số giờ </th>
+                            <th>Phân loại </th>
+
+
+
+
+
+
+
+                        </tr>
+                        <tr ng-repeat=" item in QuanLyQuaGio">
+                            <th>{{LyLichNhanVien.MaSoNhanVien}}</th>
+                            <th>{{LyLichNhanVien.HoVaTen}}</th>
+
+
+
+
+                            <td>
+                                <input ng-show="Edit " ng-model="QuanLyQuaGio[$index].SoGio" type="text" />
+                                <span ng-show="hide">{{item.SoGio}}</span>
+
+                            </td>
+                            <td>
+                                <input ng-show="Edit " ng-model="QuanLyQuaGio[$index].PhanLoai" type="text" />
+                                <span ng-show="hide">{{item.PhanLoai}}</span>
+
+                            </td>
+
+
+
+                        </tr>
+
+
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+</div>
+
+
+<div class="container">
+    <div class="row" id="of">
+
+
+        <div class="modal fade bs-example-modal-lg" id="off" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-lg" role="document" style="max-width: 1305px;">
+                <div class="modal-content" style="border-radius: 10px" >
+                  
+                    <div class="modal-body">
+                        <form class="form-horizontal" data-toggle="validator" name="formtest" role="form" ng-submit="AddAllThongtinvienchuc()">
+
+                            <div class="container-fluid" style="margin-bottom:20px">
+                                <h1 style="margin-bottom:20px;text-align:center">Thêm nhân viên mới</h1>
+                                <div class="row">
+                                    <div class="col-md-12" style="margin:auto">
+                                        <div class="table-responsive">
+                                            <table class="table  table-bordered chuphai">
+                                                <tr>
+
+                                                    <td width="33%">
+
+                                                        <b>Mã số nhân viên:</b>
+                                                        <input class="invalid form-control" ng-change="getSeoTitle(AllVienChucChitiet.MaSoNhanVien)" name="msvc" disabled ng-model="AllVienChucChitiet.MaSoNhanVien " type="text" />
+
+                                                    </td>
+                                                    <td width="33%" colspan="2">
+                                                        <b>Họ và tên:<span ng-show="formtest.hoten.$error.required" class="has-error text-left"> &nbsp;* Bắt buộc</span></b>
+                                                        <input class="invalid form-control" ng-model="AllVienChucChitiet.HoVaTen" required type="text" name="hoten" title="không được bỏ trống " />
+                                                    </td>
+                                                    <td width="30%" rowspan="5">
+
+                                                        <img class="img-fluid" src="{{AllVienChucChitiet.Hinh}}" /><br />
+                                                        <button type="button" style="margin-top:20px;margin-left:180px" class="btn btn-primary" ng-click="ChooseImages()"> <i class="fa fa-image"></i>Tải ảnh lên</button>
+
+
+
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>Ngày sinh:<span ng-show="formtest.ngaysinh.$error.required" class="has-error text-left"> &nbsp;* Bắt buộc</span></b>
+                                                        <input class="invalid form-control" style="height:22px" required ng-model="AllVienChucChitiet.NgaySinh" type="date" ng-model-options="{timezone:'UTC',}" name="ngaysinh" title="không được bỏ trống" />
+                                                    </td>
+                                                    <td colspan="2">
+                                                        <b> Số CMND:<span ng-show="formtest.cmnd.$error.required" class="has-error text-left"> &nbsp;* Bắt buộc</span></b>
+                                                        <input class="invalid form-control" pattern="[0-9]{1,12}" name="cmnd" ng-model="AllVienChucChitiet.SoCMND" required type="text" title="Nhập số không được nhập ký tự " />
+                                                    </td>
+
+
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>Ngày Cấp CMND:<span ng-show="formtest.ngaycap.$error.required" class="has-error text-left"> &nbsp;* Bắt buộc</span></b>
+                                                        <input class="invalid form-control" style="height:22px" required ng-model="AllVienChucChitiet.NgayCapCMND" type="date" ng-model-options="{timezone:'UTC',}" name="ngaycap" />
+                                                    </td>
+                                                    <td colspan="2">
+
+                                                        <b>Nơi cấp CMND:<span ng-show="formtest.noicap.$error.required" class="has-error text-left"> &nbsp;* Bắt buộc</span></b>
+                                                        <input class="invalid form-control" title="không được bỏ trống" required ng-model="AllVienChucChitiet.NoiCapCMND" type="text" name="noicap" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+
+                                                        <b>Chức vụ:<span ng-show="formtest.noicap.$error.required" class="has-error text-left"> &nbsp;* Bắt buộc</span></b>
+                                                        <select class="selectpicker form-control" required ng-model="AllVienChucChitiet.MaChucVu" ng-change="getmasocoso(MaSoCoSo)"
+                                                                ng-options="item.MaChucVu  as  item.TenChucVu  for item in ChucVu">
+                                                            <option disabled value="">Chọn chức vu</option>
+                                                        </select>
+                                                    </td>
+                                                    <td colspan="2">
+                                                        <b>Giới tính:</b>
+                                                        <select class="form-control" ng-model="AllVienChucChitiet.GioiTinh">
+                                                            <option disabled value="">Chọn</option>
+                                                            <option>Nam</option>
+                                                            <option>Nữ</option>
+                                                        </select>
+                                                    </td>
+
+
+
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>Tình trạng hôn nhân:</b>
+                                                        <input class="form-control" ng-model="AllVienChucChitiet.TinhTrangHonNhan" type="text" name="Hocten" />
+                                                    </td>
+                                                    <td colspan="2">
+                                                        <b>Quốc tịch:</b>
+                                                        <input class="invalid form-control" title="không được bỏ trống" ng-model="AllVienChucChitiet.QuocTich" type="text" name="quoctich" />
+                                                    </td>
+
+
+
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>Số điện thoại:</b>
+                                                        <input class="invalid form-control" pattern="[0-9]{1,12}" title="phải nhập số" ng-model="AllVienChucChitiet.SoDienThoai" type="tel" name="dienthoai" />
+                                                    </td>
+                                                    <td colspan="2">
+                                                        <b>Email:</b>
+                                                        <input class="invalid form-control" title="định dạng mail không hợp lệ" ng-model="AllVienChucChitiet.Email" type="email" name="email" />
+
+
+                                                    </td>
+                                                    <td>
+                                                        <b>Mã cơ sở:</b>
+                                                        <input class="invalid form-control" ng-model="AllVienChucChitiet.MaSoCoSo" type="text" name="chuyennganh" />
+
+
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>Địa chỉ:</b>
+                                                        <input class="invalid form-control" title="không được bỏ trống" ng-model="AllVienChucChitiet.DiaChi" type="text" name="Hocten" />
+
+
+                                                    </td>
+                                                    <td colspan="2">
+                                                        <b>Họ tên liên hệ khẩn cấp: </b>
+                                                        <input class="form-control" ng-model="AllVienChucChitiet.HoTenLienHeKhanCap" type="text" name="xeploai" />
+                                                    </td>
+                                                    <td>
+                                                        <b>Quan hệ liên hệ khẩn cấp: </b>
+                                                        <input class="invalid form-control" title="phải nhập số" ng-model="AllVienChucChitiet.QuanHeLienHeKhanCap" type="text" name="namdat" />
+                                                    </td>
+
+
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>Địa chỉ liên hệ khẩn cấp:</b>
+
+                                                        <input class="form-control" ng-model="AllVienChucChitiet.DiaChiLienHeKhanCap" type="text" name="Hocten" />
+                                                    </td>
+
+                                                    <td colspan="2">
+                                                        <b>Số điện thoại liên hệ khẩn cấp:</b>
+                                                        <input class="invalid form-control" ng-model="AllVienChucChitiet.SDTLienHeKhanCap" type="text" name="chuyennganh" />
+
+
+                                                    </td>
+                                                    <td>
+                                                        <b>Bậc:</b>
+                                                        <input class="invalid form-control" ng-model="AllVienChucChitiet.Bac" type="text" name="chuyennganh" />
+
+
+                                                    </td>
+
+                                                </tr>
+
+                                            </table>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="container-fluid" style="margin-bottom:20px">
+                                <h1 style="margin-bottom:20px;text-align:center">Quá trình đào tạo</h1>
+                                <div class="row">
+
+                                    <div class="col-md-10" style="margin:auto">
+                                        <div class="table-responsive">
+                                            <table class="table  table-bordered chu">
+                                                <tr style="background:#74b9ff">
+                                                    <th width="5%">STT</th>
+                                                    <th>Ngày bắt đầu</th>
+                                                    <th>Ngày kết thúc</th>
+                                                    <th>Tên Trường</th>
+                                                    <th>Loại bằng</th>
+                                                    <th>Chuyên ngành</th>
+                                                    <th>Xếp loại</th>
+
+                                                </tr>
+                                                <tr ng-repeat="item in solanlap2">
+                                                    <th>{{$index+1}}</th>
+                                                    <td ng-show="hide"><input disabled ng-model="AllQuaTrinhDaoTao[0].MaSoNhanVien" class="invalid form-control" type="tel" /></td>
+                                                    <td>
+                                                        <input class="invalid form-control" style="height:22px" ng-model="AllQuaTrinhDaoTao[$index].NgayBatDau" type="date" ng-model-options="{timezone:'UTC',}" ng-model-options="{timezone:'UTC'}" />
+
+
+                                                    </td>
+                                                    <td>
+                                                        <input class="invalid form-control" style="height:22px" ng-model="AllQuaTrinhDaoTao[$index].NgayKetThuc" type="date" ng-model-options="{timezone:'UTC',}" ng-model-options="{timezone:'UTC'}" />
+
+
+                                                    </td>
+                                                    <td>
+
+                                                        <input class="invalid form-control" ng-model="AllQuaTrinhDaoTao[$index] .TenTruong" type="text" />
+
+
+                                                    </td>
+                                                    <td>
+                                                        <input class="invalid form-control" ng-model="AllQuaTrinhDaoTao[$index] .LoaiBang" type="text" />
+
+
+                                                    </td>
+                                                    <td>
+                                                        <input class="invalid form-control" ng-model="AllQuaTrinhDaoTao[$index] .ChuyenNganh" type="text" />
+
+
+                                                    </td>
+                                                    <td>
+                                                        <input class="invalid form-control" ng-model="AllQuaTrinhDaoTao[$index] .XepLoai" type="text" />
+
+
+                                                    </td>
+
+
+                                                </tr>
+
+
+                                            </table>
+                                            <button type="button" ng-click="myFunction2()">Thêm</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="container-fluid" style="margin-bottom:20px">
+                                <h1 style="margin-bottom:20px;text-align:center">Lịch sử làm việc</h1>
+                                <div class="row">
+
+                                    <div class="col-md-10" style="margin:auto">
+                                        <div class="table-responsive">
+                                            <table class="table  table-bordered chu">
+                                                <tr style="background:#74b9ff">
+                                                    <th width="5%">STT</th>
+                                                    <th>Ngày bắt đầu</th>
+                                                    <th>Ngày kết thúc</th>
+                                                    <th>Tên công ty</th>
+                                                    <th>Vị trí làm việc</th>
+                                                    <th>Nội dung công việc</th>
+                                                </tr>
+                                                <tr ng-repeat="item in solanlap3">
+                                                    <th>{{$index+1}}</th>
+                                                    <td ng-show="hide"><input disabled ng-model="LichSuLamViec[0].MaSoNhanVien" class="invalid form-control" type="tel" /></td>
+                                                    <td>
+                                                        <input class="invalid form-control" style="height:22px" ng-model="LichSuLamViec[$index].NgayBatDau" type="date" ng-model-options="{timezone:'UTC',}" />
+
+
+                                                    </td>
+                                                    <td>
+                                                        <input class="invalid form-control" style="height:22px" ng-model="LichSuLamViec[$index].NgayKetThuc" type="date" ng-model-options="{timezone:'UTC',}" />
+
+
+                                                    </td>
+                                                    <td>
+
+                                                        <input class="invalid form-control" ng-model="LichSuLamViec[$index] .TenCongTy" type="text" />
+
+
+                                                    </td>
+                                                    <td>
+                                                        <input class="invalid form-control" ng-model="LichSuLamViec[$index] .ViTriLamViec" type="text" />
+
+
+                                                    </td>
+                                                    <td>
+                                                        <input class="invalid form-control" ng-model="LichSuLamViec[$index] .NoiDungCongViec" type="text" />
+
+
+                                                    </td>
+
+                                                </tr>
+
+
+                                            </table>
+                                            <button type="button" ng-click="myFunction3()">Thêm</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="container-fluid">
+                                <h1 style="margin-bottom:20px;text-align:center">Ngôn ngữ</h1>
+                                <div class="row">
+
+                                    <div class="col-md-10" style="margin:auto">
+                                        <div class="table-responsive">
+                                            <table class="table  table-bordered chu" id="myTable">
+                                                <tr style="background:#74b9ff">
+                                                    <th style="width:5%">STT</th>
+                                                    <!--<th style="width:174px">MSVC</th>-->
+                                                    <th>Tên ngôn ngữ</th>
+                                                    <th>Trình độ</th>
+
+                                                </tr>
+                                                <tbody id="tableToModify">
+                                                    <tr id="rowToClone" ng-repeat="item in solanlap">
+                                                        <th>{{$index+1}}</th>
+                                                        <td ng-show="hide"><input class="invalid form-control" ng-show="hide" disabled ng-model="AllTrinhDoNgoaiNgu[0].MaSoNhanVien" type="tel" /></td>
+
+                                                        <td>
+
+                                                            <input class="invalid form-control" ng-model="AllTrinhDoNgoaiNgu[$index].TenNgonNgu" type="text" name="tenngoaingu" />
+
+
+                                                        </td>
+                                                        <td>
+
+                                                            <input class="invalid form-control" ng-model="AllTrinhDoNgoaiNgu[$index].TrinhDo" type="text" name="nghe" />
+
+
+                                                        </td>
+
+
+
+                                                    </tr>
+                                                </tbody>
+
+                                            </table>
+                                            <button type="button" ng-click="myFunction()">Thêm</button>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                            <div class="container-fluid">
+                                <h1 style="margin-bottom:20px;text-align:center">Thông tin tuyển dụng</h1>
+                                <div class="row">
+
+                                    <div class="col-md-10" style="margin:auto">
+                                        <div class="table-responsive">
+                                            <table class="table  table-bordered chu">
+                                                <tr style="background:#74b9ff">
+                                                    <th style="width:5%">STT</th>
+                                                    <!--<th style="width:174px">MSVC</th>-->
+                                                    <th>Ngày tuyển</th>
+                                                    <th>Loại hợp đồng</th>
+                                                    <th>Địa điểm làm việc</th>
+                                                    <th>Ngày bắt đầu</th>
+                                                    <th>Ngày kết thúc</th>
+                                                    <th>Hình thức lương</th>
+                                                    <th>Số tiền lương</th>
+
+                                                </tr>
+                                                <tr ng-repeat="item in solanlap1">
+                                                    <th>{{$index+1}}</th>
+                                                    <td ng-show="hide"><input class="invalid form-control" disabled ng-model="AllThoiGianCongTac[0].MaSoNhanVien" type="tel" /></td>
+                                                    <td>
+                                                        <input class="invalid form-control" style="height:22px" ng-model="AllThoiGianCongTac[$index] .NgayTuyen " ng-model-options="{timezone:'UTC'}" type="date" />
+
+
+                                                    </td>
+
+                                                    <td>
+
+                                                        <input class="invalid form-control" ng-model="AllThoiGianCongTac [$index].LoaiHopDong" type="text" />
+
+
+
+                                                    </td>
+                                                    <td>
+                                                        <input class="invalid form-control" ng-model="AllThoiGianCongTac[$index] .DiaDiemLamViec" type="text" />
+
+
+
+                                                    </td>
+                                                    <td>
+                                                        <input class="invalid form-control" style="height:22px" ng-model="AllThoiGianCongTac[$index] .NgayBatDau " ng-model-options="{timezone:'UTC'}" type="date" />
+
+
+                                                    </td>
+                                                    <td>
+                                                        <input class="invalid form-control" style="height:22px" ng-model="AllThoiGianCongTac[$index] .NgayKetThuc " ng-model-options="{timezone:'UTC'}" type="date" />
+
+
+                                                    </td>
+                                                    <td>
+
+                                                        <input class="invalid form-control" ng-model="AllThoiGianCongTac [$index].HinhThucLuong " type="text" />
+
+
+
+                                                    </td>
+                                                    <td>
+
+                                                        <input class="invalid form-control" ng-model="AllThoiGianCongTac [$index].SoTienLuong" type="text" />
+
+
+
+                                                    </td>
+
+                                                </tr>
+
+
+                                            </table>
+                                            <button type="button" ng-click="myFunction1()">Thêm</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="center-block  text-center">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal" >Hủy</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <button type="submit" class="btn btn-primary " style="background:#74b9ff;">Lưu</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

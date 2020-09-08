@@ -1,0 +1,90 @@
+﻿<!-- Content Header (Page header) -->
+
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li> <a href="">Quản lý chi phí Seo</a></li>
+        <li><a ui-sref="quanlychiphiseo">Thêm cơ sở mới</a></li>
+
+    </ol>
+</section>
+
+<!-- Main content -->
+<div class="container">
+    <div class="row print">
+
+        <div class="input-group  col-md-12 hidden-xs justify-content-center">
+            <form class="">
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-primary btn-sm form-control" data-toggle="modal" data-target=".bs-example-modal-lg1">Thêm hàng hóa</button>
+                </div>
+            </form>
+        </div>
+
+
+        <div class="modal fade bs-example-modal-lg1"  tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false" data-keyboard="false" data-focus-on="input:first">
+            <div class="modal-dialog modal-lg" role="document" style="max-width: 1205px;">
+                <div class="modal-content" style="border-radius: 10px;
+                     ">
+                    <div class="modal-header">
+                        <h3 style="text-align:center;color:red">Thêm cơ sở</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Đóng" ng-click="huy()">
+                            <span aria-hidden="true" style="color:red">&times; Đóng</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="form1" role="form" ng-submit="addCoSo()">
+                            <div class="row">
+                                <div>
+                                    <div class="col-md-12 table-responsive">
+                                        <fieldset class="well">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered" style="border:solid #ddd 1px">
+                                                    <tr>
+                                                        <td> <b>Mã số</b></td>
+                                                        <td colspan="2" width="80%">
+                                                            <div class="input-group">
+                                                                <input disabled ng-model="coSoObj.MaCoSo" type="text" class="form-control">
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Tên cơ sở</b></td>
+                                                        <td colspan="2"> <input required ng-model="coSoObj.TenCoSo" type="text" class="form-control"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> <b>Địa chỉ</b></td>
+                                                        <td colspan="2"><input ng-model="coSoObj.DiaChi" type="text" class="form-control"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Cấp tổ chức</b></td>
+                                                        <td>
+                                                            <div class="input-group">
+                                                                <input ng-model="coSoObj.CapToChuc" type="text" class="form-control">
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class=" row" style="margin:20px 0px">
+                                <div class=" col-md-6"></div>
+                                <div class=" col-md-6">
+                                    <button type="submit" class="btn btn-primary">Lưu</button>
+                                    <button ng-click="huy()" type="button" class="btn btn-danger">Hủy</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

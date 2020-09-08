@@ -1,0 +1,278 @@
+﻿<!-- Content Header (Page header) -->
+
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li><a href="">Kế toán</a></li>
+        <li><a href="">Nghiệp vụ</a></li>
+        <li><a href="">Kho</a></li>
+        <li><a ui-sref="thongkelenhsanxuat">Thống kê lệnh sản xuất</a></li>
+    </ol>
+</section>
+
+
+
+
+<div class="container-fluid">
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-primary" ui-sref="thongkenhapxuatkho">Thống kê nhập,xuất kho</button> &nbsp;&nbsp;
+        <button type="button" class="btn btn-primary" ui-sref="thongkechuyenkho">Chuyển kho</button> &nbsp;&nbsp;
+        <button type="button" class="btn btn-secondary" ui-sref="thongkelenhsanxuat">Lệnh sản xuất</button> &nbsp;&nbsp;
+        <button type="button" class="btn btn-primary" ui-sref="thongkelaprapthaodo">Lắp ráp, tháo dỡ</button> &nbsp;&nbsp;
+        <button type="button" class="btn btn-primary">Kiểm kê</button> &nbsp;&nbsp;
+        <button type="button" class="btn btn-primary">Báo cáo phân tích</button> &nbsp;&nbsp;
+
+    </div>
+    <br /><br />
+    <div class="row" style="bottom:20px">
+        <div class="col-md-2">
+
+
+            <span class="input-group slectphanloai">
+
+
+                <span class="input-group-append">
+                    <span class="input-group-text"><b>Kỳ : </b></span>
+                </span>
+
+
+                <select class="selectpicker form-control " ng-change="filterdate(ky)" ng-model="ky">
+                    <option value="" disabled>tùy chọn</option>
+                    <option value="nextmonth">tháng trước</option>
+                    <option value="lastmonth">tháng sau</option>
+                    <option value="tuantruoc">tuần trước</option>
+                    <option value="tuansau">tuần sau</option>
+                    <option value="quytruoc">quý trước</option>
+                    <option value="quysau">quý sau</option>
+                    <option value="namtruoc">năm trước</option>
+                    <option value="namsau">năm sau</option>
+                    <option value="">Xem tất cả</option>
+                </select>
+            </span>
+
+
+        </div>
+        <div class="col-md-2">
+            <span class="input-group slectPhanLoai">
+
+
+                <span class="input-group-append">
+                    <span class="input-group-text"><b>Tình trạng : </b></span>
+                </span>
+                <select class="selectpicker form-control " ng-model="filterValue">
+                    <option value="">Tất cả</option>
+                    <option value="true">Đã ghi sổ</option>
+                    <option value="false">Chưa ghi sổ</option>
+
+
+                </select>
+            </span>
+        </div>
+
+        <div class="col-md-2">
+            <span class="input-group slectPhanLoai">
+                <span class="input-group-append">
+                    <span class="input-group-text"><b>Từ : </b></span>
+                </span>
+
+                <input class="form-control" type="date" name="ngaydau" ng-model="ngaydau" ng-model-options="{timezone:'UTC',}" />
+            </span>
+        </div>
+        <div class="col-md-2">
+            <span class="input-group slectPhanLoai">
+                <span class="input-group-append">
+                    <span class="input-group-text"><b>Đến : </b></span>
+                </span>
+                <input class="form-control" type="date" name="ngaycuoi" ng-model="ngaycuoi" ng-model-options="{timezone:'UTC',}" />
+            </span>
+        </div>
+
+        <div class="col-md-4"><button class="btn btn-primary" ng-click="getfromtoday(ngaydau,ngaycuoi,phieuchi);filter()">Lọc dữ liệu</button></div>
+
+    </div>
+
+
+
+
+
+</div>
+<div style="margin:20px 0px"></div>
+<div class="container">
+    <div class="row" id="of">
+
+
+        <div class="modal fade bs-example-modal-lg" id="off" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false" data-keyboard="false" data-focus-on="input:first">
+
+            <div class="modal-dialog modal-lg" role="document" style="max-width: 1305px;">
+                <div class="modal-content" style="border-radius: 10px;min-height:670px
+                     ">
+                    <div class="modal-header">
+                        <h3 style="text-align:center;color:red">Thông tin chi tiết Lệnh sản xuất </h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                            <span aria-hidden="true" style="color:red">&times; Đóng</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="form1" role="form">
+                            <div class="row">
+
+
+
+                                <div class="col-md-9 table-responsive">
+                                    <fieldset class="well">
+                                        <legend class="well-legend">Thông tin chung</legend>
+
+                                        <table class="table table-bordered" style="border:solid #ddd 1px">
+
+
+
+                                            <tr>
+                                                <td><b>Diễn giải</b></td>
+                                                <td><input disabled ng-model="singer.DienGiai" type="text" class="form-control"></td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <td><b>Tham chiếu</b></td>
+                                                <td>
+                                                    <a ng-click="getbykeyword(keyword)" class=" btn btn-primary text-white"> <i class="fa fa-search-plus"></i></a>
+
+                                                </td>
+                                            </tr>
+
+
+                                        </table>
+
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-3 table-responsive">
+                                    <fieldset class="well">
+                                        <legend class="well-legend">Chứng từ</legend>
+                                        <table class="table table-bordered" style="border:solid #ddd 1px">
+                                            <tr>
+                                                <td> <b>Ngày </b></td>
+                                                <td width="60%">
+                                                    <input disabled ng-model="singer.Ngay" type="text" class="form-control">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Số lệnh</b></td>
+                                                <td><input disabled ng-model="singer.MaLenhSanXuat" type="text" class="form-control"></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td> <b>Tình trạng </b></td>
+                                                <td>
+                                                    <input disabled ng-model="singer.TenTinhTrang" type="text" class="form-control" ng-model-options="{timezone:'UTC',}">
+
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                    </fieldset>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-12" style="overflow-x:auto;background-color:#f5f5f5">
+                                <table border="1">
+                                    <caption style="caption-side:top">Thành phẩm</caption>
+                                    <tr style="background:#74b9ff">
+
+                                        <th width="20%">Mã thành phẩm</th>
+                                        <th>Tên thành phẩm</th>
+                                        <th>Số lượng</th>
+                                        <th>Đơn vị tính</th>
+                                        <th>Đơn đặt hàng</th>
+                                        <th>Hợp đồng bán</th>
+                                        <th>Đối tượng THCP</th>
+
+                                        <th>Mã thống kê</th>
+
+
+
+
+                                    </tr>
+                                    <tr ng-repeat="i in ChitietTP">
+                                        <td> {{i.MaThanhPham}}</td>
+                                        <td>{{i.TenThanhPham}}</td>
+                                        <td> {{i.SoLuong}}</td>
+                                        <td> {{i.DonViTinh}}</td>
+                                        <td> </td>
+                                        <td> {{i.HopDongBan}}</td>
+                                        <td>  {{i.DoiTuongDHCP}}</td>
+                                        <td> {{i.MaThongKe}}</td>
+
+
+                                    </tr>
+
+                                </table>
+
+
+
+                            </div>
+                            <div></div>
+                            <div class="col-md-12" style="overflow-x:auto;background-color:#f5f5f5">
+                                <table border="1">
+                                    <caption style="caption-side:top">Định mức NVL cho thành phẩm BETONG</caption>
+                                    <tr style="background:#74b9ff">
+
+                                        <th width="20%">Mã nguyên vật liệu</th>
+                                        <th>Tên nguyên vật liệu</th>
+                                        <th>Đơn vị tính</th>
+                                        <th> Số lượng NVL/1 đơn vị sản phẩm</th>
+                                        <th>Số lượng NVL</th>
+
+                                        <th>Đối tượng THCP</th>
+                                        <th>Khoản mục CP</th>
+                                        <th>Mã thống kê</th>
+
+
+
+
+                                    </tr>
+                                    <tr ng-repeat="i in ChitietNVL">
+                                        <td> {{i.MaLenhSanXuat_NVL}}</td>
+                                        <td>{{i.TenThanhPham}}</td>
+                                        <td> {{i.DonViTinh}}</td>
+                                        <td> {{i.SoLuong_1DonVi}}</td>
+                                        <td> {{i.SoLuong}} </td>
+                                        <td> {{i.DoiTuongDHCP}}</td>
+                                        <td>  {{i.KhoanMucCP}}</td>
+                                        <td> {{i.MaThongKe}}</td>
+
+
+                                    </tr>
+
+                                </table>
+
+
+
+                            </div>
+
+
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class=" col-md-1" style="max-width:10px;padding:0px"></div>
+        <div class=" col-md-11"><div ui-grid="gridOptions" style="width:110%;height:400px;margin:auto" ui-grid-resize-columns class="grid" ui-grid-pinning></div></div>
+
+
+
+    </div>
+</div>
+
+
+

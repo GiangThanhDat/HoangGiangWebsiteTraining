@@ -1,0 +1,81 @@
+﻿  <!-- Content Header (Page header) -->
+<section class="content-header">
+
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li><a ui-sref="quanlytaisanCaNhan">Quản lý tài sản </a></li>
+
+    </ol>
+</section>
+
+<h1 style="text-align:center;margin:30px 0px"> Quản lý tài sản cá nhân</h1>
+
+
+<div class="container-fluid" style="padding:0px">
+
+    <div class="col-md-12" style="padding:0px">
+        <div class="table-responsive">
+            <table class="table  table-bordered chu" style="overflow-x:scroll">
+                <tr style="background:#74b9ff">
+                    <th width="3%">STT</th>
+                    <th width="6%">Mã tài sản</th>
+                    <th width="8%">Ngày nhập kho</th>
+                    <th width="12%">Ngày bắt đầu sử dụng</th>
+                    <th width="7%">Ngày hết hạn</th>
+                    <th width="8%">Cơ sở</th>
+                    <th width="8%">Kiểu tài sản</th>
+                    <th>Mô tả chi tiết</th>
+                    <th width="6%">Tình trạng</th>
+                    <th width="8%">Ngày nhập liệu</th>
+                    <th width="10%">Người nhập</th>
+                    <th width="10%">Người quản lý tài sản</th>
+
+
+
+                </tr>
+                <tr ng-repeat="item in ThongKeTaiSan">
+                    <th>
+                        {{$index+1}}
+                    </th>
+                    <td>
+                        {{item.MaTaiSan}}
+                    </td>
+                    <td>
+                        {{item.NgayNhap|date:"dd/MM/yyyy"}}
+                    </td>
+                    <td>
+                        {{item.NgayBatDauSuDung|date:"dd/MM/yyyy"}}
+                    </td>
+                    <td>
+                        {{item.NgayHetHan|date:"dd/MM/yyyy"}}
+                    </td>
+                    <td>
+                        {{item.TenCoSo}}
+                    </td>
+                    <td>
+                        {{item.KieuTaiSan}}
+                    </td>
+                    <td>
+                        <p style="text-align:justify">{{item.MoTaChiTiet}}</p>
+
+                    </td>
+                    <td>
+                        {{item.TinhTrang}}
+                    </td>
+                    <td>
+                        {{item.NgayNhapLieu|date:"dd/MM/yyyy"}}
+                    </td>
+                    <td>
+                        ({{item.NguoiNhap}}) {{item.TenNguoiNhap}}
+                    </td>
+                    <td>
+                        ({{maNhanVien}}) {{CoSo.TenCoSo}} ({{CoSo.MaCoSo}})
+                    </td>
+                </tr>
+
+
+
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,620 @@
+﻿  <!-- Content Header (Page header) -->
+<section class="content-header">
+
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li><a ui-sref="quanlycongtacadmin">Quản lý công tác</a></li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<div class="container">
+    <div class="row print">
+
+        <div class="col-md-2 col-2  text-right ">
+
+            <div class="form-input form-group">
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Chọn kiểu xem
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item btn" ng-click="Xemtheongay(); ">Xem theo ngày</a>
+                        <a class="dropdown-item btn" ng-click="Xemtheonhanvien()">Xem theo nhân viên</a>
+                        <a class="dropdown-item btn" ng-click="Xemtheotuan();getbytuan()">Xem theo tuần hiện tại</a>
+                        <a class="dropdown-item btn" ng-click="Xemtheothang()">Xem theo tháng</a>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="input-group  col-md-10 hidden-xs">
+            <form class="" ng-show="Ngay">
+                <div class="input-group ">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><b>Xem theo ngày: </b></span>
+                    </div>
+
+                    <input ng-model="ngayxem" type="date" class="form-control ">
+                    <div class="input-group-append">
+                        <a ng-click="getbyngay()" class="form-control btn btn-primary text-white"> Xem</a>
+
+                    </div>
+
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="input-group-append" ng-show="authentication.ChucVu[0].MaChucVu>=80">
+                        <span class="input-group-text"><b>Chọn cơ sở: </b></span>
+                    </div>
+                    <select class="selectpicker form-control" ng-model="MaSoCoSo" ng-show="authentication.ChucVu[0].MaChucVu>=80"
+                            ng-options="item.TenCoSo  as item.TenCoSo +' '+ '('+''+item.MaCoSo + ') '   for item in getALLCoSo" ng-change="xoaTenNhanVien();">
+                        <option disabled value="">Chọn cơ sở</option>
+                    </select>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="input-group-append" ng-show="authentication.ChucVu[0].MaChucVu>=80&&MaSoCoSo.length>0">
+                        <span class="input-group-text"><b>Chọn tên: </b></span>
+                    </div>
+                    <select class="selectpicker form-control" ng-model="TenNhanVien" ng-show="authentication.ChucVu[0].MaChucVu>=80&&MaSoCoSo.length>0"
+                            ng-options="item.HoVaTen  as item.HoVaTen    for item in DanhSachTheoNgay|filter:MaSoCoSo|unique:'HoVaTen'">
+                        <option disabled value="">Chọn tên</option>
+                    </select>
+                </div>
+
+            </form>
+            <form class="" ng-show="Nhanvien">
+                <div class="input-group">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><b>Xem theo mã số nhân viên: </b></span>
+                    </div>
+
+                    <div class="input-group-append">
+                        <input ng-model="msnv" type="text" class="form-control " placeholder="Nhập mã số nhân viên">
+
+
+                    </div>  <div class="input-group-append">
+                        <a ng-click="getbymsnv()" class=" form-control btn btn-primary text-white"> Xem</a>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;
+
+                    <div class="input-group-append">
+                        <span class="input-group-text"><b>Xem theo tên nhân viên: </b></span>
+                    </div>
+
+                    <div class="input-group-append">
+                        <input ng-model="tennv" type="text" class="form-control " placeholder="Nhập tên nhân viên">
+
+
+                    </div>  <div class="input-group-append">
+                        <a ng-click="getbytennv()" class=" form-control btn btn-primary text-white"> Xem</a>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="input-group-append" ng-show="authentication.ChucVu[0].MaChucVu>=80">
+                        <span class="input-group-text"><b>Chọn cơ sở: </b></span>
+                    </div>
+                    <select class="selectpicker form-control" ng-model="MaSoCoSo" ng-show="authentication.ChucVu[0].MaChucVu>=80"
+                            ng-options="item.TenCoSo  as item.TenCoSo +' '+ '('+''+item.MaCoSo + ') '   for item in getALLCoSo" ng-change="xoaTenNhanVien();">
+                        <option disabled value="">Chọn cơ sở</option>
+                    </select>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="input-group-append" ng-show="authentication.ChucVu[0].MaChucVu>=80&&MaSoCoSo.length>0">
+                        <span class="input-group-text"><b>Chọn tên: </b></span>
+                    </div>
+                    <select class="selectpicker form-control" ng-model="TenNhanVien" ng-show="authentication.ChucVu[0].MaChucVu>=80&&MaSoCoSo.length>0"
+                            ng-options="item.HoVaTen  as item.HoVaTen    for item in DanhSachTenNV|filter:MaSoCoSo|unique:'HoVaTen'">
+                        <option disabled value="">Chọn tên</option>
+                    </select>
+                </div>
+
+            </form>
+            <form class="" ng-show="chonthang">
+                <div class="input-group">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><b>Xem theo tháng: </b></span>
+                    </div>
+                    <input ng-model="thangxem" type="month" class="form-control " ng-model-options="{timezone:'UTC',}">
+                    <div class="input-group-append">
+                        <a ng-click="getbythang()" class=" form-control btn btn-primary text-white"> Xem</a>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="input-group-append" ng-show="authentication.ChucVu[0].MaChucVu>=80">
+                        <span class="input-group-text"><b>Chọn cơ sở: </b></span>
+                    </div>
+                    <select class="selectpicker form-control" ng-model="MaSoCoSo" ng-show="authentication.ChucVu[0].MaChucVu>=80"
+                            ng-options="item.TenCoSo  as item.TenCoSo +' '+ '('+''+item.MaCoSo + ') '   for item in getALLCoSo" ng-change="xoaTenNhanVien();">
+                        <option disabled value="">Chọn cơ sở</option>
+                    </select>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="input-group-append" ng-show="authentication.ChucVu[0].MaChucVu>=80&&MaSoCoSo.length>0">
+                        <span class="input-group-text"><b>Chọn tên: </b></span>
+                    </div>
+                    <select class="selectpicker form-control" ng-model="TenNhanVien" ng-show="authentication.ChucVu[0].MaChucVu>=80&&MaSoCoSo.length>0"
+                            ng-options="item.HoVaTen  as item.HoVaTen    for item in getAllThang|filter:MaSoCoSo|unique:'HoVaTen'">
+                        <option disabled value="">Chọn tên</option>
+                    </select>
+                </div>
+
+
+            </form>
+
+            <form class="" ng-show="Tuan">
+                <div class="input-group " ng-show="authentication.ChucVu[0].MaChucVu>=80">
+
+                    <div class="input-group-append" ng-show="authentication.ChucVu[0].MaChucVu>=80">
+                        <span class="input-group-text"><b>Chọn cơ sở: </b></span>
+                    </div>
+                    <select class="selectpicker form-control" ng-model="MaSoCoSo" ng-show="authentication.ChucVu[0].MaChucVu>=80"
+                            ng-options="item.TenCoSo  as item.TenCoSo +' '+ '('+''+item.MaCoSo + ') '   for item in getALLCoSo" ng-change="xoaTenNhanVien();">
+                        <option disabled value="">Chọn cơ sở</option>
+                    </select>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="input-group-append" ng-show="authentication.ChucVu[0].MaChucVu>=80&&MaSoCoSo.length>0">
+                        <span class="input-group-text"><b>Chọn tên: </b></span>
+                    </div>
+                    <select class="selectpicker form-control" ng-model="TenNhanVien" ng-show="authentication.ChucVu[0].MaChucVu>=80&&MaSoCoSo.length>0"
+                            ng-options="item.HoVaTen  as item.HoVaTen    for item in getAll|filter:MaSoCoSo|unique:'HoVaTen'">
+                        <option disabled value="">Chọn tên</option>
+                    </select>
+                </div>
+
+            </form>
+        </div>
+        <div class="input-group  col-12 hidden-sm hidden-md hidden-lg justify-content-center">
+            <form class="" ng-show="Ngay">
+                <div class="input-group ">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><b>Xem theo ngày: </b></span>
+                    </div>
+
+                    <input ng-model="ngayxem" type="date" class="form-control ">
+                    <div class="input-group-append">
+                        <a ng-click="getbyngay()" class="form-control btn btn-primary text-white"> Xem</a>
+
+                    </div>
+                </div>
+                <div class="input-group ">
+                    <div class="input-group-append" ng-show="authentication.ChucVu[0].MaChucVu>=80">
+                        <span class="input-group-text"><b>Chọn cơ sở: </b></span>
+                    </div>
+                    <select class="selectpicker form-control" ng-model="MaSoCoSo" ng-show="authentication.ChucVu[0].MaChucVu>=80"
+                            ng-options="item.TenCoSo  as item.TenCoSo +' '+ '('+''+item.MaCoSo + ') '   for item in getALLCoSo" ng-change="xoaTenNhanVien();">
+                        <option disabled value="">Chọn cơ sở</option>
+                    </select>
+                </div>
+                <div class="input-group ">
+                    <div class="input-group-append" ng-show="authentication.ChucVu[0].MaChucVu>=80&&MaSoCoSo.length>0">
+                        <span class="input-group-text"><b>Chọn tên: </b></span>
+                    </div>
+                    <select class="selectpicker form-control" ng-model="TenNhanVien" ng-show="authentication.ChucVu[0].MaChucVu>=80&&MaSoCoSo.length>0"
+                            ng-options="item.HoVaTen  as item.HoVaTen    for item in DanhSachTheoNgay|filter:MaSoCoSo|unique:'HoVaTen'">
+                        <option disabled value="">Chọn tên</option>
+                    </select>
+                </div>
+
+            </form>
+            <form class="" ng-show="Nhanvien">
+                <div class="input-group">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><b>Xem theo mã số nhân viên: </b></span>
+                    </div>
+
+                    <div class="input-group-append">
+                        <input ng-model="msnv" type="text" class="form-control " placeholder="Nhập mã số nhân viên">
+
+
+                    </div>  <div class="input-group-append">
+                        <a ng-click="getbymsnv()" class=" form-control btn btn-primary text-white"> Xem</a>
+                    </div>
+                </div>
+                <br />
+                <div class="input-group">
+
+                    <div class="input-group-append">
+                        <span class="input-group-text"><b>Xem theo tên nhân viên: </b></span>
+                    </div>
+
+                    <div class="input-group-append">
+                        <input ng-model="tennv" type="text" class="form-control " placeholder="Nhập tên nhân viên">
+
+
+                    </div>  <div class="input-group-append">
+                        <a ng-click="getbytennv()" class=" form-control btn btn-primary text-white"> Xem</a>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="input-group-append" ng-show="authentication.ChucVu[0].MaChucVu>=80">
+                        <span class="input-group-text"><b>Chọn cơ sở: </b></span>
+                    </div>
+                    <select class="selectpicker form-control" ng-model="MaSoCoSo" ng-show="authentication.ChucVu[0].MaChucVu>=80"
+                            ng-options="item.TenCoSo  as item.TenCoSo +' '+ '('+''+item.MaCoSo + ') '   for item in getALLCoSo" ng-change="xoaTenNhanVien();">
+                        <option disabled value="">Chọn cơ sở</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <div class="input-group-append" ng-show="authentication.ChucVu[0].MaChucVu>=80&&MaSoCoSo.length>0">
+                        <span class="input-group-text"><b>Chọn tên: </b></span>
+                    </div>
+                    <select class="selectpicker form-control" ng-model="TenNhanVien" ng-show="authentication.ChucVu[0].MaChucVu>=80&&MaSoCoSo.length>0"
+                            ng-options="item.HoVaTen  as item.HoVaTen    for item in DanhSachTenNV|filter:MaSoCoSo|unique:'HoVaTen'">
+                        <option disabled value="">Chọn tên</option>
+                    </select>
+                </div>
+
+            </form>
+            <form class="" ng-show="chonthang">
+                <div class="input-group">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><b>Xem theo tháng: </b></span>
+                    </div>
+                    <input ng-model="thangxem" type="month" class="form-control " ng-model-options="{timezone:'UTC',}">
+                    <div class="input-group-append">
+                        <a ng-click="getbythang()" class=" form-control btn btn-primary text-white"> Xem</a>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="input-group-append" ng-show="authentication.ChucVu[0].MaChucVu>=80">
+                        <span class="input-group-text"><b>Chọn cơ sở: </b></span>
+                    </div>
+                    <select class="selectpicker form-control" ng-model="MaSoCoSo" ng-show="authentication.ChucVu[0].MaChucVu>=80"
+                            ng-options="item.TenCoSo  as item.TenCoSo +' '+ '('+''+item.MaCoSo + ') '   for item in getALLCoSo" ng-change="xoaTenNhanVien();">
+                        <option disabled value="">Chọn cơ sở</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <div class="input-group-append" ng-show="authentication.ChucVu[0].MaChucVu>=80&&MaSoCoSo.length>0">
+                        <span class="input-group-text"><b>Chọn tên: </b></span>
+                    </div>
+                    <select class="selectpicker form-control" ng-model="TenNhanVien" ng-show="authentication.ChucVu[0].MaChucVu>=80&&MaSoCoSo.length>0"
+                            ng-options="item.HoVaTen  as item.HoVaTen    for item in getAllThang|filter:MaSoCoSo|unique:'HoVaTen'">
+                        <option disabled value="">Chọn tên</option>
+                    </select>
+                </div>
+
+
+            </form>
+            <form class="" ng-show="Tuan">
+                <div class="input-group " ng-show="authentication.ChucVu[0].MaChucVu>=80">
+
+                    <div class="input-group-append" ng-show="authentication.ChucVu[0].MaChucVu>=80">
+                        <span class="input-group-text"><b>Chọn cơ sở: </b></span>
+                    </div>
+                    <select class="selectpicker form-control" ng-model="MaSoCoSo" ng-show="authentication.ChucVu[0].MaChucVu>=80"
+                            ng-options="item.TenCoSo  as item.TenCoSo +' '+ '('+''+item.MaCoSo + ') '   for item in getALLCoSo" ng-change="xoaTenNhanVien();">
+                        <option disabled value="">Chọn cơ sở</option>
+                    </select>
+                </div>
+                <div class="input-group " ng-show="authentication.ChucVu[0].MaChucVu>=80">
+                    <div class="input-group-append" ng-show="authentication.ChucVu[0].MaChucVu>=80&&MaSoCoSo.length>0">
+                        <span class="input-group-text"><b>Chọn tên: </b></span>
+                    </div>
+                    <select class="selectpicker form-control" ng-model="TenNhanVien" ng-show="authentication.ChucVu[0].MaChucVu>=80&&MaSoCoSo.length>0"
+                            ng-options="item.HoVaTen  as item.HoVaTen    for item in getAll|filter:MaSoCoSo|unique:'HoVaTen'">
+                        <option disabled value="">Chọn tên</option>
+                    </select>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid" ng-show="bangtheongay">
+    <div class="row">
+        <div class="col-md-12 table-responsive">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr style="background:#74b9ff">
+                        <th width="5%">STT</th>
+                        <th>Mã số nhân viên</th>
+                        <th width="7%">Cơ sở</th>
+                        <th>Họ và tên</th>
+                        <th width="7%">Giờ bắt đầu</th>
+                        <th>Ngày bắt đầu</th>
+                        <th width="7%">Giờ kết thúc</th>
+                        <th>Ngày kết thúc</th>
+                        <th width="6%">Tổng giờ</th>
+                        <th>Tổng ngày làm việc</th>
+                        <th width="6%">Tổng ngày</th>
+                        <th>Địa điểm</th>
+                        <th width="6%">Nội dung</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="authentication.ChucVu[0].MaChucVu>=60&&authentication.ChucVu[0].MaChucVu<80" ng-repeat="item in DanhSachTheoNgay|filter:{TenCoSo:TenCoSo[0].TenCoSo}">
+
+                        <td>{{$index+1}}</td>
+                        <td>{{item.MaSoNhanVien}}</td>
+                        <td>{{item.TenCoSo}}</td>
+                        <td>{{item.HoVaTen}}</td>
+                        <td>{{item.GioBatDau}}</td>
+                        <td>{{item.NgayBatDau|date:'dd/MM/yyyy'}}</td>
+                        <td>{{item.GioKetThuc}}</td>
+                        <td>{{item.NgayKetThuc|date:'dd/MM/yyyy'}}</td>
+                        <td>{{item.TongGio}}</td>
+                        <td>{{item.TongNgayLamViec}}</td>
+                        <td>{{item.TongNgay}}</td>
+                        <td>{{item.DiaDiem}}</td>
+                        <td>{{item.NoiDung}}</td>
+
+                    </tr>
+                    <tr ng-if="authentication.ChucVu[0].MaChucVu>=80" ng-repeat="item in DanhSachTheoNgay|filter:{TenCoSo:MaSoCoSo,HoVaTen:TenNhanVien}">
+                        <td>{{$index+1}}</td>
+                        <td>{{item.MaSoNhanVien}}</td>
+                        <td>{{item.TenCoSo}}</td>
+                        <td>{{item.HoVaTen}}</td>
+                        <td>{{item.GioBatDau}}</td>
+                        <td>{{item.NgayBatDau|date:'dd/MM/yyyy'}}</td>
+                        <td>{{item.GioKetThuc}}</td>
+                        <td>{{item.NgayKetThuc|date:'dd/MM/yyyy'}}</td>
+                        <td>{{item.TongGio}}</td>
+                        <td>{{item.TongNgayLamViec}}</td>
+                        <td>{{item.TongNgay}}</td>
+                        <td>{{item.DiaDiem}}</td>
+                        <td>{{item.NoiDung}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" ng-show="bangtheomsnv">
+    <div class="row">
+        <div class="col-md-12 table-responsive">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr style="background:#74b9ff">
+                        <th width="5%">STT</th>
+                        <th>Mã số nhân viên</th>
+                        <th width="7%">Cơ sở</th>
+                        <th>Họ và tên</th>
+                        <th width="7%">Giờ bắt đầu</th>
+                        <th>Ngày bắt đầu</th>
+                        <th width="7%">Giờ kết thúc</th>
+                        <th>Ngày kết thúc</th>
+                        <th width="6%">Tổng giờ</th>
+                        <th>Tổng ngày làm việc</th>
+                        <th width="6%">Tổng ngày</th>
+                        <th>Địa điểm</th>
+                        <th width="6%">Nội dung</th>
+                    </tr>
+                </thead>
+                <tbody ng-show="DanhSachMSNV.length>0">
+                    <tr ng-if="authentication.ChucVu[0].MaChucVu>=60&&authentication.ChucVu[0].MaChucVu<80" ng-repeat="item in DanhSachMSNV|filter:{TenCoSo:TenCoSo[0].TenCoSo}">
+
+                        <td>{{$index+1}}</td>
+                        <td>{{item.MaSoNhanVien}}</td>
+                        <td>{{item.TenCoSo}}</td>
+                        <td>{{item.HoVaTen}}</td>
+                        <td>{{item.GioBatDau}}</td>
+                        <td>{{item.NgayBatDau|date:'dd/MM/yyyy'}}</td>
+                        <td>{{item.GioKetThuc}}</td>
+                        <td>{{item.NgayKetThuc|date:'dd/MM/yyyy'}}</td>
+                        <td>{{item.TongGio}}</td>
+                        <td>{{item.TongNgayLamViec}}</td>
+                        <td>{{item.TongNgay}}</td>
+                        <td>{{item.DiaDiem}}</td>
+                        <td>{{item.NoiDung}}</td>
+                    </tr>
+                    <tr ng-if="authentication.ChucVu[0].MaChucVu>=80" ng-repeat="item in DanhSachMSNV|filter:{TenCoSo:MaSoCoSo,HoVaTen:TenNhanVien}|orderBy: 'NgayVangMat':true">
+                        <td>{{$index+1}}</td>
+                        <td>{{item.MaSoNhanVien}}</td>
+                        <td>{{item.TenCoSo}}</td>
+                        <td>{{item.HoVaTen}}</td>
+                        <td>{{item.GioBatDau}}</td>
+                        <td>{{item.NgayBatDau|date:'dd/MM/yyyy'}}</td>
+                        <td>{{item.GioKetThuc}}</td>
+                        <td>{{item.NgayKetThuc|date:'dd/MM/yyyy'}}</td>
+                        <td>{{item.TongGio}}</td>
+                        <td>{{item.TongNgayLamViec}}</td>
+                        <td>{{item.TongNgay}}</td>
+                        <td>{{item.DiaDiem}}</td>
+                        <td>{{item.NoiDung}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="13">Tổng số công tác: <b>{{DanhSachMSNV|total}}</b></td>
+                    </tr>
+                </tbody>
+                <tbody ng-show="DanhSachMSNV.length==0">
+                    <tr ng-repeat="item in NhanVienKhongCo">
+                        <td>{{$index+1}}</td>
+                        <td>{{item.MaSoNhanVien}}</td>
+                        <td>{{item.TenCoSo}}</td>
+                        <td>{{item.HoVaTen}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="13">Tổng số công tác: <b>0</b></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" ng-show="bangtheotennv">
+    <div class="row">
+        <div class="col-md-12 table-responsive">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr style="background:#74b9ff"> 
+                        <th width="5%">STT</th>
+                        <th>Mã số nhân viên</th>
+                        <th width="7%">Cơ sở</th>
+                        <th>Họ và tên</th>
+                        <th width="7%">Giờ bắt đầu</th>
+                        <th>Ngày bắt đầu</th>
+                        <th width="7%">Giờ kết thúc</th>
+                        <th>Ngày kết thúc</th>
+                        <th width="6%">Tổng giờ</th>
+                        <th>Tổng ngày làm việc</th>
+                        <th width="6%">Tổng ngày</th>
+                        <th>Địa điểm</th>
+                        <th width="6%">Nội dung</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="authentication.ChucVu[0].MaChucVu>=60&&authentication.ChucVu[0].MaChucVu<80" ng-repeat="item in DanhSachTenNV|filter:{TenCoSo:TenCoSo[0].TenCoSo}">
+
+                        <td>{{$index+1}}</td>
+                        <td>{{item.MaSoNhanVien}}</td>
+                        <td>{{item.TenCoSo}}</td>
+                        <td>{{item.HoVaTen}}</td>
+                        <td>{{item.GioBatDau}}</td>
+                        <td>{{item.NgayBatDau|date:'dd/MM/yyyy'}}</td>
+                        <td>{{item.GioKetThuc}}</td>
+                        <td>{{item.NgayKetThuc|date:'dd/MM/yyyy'}}</td>
+                        <td>{{item.TongGio}}</td>
+                        <td>{{item.TongNgayLamViec}}</td>
+                        <td>{{item.TongNgay}}</td>
+                        <td>{{item.DiaDiem}}</td>
+                        <td>{{item.NoiDung}}</td>
+                    </tr>
+                    <tr ng-if="authentication.ChucVu[0].MaChucVu>=80" ng-repeat="item in DanhSachTenNV|filter:{TenCoSo:MaSoCoSo,HoVaTen:TenNhanVien}|orderBy: 'NgayVangMat':true">
+                        <td>{{$index+1}}</td>
+                        <td>{{item.MaSoNhanVien}}</td>
+                        <td>{{item.TenCoSo}}</td>
+                        <td>{{item.HoVaTen}}</td>
+                        <td>{{item.GioBatDau}}</td>
+                        <td>{{item.NgayBatDau|date:'dd/MM/yyyy'}}</td>
+                        <td>{{item.GioKetThuc}}</td>
+                        <td>{{item.NgayKetThuc|date:'dd/MM/yyyy'}}</td>
+                        <td>{{item.TongGio}}</td>
+                        <td>{{item.TongNgayLamViec}}</td>
+                        <td>{{item.TongNgay}}</td>
+                        <td>{{item.DiaDiem}}</td>
+                        <td>{{item.NoiDung}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" ng-show="Tuan">
+    <div class="row">
+        <div class="col-md-12 table-responsive">
+            <table class="table table-hover table-bordered">
+                <caption style="caption-side:top;color:red;font-size:14px">Xem theo tuần hiện tại:</caption>
+                <thead>
+                    <tr style="background:#74b9ff">
+                        <th width="5%">STT</th>
+                        <th>Mã số nhân viên</th>
+                        <th width="7%">Cơ sở</th>
+                        <th>Họ và tên</th>
+                        <th width="7%">Giờ bắt đầu</th>
+                        <th>Ngày bắt đầu</th>
+                        <th width="7%">Giờ kết thúc</th>
+                        <th>Ngày kết thúc</th>
+                        <th width="6%">Tổng giờ</th>
+                        <th>Tổng ngày làm việc</th>
+                        <th width="6%">Tổng ngày</th>
+                        <th>Địa điểm</th>
+                        <th width="6%">Nội dung</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="authentication.ChucVu[0].MaChucVu>=60&&authentication.ChucVu[0].MaChucVu<80" ng-repeat="item in getAll|filter:{TenCoSo:TenCoSo[0].TenCoSo}">
+
+                        <td>{{$index+1}}</td>
+                        <td>{{item.MaSoNhanVien}}</td>
+                        <td>{{item.TenCoSo}}</td>
+                        <td>{{item.HoVaTen}}</td>
+                        <td>{{item.GioBatDau}}</td>
+                        <td>{{item.NgayBatDau|date:'dd/MM/yyyy'}}</td>
+                        <td>{{item.GioKetThuc}}</td>
+                        <td>{{item.NgayKetThuc|date:'dd/MM/yyyy'}}</td>
+                        <td>{{item.TongGio}}</td>
+                        <td>{{item.TongNgayLamViec}}</td>
+                        <td>{{item.TongNgay}}</td>
+                        <td>{{item.DiaDiem}}</td>
+                        <td>{{item.NoiDung}}</td>
+                    </tr>
+                    <tr ng-if="authentication.ChucVu[0].MaChucVu>=80" ng-repeat="item in getAll|filter:{TenCoSo:MaSoCoSo,HoVaTen:TenNhanVien}|orderBy: 'NgayVangMat':true">
+                        <td>{{$index+1}}</td>
+                        <td>{{item.MaSoNhanVien}}</td>
+                        <td>{{item.TenCoSo}}</td>
+                        <td>{{item.HoVaTen}}</td>
+                        <td>{{item.GioBatDau}}</td>
+                        <td>{{item.NgayBatDau|date:'dd/MM/yyyy'}}</td>
+                        <td>{{item.GioKetThuc}}</td>
+                        <td>{{item.NgayKetThuc|date:'dd/MM/yyyy'}}</td>
+                        <td>{{item.TongGio}}</td>
+                        <td>{{item.TongNgayLamViec}}</td>
+                        <td>{{item.TongNgay}}</td>
+                        <td>{{item.DiaDiem}}</td>
+                        <td>{{item.NoiDung}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" ng-show="Thang">
+    <div class="row">
+        <div class="col-md-12 table-responsive">
+            <table class="table table-hover table-bordered">
+                <caption style="caption-side:top;color:red;font-size:14px">Xem theo tháng hiện tại:</caption>
+                <thead>
+                    <tr style="background:#74b9ff">
+                        <th width="5%">STT</th>
+                        <th>Mã số nhân viên</th>
+                        <th width="7%">Cơ sở</th>
+                        <th>Họ và tên</th>
+                        <th width="7%">Giờ bắt đầu</th>
+                        <th>Ngày bắt đầu</th>
+                        <th width="7%">Giờ kết thúc</th>
+                        <th>Ngày kết thúc</th>
+                        <th width="6%">Tổng giờ</th>
+                        <th>Tổng ngày làm việc</th>
+                        <th width="6%">Tổng ngày</th>
+                        <th>Địa điểm</th>
+                        <th width="6%">Nội dung</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="authentication.ChucVu[0].MaChucVu>=60&&authentication.ChucVu[0].MaChucVu<80" ng-repeat="item in getAllThang|filter:{TenCoSo:TenCoSo[0].TenCoSo}">
+
+                        <td>{{$index+1}}</td>
+                        <td>{{item.MaSoNhanVien}}</td>
+                        <td>{{item.TenCoSo}}</td>
+                        <td>{{item.HoVaTen}}</td>
+                        <td>{{item.GioBatDau}}</td>
+                        <td>{{item.NgayBatDau|date:'dd/MM/yyyy'}}</td>
+                        <td>{{item.GioKetThuc}}</td>
+                        <td>{{item.NgayKetThuc|date:'dd/MM/yyyy'}}</td>
+                        <td>{{item.TongGio}}</td>
+                        <td>{{item.TongNgayLamViec}}</td>
+                        <td>{{item.TongNgay}}</td>
+                        <td>{{item.DiaDiem}}</td>
+                        <td>{{item.NoiDung}}</td>
+                    </tr>
+                    <tr ng-if="authentication.ChucVu[0].MaChucVu>=80" ng-repeat="item in getAllThang|filter:{TenCoSo:MaSoCoSo,HoVaTen:TenNhanVien}|orderBy: 'NgayVangMat':true">
+                        <td>{{$index+1}}</td>
+                        <td>{{item.MaSoNhanVien}}</td>
+                        <td>{{item.TenCoSo}}</td>
+                        <td>{{item.HoVaTen}}</td>
+                        <td>{{item.GioBatDau}}</td>
+                        <td>{{item.NgayBatDau|date:'dd/MM/yyyy'}}</td>
+                        <td>{{item.GioKetThuc}}</td>
+                        <td>{{item.NgayKetThuc|date:'dd/MM/yyyy'}}</td>
+                        <td>{{item.TongGio}}</td>
+                        <td>{{item.TongNgayLamViec}}</td>
+                        <td>{{item.TongNgay}}</td>
+                        <td>{{item.DiaDiem}}</td>
+                        <td>{{item.NoiDung}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

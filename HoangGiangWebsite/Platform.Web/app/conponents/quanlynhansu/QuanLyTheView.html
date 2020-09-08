@@ -1,0 +1,219 @@
+﻿  <!-- Content Header (Page header) -->
+<section class="content-header">
+
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li><a ui-sref="the">Thẻ</a></li>
+
+    </ol>
+</section>
+<div class="container-fluid" style="margin-bottom:20px">
+
+    <h1 style="margin:20px 0px;text-align:center">Quản lý thẻ</h1>
+
+    <div class="row" style="margin:40px 0px">
+
+        <div class="col-md-4" style="margin:auto">
+            <div class="input-group">
+                <div class="input-group-append">
+                    <span class="input-group-text"><b>Tìm kiếm: </b></span>
+                </div>
+
+                <div class="input-group-append">
+                    <input ng-model="keyword" style="width:260px" type="text" class="form-control" placeholder="nhập mã số nhân viên, tên nhân viên hoặc loại thẻ">
+
+                </div>
+
+                <div class="input-group-append">
+                    <a ng-click="search(keyword)" class=" form-control btn btn-primary text-white"> Tìm</a>
+                </div>
+                <div class="input-group-append">
+                    <a ng-click="GetThe()" class=" form-control btn btn-primary text-white"> Xem tất cả</a>
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+  
+
+    <div ng-show="All">
+        <div class="row">
+
+            <div class="col-md-11" style="margin:auto">
+                <div class="table-responsive">
+                    <table class="table  table-bordered chu">
+                        <tr style="background:#74b9ff">
+                            <th width="5%">STT</th>
+                            <th>Mã số nhân viên</th>
+                            <th>Tên nhân viên</th>
+
+
+                            <th>Mã thẻ </th>
+                            <th>Loại thẻ</th>
+                            <th>Ngày yêu cầu </th>
+                            <th>Ngày cấp</th>
+                            <th>Ngày hết hạn</th>
+                            <th width="5%" style="text-align:center">Xóa</th>
+                            <th width="5%" style="text-align:center">Sửa</th>
+
+
+
+
+
+
+                        </tr>
+                        <tr ng-repeat=" item in The">
+                            <th>{{$index+1}}</th>
+
+                            <th ng-hide="thutu==$index"> <a style="font-weight:500" href="" ng-click="getTheoMaNhanVien(item.MaSoNhanVien)">({{item.MaSoNhanVien}})</a></th>
+
+
+                            <td ng-show="thutu==$index"> <input class="form-control" disabled ng-model="The[$index].MaSoNhanVien" type="text" /></td>
+
+
+                            <th ng-hide="thutu==$index"> <a style="font-weight:500" href="" ng-click="getTheoMaNhanVien(item.MaSoNhanVien)">{{item.HoVaTen}}</a></th>
+                            <td ng-show="thutu==$index"> <input class="form-control" disabled ng-model="item.HoVaTen" type="text" /></td>
+
+
+
+                            <td ng-hide="thutu==$index">
+
+                                <span>{{item.MaThe}}</span>
+
+                            </td>
+                            <td ng-show="thutu==$index"> <input class="form-control" ng-model="The[$index].MaThe" type="text" /></td>
+
+
+                            <td ng-hide="thutu==$index">
+
+                                <span>{{item.LoaiThe}}</span>
+
+                            </td>
+                            <td ng-show="thutu==$index"> <input class="form-control" ng-model="The[$index].LoaiThe" type="text" /></td>
+
+                            <td ng-hide="thutu==$index">
+
+                                <span>{{item.NgayYeuCau |date:'dd/MM/yyyy'}}</span>
+
+                            </td>
+                            <td ng-show="thutu==$index"> <input class="form-control" ng-model="The[$index].NgayYeuCau" ng-value="item.NgayYeuCau" type="date" ng-model-options="{timezone:'UTC',}" /></td>
+                            <td ng-hide="thutu==$index">
+
+                                <span>{{item.NgayCap |date:'dd/MM/yyyy'}}</span>
+
+                            </td>
+                            <td ng-show="thutu==$index"> <input class="form-control" ng-model="The[$index].NgayCap" ng-value="item.NgayCap" type="date" ng-model-options="{timezone:'UTC',}"/></td>
+
+                            <td ng-hide="thutu==$index">
+
+                                <span>{{item.NgayHetHan  |date:'dd/MM/yyyy'}}</span>
+
+                            </td>
+                            <td ng-show="thutu==$index"> <input class="form-control" ng-model="The[$index].NgayHetHan" ng-value="item.NgayHetHan" type="date" ng-model-options="{timezone:'UTC',}"/></td>
+
+                            <td> <a class="btn btn-danger" ng-click="Delete(item.ID)"><i class="fa fa-trash"></i></a></td>
+                            <td>
+                                <a class="btn btn-primary" ng-click="sua(item.ID);show($index)">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </a>
+                            </td>
+
+
+                        </tr>
+
+
+                    </table>
+                    <div class="col-md-6 col-md-offset-3 justify-content-center btn-block text-center">
+                        <button type="button" ng-show="edit" class="btn btn-danger" ng-click="huy()">Hủy</button>&nbsp;&nbsp;&nbsp;
+                        <button type="button" ng-show="edit" class="btn btn-primary" ng-click="luu()">Lưu</button>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div ng-show="AllMaSoNhanVien">
+        <div class="row">
+
+            <div class="col-md-11" style="margin:auto">
+                <div class="table-responsive">
+                    <table class="table  table-bordered chu">
+                        <tr style="background:#74b9ff">
+                            <th width="5%">STT</th>
+                            <th>Mã số nhân viên</th>
+
+
+                            <th>Mã thẻ </th>
+                            <th>Loại thẻ</th>
+                            <th>Ngày yêu cầu </th>
+                            <th>Ngày cấp</th>
+                            <th>Ngày hết hạn</th>
+                            <th>Trạng thái</th>
+
+
+
+
+
+                        </tr>
+                        <tr ng-repeat=" item in FilterMaSoNhanvien">
+                            <th>{{$index+1}}</th>
+                            <th> ({{item.MaSoNhanVien}}) {{item.HoVaTen}}</th>
+
+
+
+
+                            <td>
+
+
+
+                                <span>{{item.MaThe}}</span>
+
+
+                            </td>
+
+                            <td>
+
+                                <span>{{item.LoaiThe}}</span>
+
+                            </td>
+                            <td>
+
+                                <span>{{item.NgayYeuCau |date:'dd/MM/yyyy'}}</span>
+
+                            </td>
+                            <td>
+
+                                <span>{{item.NgayCap |date:'dd/MM/yyyy'}}</span>
+
+                            </td>
+                            <td>
+
+                                <span>{{item.NgayHetHan  |date:'dd/MM/yyyy'}}</span>
+
+                            </td>
+                            <td>
+
+                                <span>{{item.TrangThai}}</span>
+
+                            </td>
+
+
+
+                        </tr>
+
+
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

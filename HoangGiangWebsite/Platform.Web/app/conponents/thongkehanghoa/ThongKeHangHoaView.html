@@ -1,0 +1,259 @@
+﻿<!-- Content Header (Page header) -->
+
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li><a href="">Quản lý hàng hóa</a></li>
+
+        <li><a ui-sref="thongkehanghoa">Thống kê hàng hóa</a></li>
+    </ol>
+</section>
+
+
+
+<div class="container-fluid">
+    <h1 style="margin:20px 0px;text-align:center">Thống kê hàng hóa</h1>
+    <div class="row">
+        <div class="col-md-2">
+
+        </div>
+
+
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-2">
+
+
+        </div>
+        <div class="col-md-2">
+            <span class="input-group ">
+                <span class="input-group-text">Tìm kiếm</span>
+                <input type="text" ng-model="filevalue" class="form-control" />
+                <input type="button" class=" btn-primary" ng-click="filter()" value="Tìm">
+            </span>
+        </div>
+        <div class="col-md-2"></div>
+
+    </div>
+
+
+
+
+
+
+</div>
+<div style="margin:20px 0px"></div>
+<div class="container">
+    <div class="row" id="of">
+
+
+        <div class="modal fade bs-example-modal-lg" id="off" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false" data-keyboard="false" data-focus-on="input:first">
+
+            <div class="modal-dialog modal-lg" role="document" style="max-width: 1305px;">
+                <div class="modal-content" style="border-radius: 10px;min-height:670px
+                     ">
+                    <div class="modal-header">
+                        <h3 style="text-align:center;color:red">Thông tin chi tiết hàng hóa </h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                            <span aria-hidden="true" style="color:red">&times; Đóng</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="form1" role="form">
+                            <div class="row">
+
+
+
+                                <div class="col-md-9 table-responsive">
+                                    <fieldset class="well">
+                                        <legend class="well-legend">Thông tin chung</legend>
+
+                                        <table class="table table-bordered" style="border:solid #ddd 1px">
+                                            <tr>
+                                                <td> <b>Mã hàng </b></td>
+                                                <td width="85%">
+
+
+                                                    <div class="input-group">
+                                                        <div class="input-group-append">
+                                                            <input disabled ng-model="singer.MaHang" type="text" class="form-control">
+                                                        </div>
+                                                        &nbsp;  &nbsp;  &nbsp;  &nbsp;
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">Tên hàng</span>
+                                                        </div>
+
+                                                        <input disabled ng-model="singer.TenHang" type="text" class="form-control">
+                                                    </div>
+
+
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><b>Tên nhóm</b></td>
+                                                <td>
+
+                                                    <div class="input-group">
+
+                                                        <select class="selectpicker form-control" ng-model="singer.MaNhomHH"
+                                                                ng-options="item.MaNhomHH  as  item.TenNhom  for item in getAllNhomHangHoa">
+                                                        </select>
+                                                        &nbsp;  &nbsp;  &nbsp;  &nbsp;
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">Tính chất</span>
+                                                        </div>
+
+                                                        <select class="selectpicker form-control" ng-model="singer.MaTinhChat"
+                                                                ng-options="item.MaTinhChat  as  item.TenTinhChat  for item in getAlltinhchathanghoa">
+                                                        </select>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td> <b>Bảo hành</b></td>
+                                                <td width="85%">
+
+
+                                                    <div class="input-group">
+                                                        <div class="input-group-append">
+                                                            <input ng-model="singer.BaoHanh" type="text" class="form-control">
+                                                        </div>
+                                                        &nbsp;  &nbsp;  &nbsp;  &nbsp;
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">Hạn sử dụng</span>
+                                                        </div>
+
+                                                        <input ng-model="singer.HanSuDung" type="text" class="form-control">
+                                                    </div>
+
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td> <b>Xuất xứ </b></td>
+                                                <td width="85%">
+
+
+                                                    <div class="input-group">
+                                                        <div class="input-group-append">
+                                                            <input ng-model="singer.NguonGoc" type="text" class="form-control">
+                                                        </div>
+                                                        &nbsp;  &nbsp;  &nbsp;  &nbsp;
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">Số lô</span>
+                                                        </div>
+
+                                                        <input disabled ng-model="singer.SoLo" type="text" class="form-control">
+                                                    </div>
+
+
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td> <b>Mô tả</b></td>
+                                                <td width="85%">
+                                                    <div class="input-group">
+
+                                                        <textarea style="width:100%" ng-model="singer.MoTa" type="text" class="form-control" placeholder=""></textarea>
+
+
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Giá</b></td>
+
+                                                <td>
+                                                    <div class="input-group">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">Giá nhập</span>
+                                                        </div>
+                                                        <div class="input-group-append">
+                                                            <input disabled ng-model="singer.GiaNhap" type="text" class="form-control">
+                                                        </div>
+                                                        &nbsp;  &nbsp;  &nbsp;  &nbsp;
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">Giá bán</span>
+                                                        </div>
+
+
+                                                        <input ng-model="singer.GiaBan" type="text" class="form-control">
+                                                        &nbsp;  &nbsp;  &nbsp;  &nbsp;
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">Giá khuyến mãi</span>
+                                                        </div>
+
+                                                        <input ng-model="singer.GiaKhuyenMai" type="text" class="form-control">
+                                                        &nbsp;  &nbsp;  &nbsp;  &nbsp;
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">Thuế GTGT</span>
+                                                        </div>
+
+                                                        <input disabled ng-model="singer.VAT" type="text" class="form-control">
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+
+
+                                        </table>
+
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-3 table-responsive">
+                                    <fieldset class="well">
+                                        <legend class="well-legend">Ảnh sản phẩm</legend>
+                                        <div class="col-md-3">
+                                            <img style="margin:10px;max-width:255px;max-height:255px" src="{{singer.HinhAnh}}" /><br />
+
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="row" style="margin:20px">
+                                <div class=" col-md-10"></div>
+                                <div class=" col-md-2">
+                                    <div class="md-button-group">
+                                        <button type="submit" class="btn btn-primary" ng-click="update()">Sửa hàng hóa</button>
+                                        <button type="button" class="btn btn-primary" ng-click="ChooseImage()"> <i class="fa fa-image"></i>Tải ảnh lên</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class=" col-md-1" style="max-width:10px;padding:0px"></div>
+        <div class=" col-md-11"><div ui-grid="gridOptions" style="width:110%;height:auto;margin:auto" ui-grid-resize-columns class="grid" ui-grid-pinning></div></div>
+
+
+
+    </div>
+</div>
+
+
+

@@ -1,0 +1,330 @@
+﻿<!-- Content Header (Page header) -->
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li><a href="">Kế toán</a></li>
+        <li><a href="">Danh mục</a></li>
+        <li><a ui-sref="loaitaisancodinh">Loại tài sản cố định</a></li>
+
+    </ol>
+</section>
+<!-- Main content -->
+
+
+
+<div class=" container-fluid">
+    <div class="row">
+        <div class=" col-md-12">
+            <h2 style="margin:20px 0px;text-align:center">Xem thông tin loại tài sản cố định</h2>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-8 col-md-offset-2 table-responsive" >
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr style="background:#74b9ff">
+
+
+
+                            <th width="13%">Mã loại TSCĐ</th>
+                            <th>Tên loại TSCĐ</th>
+                            <th width="15%">TK nguyên giá</th>
+                            <th width="15%">TK khẩu hao</th>
+                            <th width="10%">Xem chi tiết</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td class="text-left"><b>Tài sản cố định hữu hình</b></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr ng-repeat=" i in All" ng-show="i.Thuoc=='Tài sản cố định hữu hình'">
+                            <td>{{i.MaLoaiTSCD}}</td>
+                            <td class="text-left">{{i.TenLoaiTSCD}}</td>
+                            <td class="text-left">{{i.SoTaiKhoanCo}}</td>
+                            <td class="text-left">{{i.SoTaiKhoanNo}}</td>
+                            <td><input type="button" class=" btn btn-primary btn-sm" ng-click="XemChiTiet(i.MaLoaiTSCD)" value="Xem chi tiết" /></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="text-left"><b>Tài sản cố định vô hình</b></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr ng-repeat=" i in All" ng-show="i.Thuoc=='Tài sản cố định vô hình'">
+                            <td>{{i.MaLoaiTSCD}}</td>
+                            <td class="text-left">{{i.TenLoaiTSCD}}</td>
+                            <td class="text-left">{{i.SoTaiKhoanCo}}</td>
+                            <td class="text-left">{{i.SoTaiKhoanNo}}</td>
+                            <td><input type="button" class=" btn btn-primary btn-sm" ng-click="XemChiTiet(i.MaLoaiTSCD)" value="Xem chi tiết" /></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <input type="button" class=" btn btn-primary" ng-click="showcreate()" value="Thêm mới" />
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+    <div class="row" id="of">
+
+
+        <div class="modal fade bs-example-modal-lg" id="off" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false" data-keyboard="false" data-focus-on="input:first">
+
+            <div class="modal-dialog modal-lg" role="document" style="max-width: 700px;">
+                <div class="modal-content" style="border-radius: 10px;min-height:300px
+                     ">
+                    <div class="modal-header">
+                        <h3 style="text-align:center;color:red">Sửa loại tài sản cố định</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                            <span aria-hidden="true" style="color:red">&times; Đóng</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="form1" role="form">
+                            <div class=" row">
+                                <div class="col-md-12 table-responsive">
+                                    <fieldset class="well">
+
+
+                                        <table class="table table-bordered" style="border:solid #ddd 1px">
+                                            <tr>
+                                                <td> <b>Mã (*) </b></td>
+                                                <td width="85%">
+                                                    <div class="input-group">
+
+                                                        <input disabled ng-model="singer.MaLoaiTSCD" type="text" class="form-control">
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><b>Tên (*)</b></td>
+                                                <td>
+                                                    <div class="input-group">
+
+                                                        <input ng-model="singer.TenLoaiTSCD" type="text" class="form-control">
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td> <b>Thuộc</b></td>
+                                                <td width="85%">
+                                                    <div class="input-group">
+
+                                                        <select class="selectpicker form-control" ng-model="singer.Thuoc"
+                                                                ng-options="item.Thuoc  as  item.Thuoc  for item in All|unique:'Thuoc'">
+                                                        </select>
+                                                        <!--<select class="selectpicker form-control" ng-model="ThuocLoai" ng-change="getId(IdNhomKH)"
+                                                                ng-options="item.SoTaiKhoanCo  as  '('+item.SoTaiKhoanCo + ') ' +' '+item.TenTaiKhoan  for item in AllTKco">
+                                                        </select>-->
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+
+
+                                        </table>
+
+                                    </fieldset><br />
+                                    <fieldset class="well">
+                                        <legend class="well-legend">Tài khoản ngầm định</legend>
+
+
+                                        <table class="table table-bordered" style="border:solid #ddd 1px">
+                                            <tr>
+                                                <td width="15%"> <b>TK nguyên giá</b></td>
+                                                <td width="45%">
+                                                    <div class="input-group">
+                                                        <div class="input-group-append">
+                                                            <select class="selectpicker form-control" ng-model="singer.SoTaiKhoanCo"
+                                                                    ng-options="item.SoTaiKhoanCo  as  '('+item.SoTaiKhoanCo + ') ' +' '+item.TenTaiKhoan  for item in AllTKco">
+                                                            </select>
+                                                        </div>
+
+                                                    </div>
+                                                </td>
+                                                <td width="15%"> <b>TK khẩu hao</b></td>
+                                                <td width="25%">
+                                                    <div class="input-group">
+                                                        <div class="input-group-append">
+                                                            <select class="selectpicker form-control" ng-model="singer.SoTaiKhoanNo"
+                                                                    ng-options="item.SoTaiKhoanNo  as  '('+item.SoTaiKhoanNo + ') ' +' '+item.TenTaiKhoan  for item in AllTKno">
+                                                            </select>
+                                                        </div>
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+
+
+                                        </table>
+
+                                    </fieldset>
+                                </div>
+
+                            </div>
+                            <div class=" row" style="margin:10px 0px">
+                                <div class=" col-md-9"></div>
+                                <div class=" col-md-2">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Đóng">Hủy</button> &nbsp;&nbsp;
+
+                                        <button type="button" class="btn btn-primary" ng-click="luu()">Lưu</button> &nbsp;&nbsp;
+
+
+                                    </div>
+                                </div>
+                                <div class=" col-md-1"></div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="row" id="of">
+
+
+        <div class="modal fade bs-example-modal-lg1" id="off" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false" data-keyboard="false" data-focus-on="input:first">
+
+            <div class="modal-dialog modal-lg" role="document" style="max-width: 700px;">
+                <div class="modal-content" style="border-radius: 10px;min-height:300px
+                     ">
+                    <div class="modal-header">
+                        <h3 style="text-align:center;color:red">Sửa loại tài sản cố định</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                            <span aria-hidden="true" style="color:red">&times; Đóng</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="form1" class="form-horizontal" role="form" data-toggle="validator" ng-submit="create()">
+                            <div class=" row">
+                                <div class="col-md-12 table-responsive">
+                                    <fieldset class="well">
+
+
+                                        <table class="table table-bordered" style="border:solid #ddd 1px">
+                                            <tr>
+                                                <td> <b>Mã <span class="has-error text-left">(*)</span> </b></td>
+                                                <td width="85%">
+                                                    <div class="input-group">
+
+                                                        <input disabled ng-model="Add.MaLoaiTSCD" type="text" class="form-control">
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><b>Tên <span class="has-error text-left">(*)</span></b></td>
+                                                <td>
+                                                    <div class="input-group">
+
+                                                        <input required  ng-model="Add.TenLoaiTSCD" type="text" class="form-control">
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td> <b>Thuộc</b></td>
+                                                <td width="85%">
+                                                    <div class="input-group">
+
+                                                        <select class="selectpicker form-control" ng-model="Add.Thuoc" required
+                                                                ng-options="item.Thuoc  as  item.Thuoc  for item in All|unique:'Thuoc'">
+                                                        </select>
+                                                      
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+
+
+                                        </table>
+
+                                    </fieldset><br />
+                                    <fieldset class="well">
+                                        <legend class="well-legend">Tài khoản ngầm định</legend>
+
+
+                                        <table class="table table-bordered" style="border:solid #ddd 1px">
+                                            <tr>
+                                                <td width="15%"> <b>TK nguyên giá</b></td>
+                                                <td width="45%">
+                                                    <div class="input-group">
+                                                        <div class="input-group-append">
+                                                            <select class="selectpicker form-control" ng-model="Add.SoTaiKhoanCo"
+                                                                    ng-options="item.SoTaiKhoanCo  as  '('+item.SoTaiKhoanCo + ') ' +' '+item.TenTaiKhoan  for item in AllTKco">
+                                                            </select>
+                                                        </div>
+
+                                                    </div>
+                                                </td>
+                                                <td width="15%"> <b>TK khẩu hao</b></td>
+                                                <td width="25%">
+                                                    <div class="input-group">
+                                                        <div class="input-group-append">
+                                                            <select class="selectpicker form-control" ng-model="Add.SoTaiKhoanNo"
+                                                                    ng-options="item.SoTaiKhoanNo  as  '('+item.SoTaiKhoanNo + ') ' +' '+item.TenTaiKhoan  for item in AllTKno">
+                                                            </select>
+                                                        </div>
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+
+
+                                        </table>
+
+                                    </fieldset>
+                                </div>
+
+                            </div>
+                            <div class=" row" style="margin:10px 0px">
+                                <div class=" col-md-9"></div>
+                                <div class=" col-md-2">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Đóng">Hủy</button> &nbsp;&nbsp;
+
+                                        <button type="submit" class="btn btn-primary" >Lưu</button> &nbsp;&nbsp;
+
+
+                                    </div>
+                                </div>
+                                <div class=" col-md-1"></div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>

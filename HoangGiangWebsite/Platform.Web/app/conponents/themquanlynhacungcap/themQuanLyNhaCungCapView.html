@@ -1,0 +1,134 @@
+﻿  <!-- Content Header (Page header) -->
+<section class="content-header">
+
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li><a ui-sref="themquanlynhacungcap">Thêm nhà cung cấp</a></li>
+
+    </ol>
+</section>
+
+
+
+<div class="container-fluid" style="margin-bottom:20px;padding:0px">
+    <h1 style="margin-bottom:20px;text-align:center">Thêm nhà cung cấp</h1>
+
+
+    <form class="form-horizontal" data-toggle="validator" name="formtestsssss" role="form" ng-submit="update()">
+
+
+        <div class="row" style="margin:30px 0px">
+
+            <div class="col-md-6  " style="margin:auto;padding:0px">
+               
+                    <table class="table table-hover table-bordered">
+
+                        <tr class="text-left">
+                            <th width="50%">Mã nhà cung cấp</th>
+
+                            <th width="50%"><input class="form-control" type="text" disabled ng-model="AddNhaCungCap.MaNhaCungCap" /></th>
+                        </tr>
+                        <tr class="text-left">
+                            <th>Nhóm khách hàng nhà cung cấp</th>
+
+                            <th>
+                                <select class="selectpicker form-control" ng-model="IdNhomKH" ng-change="getId(IdNhomKH)"
+                                        ng-options="item.NhomKH_NCC  as  '('+' '+item.NhomKH_NCC + ') ' +' '+item.TenNhomKH_NCC  for item in NhomKH_NCC">
+                                    <option disabled value="">Chọn tên nhóm khách hàng nhà cung cấp</option>
+                                </select>
+                                <!--<input class="form-control" type="text" ng-model="AddNhaCungCap.NhomKH_NCC" />-->
+                            </th>
+                        </tr>
+                        <tr class="text-left">
+                            <th>Phân loại</th>
+
+                            <th>
+                                <select class="selectpicker form-control" ng-model="AddNhaCungCap.PhanLoai" required>
+                                    <option disabled value="">Chọn phân loại</option>
+                                    <option value="Cá nhân">Cá nhân</option>
+                                    <option value="Tổ chức">Tổ chức</option>
+                                </select>
+                            </th>
+                        </tr>
+                        <tr class="text-left">
+                            <th>Tên nhà cung cấp : <span ng-show="formtestsssss.nameNCC.$error.required" class="has-error text-left">* bắt buộc</span></th>
+
+                            <th> <input required class="form-control" name="nameNCC" type="text" ng-model="AddNhaCungCap.TenNhaCungCap" /></th>
+                        </tr>
+                        <tr class="text-left">
+                            <th>Chi nhánh </th>
+
+                            <th><input required class="form-control" type="text" ng-model="AddNhaCungCap.ChiNhanh" /></th>
+                        </tr>
+                        <tr class="text-left">
+                            <th>Địa chỉ </th>
+
+                            <th> <input required class="form-control" type="text" ng-model="AddNhaCungCap.DiaChi" /></th>
+                        </tr>
+                        <tr class="text-left">
+                            <th>Số điện thoại</th>
+
+                            <th><input required class="form-control" type="text" ng-model="AddNhaCungCap.SoDienThoai" /></th>
+                        </tr>
+                        <tr class="text-left">
+                            <th>Fax</th>
+
+                            <th><input type="text" class="form-control" ng-model="AddNhaCungCap.Fax" /></th>
+                        </tr>
+                        <tr class="text-left">
+                            <th>Email</th>
+
+                            <th><input required type="text" class="form-control" ng-model="AddNhaCungCap.Email" /></th>
+                        </tr>
+                        <tr class="text-left">
+                            <th>Website</th>
+
+                            <th><input required type="text" class="form-control" ng-model="AddNhaCungCap.Website" /></th>
+                        </tr>
+
+                        <tr class="text-left">
+                            <th>Mã số thuế</th>
+
+                            <th><input required type="text" class="form-control" ng-model="AddNhaCungCap.MaSoThue" /></th>
+                        </tr>
+                        <tr class="text-left">
+                            <th>Số tài khoản ngân hàng</th>
+
+                            <th><input required type="text" class="form-control" ng-model="AddNhaCungCap.SoTaiKhoanNganHang" /></th>
+                        </tr>
+                        <tr class="text-left">
+                            <th>Tên ngân hàng</th>
+
+                            <th><input required type="text" class="form-control" ng-model="AddNhaCungCap.TenNganHang" /></th>
+                        </tr>
+                        <tr class="text-left">
+                            <th>Người liên hệ</th>
+
+                            <th><input type="text" class="form-control" ng-model="AddNhaCungCap.NguoiLienHe" /></th>
+                        </tr>
+
+
+
+
+
+
+                    </table>
+              
+            </div>
+        </div>
+
+        <div class="col-md-6 col-md-offset-3 justify-content-center btn-block text-center">
+
+            <button type="button" class="btn btn-danger" ng-click="huy()">Hủy</button>&nbsp;&nbsp;&nbsp;
+            <button type="submit" class="btn btn-primary">Lưu</button>
+
+
+
+
+
+
+
+
+        </div>
+    </form>
+</div>

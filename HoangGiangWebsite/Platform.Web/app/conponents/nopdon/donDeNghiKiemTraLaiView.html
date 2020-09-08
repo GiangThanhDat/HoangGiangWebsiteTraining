@@ -1,0 +1,185 @@
+﻿<script src="../../../Assets/sinhvien/js/nopdon.js"></script>
+<div class="container">
+
+    <form class="well form-horizontal" action=" " method="post" id="contact_form">
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend class="bg-info text-white">Đơn đề nghị kiểm tra lại kết quả thi kết thúc học phần</legend>
+
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Họ và tên</label>
+                <div class="col-md-6 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input name="first_name" placeholder="Viết hoa các ký tự đầu (VD: Nguyễn Ví Dụ)" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Mã sinh viên</label>
+                <div class="col-md-6 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input name="MSSV" placeholder="Viết hoa các ký tự chữ, đầy đủ mã SV (Ví dụ: N16DCQT123)" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label">Lớp </label>
+                <div class="col-md-6 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-book"></i></span>
+                        <input name="text" placeholder="Viết hoa đầy đủ tên lớp (Ví dụ: D16CQMR01-N)" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Số điện thoại</label>
+                <div class="col-md-6 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                        <input name="text" placeholder="Câu trả lời của bạn" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Email</label>
+                <div class="col-md-6 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input name="email" placeholder="Câu trả lời của bạn" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">
+                    Đã thi kết thúc học phần
+                </label>
+                <div class="col-md-6 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-check"></i></span>
+                        <input name="text" placeholder="Câu trả lời của bạn" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label">
+                    Giáo viên giảng dạy
+                </label>
+                <div class="col-md-6 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input name="text" placeholder="Câu trả lời của bạn" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Select Basic -->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">
+                    Trong học kỳ
+                </label>
+                <div class="col-md-6 selectContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <select name="text" class="form-control selectpicker ">
+                            <option value=" ">Chọn</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3(học kì hè)</option>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Năm học </label>
+                <div class="col-md-6 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        <input name="text" placeholder="Ví dụ: 2017 - 2018" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label">Kết quả thi</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-star"></i></span>
+                        <input name="text" placeholder="Điểm thi bằng số" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <!-- radio checks
+               <div class="form-group">
+                   <label class="col-md-4 control-label">Do you have hosting?</label>
+                   <div class="col-md-4">
+                       <div class="radio">
+                           <label>
+                               <input type="radio" name="hosting" value="yes" /> Yes
+                           </label>
+                       </div>
+                       <div class="radio">
+                           <label>
+                               <input type="radio" name="hosting" value="no" /> No
+                           </label>
+                       </div>
+                   </div>
+               </div>
+    -->
+            <!-- Text area
+
+    <div class="form-group">
+        <label class="col-md-4 control-label">Project Description</label>
+        <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                <textarea class="form-control" name="comment" placeholder="Project Description"></textarea>
+            </div>
+        </div>
+    </div> -->
+            <!-- Success message -->
+            <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Đơn của bạn đã được gửi.</div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-warning">Gửi <span class="glyphicon glyphicon-send"></span></button>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+    </div><!-- /.container -->
+
+
+
+

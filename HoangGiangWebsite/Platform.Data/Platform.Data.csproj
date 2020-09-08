@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{53B19078-8297-4EE4-86AD-762628B4FDE0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Platform.Data</RootNamespace>
+    <AssemblyName>Platform.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Repositories\HangHoa_DonViTinhRepository.cs" />
+    <Compile Include="Repositories\DonViTinhRepository.cs" />
+    <Compile Include="Repositories\DinhKhoanTuDongRepository.cs" />
+    <Compile Include="Repositories\HeThongTaiKhoanRepository.cs" />
+    <Compile Include="Repositories\TaiKhoanKetChuyenRepository.cs" />
+    <Compile Include="Infrastructure\DbFactory.cs" />
+    <Compile Include="Infrastructure\Disposable.cs" />
+    <Compile Include="Infrastructure\IDbFactory.cs" />
+    <Compile Include="Infrastructure\IRepository.cs" />
+    <Compile Include="Infrastructure\IUnitOfWork.cs" />
+    <Compile Include="Infrastructure\RepositoryBase.cs" />
+    <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="Repositories\CoCauToChucRepository.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QLTHDbContext.cs" />
+    <Compile Include="Repositories\ChiTietTraLaiHangBanRepository.cs" />
+    <Compile Include="Repositories\ChiTietPhieuNhapKhoRepository.cs" />
+    <Compile Include="Repositories\ChiTietLapRapThaoDoRepository.cs" />
+    <Compile Include="Repositories\LoaiCongCuDungCuRepository.cs" />
+    <Compile Include="Repositories\LoaiTaiSanCoDinhRepository.cs" />
+    <Compile Include="Repositories\NhomHangHoaRepository.cs" />
+    <Compile Include="Repositories\LapRapThaoDoRepository.cs" />
+    <Compile Include="Repositories\ThanhPhamRepository.cs" />
+    <Compile Include="Repositories\LenhSanXuat_NVLRepository.cs" />
+    <Compile Include="Repositories\LenhSanXuat_ThanhPhamRepository.cs" />
+    <Compile Include="Repositories\LenhSanXuatRepository.cs" />
+    <Compile Include="Repositories\PhieuNhapKhoRepository.cs" />
+    <Compile Include="Repositories\TraLaiHangBanRepository.cs" />
+    <Compile Include="Repositories\ChiTietGiamGiaHangBanRepository.cs" />
+    <Compile Include="Repositories\GiamGiaHangBanRepository.cs" />
+    <Compile Include="Repositories\ChiTietHoaDon_BanHangRepository.cs" />
+    <Compile Include="Repositories\HoaDon_BanHangRepository.cs" />
+    <Compile Include="Repositories\ChiTietPhieuXuat_BanHangRepository.cs" />
+    <Compile Include="Repositories\PhieuXuat_BanHangRepository.cs" />
+    <Compile Include="Repositories\ChiTietChungTuBanHangRepository.cs" />
+    <Compile Include="Repositories\ChungTuBanHangRepository.cs" />
+    <Compile Include="Repositories\ChiTietDonDatHangRepository.cs" />
+    <Compile Include="Repositories\DonDatHangRepository.cs" />
+    <Compile Include="Repositories\ChiTietBaoGiaRepository.cs" />
+    <Compile Include="Repositories\ChiTietChiRepository.cs" />
+    <Compile Include="Repositories\ChiTietChungTuMuaDichVuRepository.cs" />
+    <Compile Include="Repositories\ChiTietChungTuMuaHangRepository.cs" />
+    <Compile Include="Repositories\ChiTietGiamGiaHangMuaRepository.cs" />
+    <Compile Include="Repositories\ChungTuMuaDichVuRepository.cs" />
+    <Compile Include="Repositories\BaoGiaRepository.cs" />
+    <Compile Include="Repositories\GiamGiaHangMuaRepository.cs" />
+    <Compile Include="Repositories\DichVuRepository.cs" />
+    <Compile Include="Repositories\TraLaiHangMuaRepository.cs" />
+    <Compile Include="Repositories\ChiTietTraLaiHangMuaRepository.cs" />
+    <Compile Include="Repositories\DonMuaHangRepository.cs" />
+    <Compile Include="Repositories\ChiTietDonMuaHangRepository.cs" />
+    <Compile Include="Repositories\DieuKhoanTTRepository.cs" />
+    <Compile Include="Repositories\ChungTuMuaHangRepository.cs" />
+    <Compile Include="Repositories\LoaiChiRepository.cs" />
+    <Compile Include="Repositories\HopDongMuaRepository.cs" />
+    <Compile Include="Repositories\ChiTietHopDongMuaRepository.cs" />
+    <Compile Include="Repositories\TaiKhoanCoRepository.cs" />
+    <Compile Include="Repositories\TaiKhoanNoRepository.cs" />
+    <Compile Include="Repositories\TaiKhoanNganHangRepository.cs" />
+    <Compile Include="Repositories\NhaCungcap_TaiKhoanRepository.cs" />
+    <Compile Include="Repositories\LoaiThuRepository.cs" />
+    <Compile Include="Repositories\KhachHang_TaiKhoanRepository.cs" />
+    <Compile Include="Repositories\PhieuChiRepository.cs" />
+    <Compile Include="Repositories\LoaiTienRepository.cs" />
+    <Compile Include="Repositories\TinhChatHangHoaRepository.cs" />
+    <Compile Include="Repositories\TinhTrangRepository.cs" />
+    <Compile Include="Repositories\ChiTietThuRepository.cs" />
+    <Compile Include="Repositories\PhieuThuRepository.cs" />
+    <Compile Include="Repositories\NhomKH_NCC1Repository.cs" />
+    <Compile Include="Repositories\KhachHangRepository.cs" />
+    <Compile Include="Repositories\QuanLyNhaCungCapRepository.cs" />
+    <Compile Include="Repositories\QuanLyTaiSanRepository.cs" />
+    <Compile Include="Repositories\ApplicationGroupRepository.cs" />
+    <Compile Include="Repositories\ApplicationRoleGroupRepository.cs" />
+    <Compile Include="Repositories\ApplicationRoleRepository.cs" />
+    <Compile Include="Repositories\ApplicationUserGroupRepository.cs" />
+    <Compile Include="Repositories\CoSoRepository.cs" />
+    <Compile Include="Repositories\HoanThanhCongViecRepository.cs" />
+    <Compile Include="Repositories\LichSuLamViecRepository.cs" />
+    <Compile Include="Repositories\LoiRepository.cs" />
+    <Compile Include="Repositories\NgonNguRepository.cs" />
+    <Compile Include="Repositories\QuanLyCongTacRepository.cs" />
+    <Compile Include="Repositories\QuanLyNgayNghiRepository.cs" />
+    <Compile Include="Repositories\QuanLyQuaGioRepository.cs" />
+    <Compile Include="Repositories\QuanLyVangMatRepository.cs" />
+    <Compile Include="Repositories\ChucVuRepository.cs" />
+    <Compile Include="Repositories\QuetTheTheoNgayRepository.cs" />
+    <Compile Include="Repositories\QuetTheRepository.cs" />
+    <Compile Include="Repositories\QuaTrinhDaoTaoRepository.cs" />
+    <Compile Include="Repositories\TaiSanRepository.cs" />
+    <Compile Include="Repositories\HangHoaRepository.cs" />
+    <Compile Include="Repositories\TheRepository.cs" />
+    <Compile Include="Repositories\ThongBaoRepository.cs" />
+    <Compile Include="Repositories\NhanVienRepository.cs" />
+    <Compile Include="Repositories\ThongTinCaNhanRepository.cs" />
+    <Compile Include="Repositories\ThongTinTuyenDungRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="bin\Debug\Platform.Data.dll.config" />
+    <None Include="bin\Debug\Platform.Model.dll.config" />
+    <None Include="bin\Release\Platform.Data.dll.config" />
+    <None Include="bin\Release\Platform.Model.dll.config" />
+    <None Include="obj\Debug\build.force" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\Platform.Data.csproj.CopyComplete" />
+    <None Include="obj\Debug\Platform.Data.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\Platform.Data.csprojAssemblyReference.cache" />
+    <None Include="obj\Release\Platform.Data.csproj.CopyComplete" />
+    <None Include="obj\Release\Platform.Data.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Release\Platform.Data.csprojAssemblyReference.cache" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Platform.Common\Platform.Common.csproj">
+      <Project>{37cefe7a-f289-4d7f-a882-09d117e48291}</Project>
+      <Name>Platform.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Platform.Model\Platform.Model.csproj">
+      <Project>{3149b731-7d20-4b7c-9d1b-f883276d3382}</Project>
+      <Name>Platform.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\EntityFramework.dll" />
+    <Content Include="bin\Debug\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\Debug\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\Debug\EntityFramework.xml" />
+    <Content Include="bin\Debug\Microsoft.AspNet.Identity.Core.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNet.Identity.Core.xml" />
+    <Content Include="bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml" />
+    <Content Include="bin\Debug\Platform.Common.dll" />
+    <Content Include="bin\Debug\Platform.Common.pdb" />
+    <Content Include="bin\Debug\Platform.Data.dll" />
+    <Content Include="bin\Debug\Platform.Data.pdb" />
+    <Content Include="bin\Debug\Platform.Model.dll" />
+    <Content Include="bin\Debug\Platform.Model.pdb" />
+    <Content Include="bin\Release\EntityFramework.dll" />
+    <Content Include="bin\Release\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\Release\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\Release\EntityFramework.xml" />
+    <Content Include="bin\Release\Microsoft.AspNet.Identity.Core.dll" />
+    <Content Include="bin\Release\Microsoft.AspNet.Identity.Core.xml" />
+    <Content Include="bin\Release\Microsoft.AspNet.Identity.EntityFramework.dll" />
+    <Content Include="bin\Release\Microsoft.AspNet.Identity.EntityFramework.xml" />
+    <Content Include="bin\Release\Platform.Common.dll" />
+    <Content Include="bin\Release\Platform.Common.pdb" />
+    <Content Include="bin\Release\Platform.Data.dll" />
+    <Content Include="bin\Release\Platform.Data.pdb" />
+    <Content Include="bin\Release\Platform.Model.dll" />
+    <Content Include="bin\Release\Platform.Model.pdb" />
+    <Content Include="obj\Debug\Platform.Data.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\Platform.Data.dll" />
+    <Content Include="obj\Debug\Platform.Data.pdb" />
+    <Content Include="obj\Release\Platform.Data.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Release\Platform.Data.dll" />
+    <Content Include="obj\Release\Platform.Data.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="obj\Release\TempPE\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

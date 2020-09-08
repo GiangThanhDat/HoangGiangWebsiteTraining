@@ -1,0 +1,224 @@
+﻿  <!-- Content Header (Page header) -->
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li> <a href="">Kế toán</a></li>
+        <li><a href="">Danh mục</a></li>
+        <li><a href="">Đối tượng</a></li>
+        <li><a ui-sref="nhomkh_ncc">Nhóm khách hàng, nhà cung cấp</a></li>
+    </ol>
+</section>
+<!-- Main content -->
+<div class="container">
+    <div class="row print">
+
+
+        <div class="input-group  col-md-12 hidden-xs justify-content-center">
+            <form class="">
+                <div class="input-group ">
+
+                    <div class="input-group-append">
+                        <a ng-click="gettatca()" class="form-control btn btn-primary text-white"> Xem tất cả</a>
+
+                    </div>
+                    &nbsp;&nbsp;&nbsp;
+                    
+
+                    <div class="input-group-append">
+                        <span class="input-group-text"><b>Tìm kiếm: </b></span>
+                    </div>
+
+                    <div class="input-group-append">
+                        <input ng-model="keyword" type="text" class="form-control" placeholder="Nhập từ khóa tìm kiếm">
+
+
+                    </div>  <div class="input-group-append">
+                        <a ng-click="getbykeyword(keyword)" class=" form-control btn btn-primary text-white"> Tìm</a>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;
+
+                    
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-primary btn-sm form-control" data-toggle="modal" data-target=".bs-example-modal-lg1">Thêm nhóm KH, NCC</button>
+                    </div>
+                </div>
+
+            </form>
+
+
+        </div>
+        <div class="input-group  col-12 hidden-sm hidden-md hidden-lg  justify-content-center">
+            <form class="">
+                <div class="input-group ">
+
+                    <div class="input-group-append">
+                        <a ng-click="gettatca()" class="form-control btn btn-primary text-white"> Xem tất cả</a>
+
+                    </div>
+                    &nbsp;&nbsp;&nbsp;
+                    <div class="input-group-append">
+                        <span class="input-group-text"><b>Phân loại khách hàng: </b></span>
+                    </div>
+                    <select class="selectpicker form-control" ng-model="PhanLoai">
+                        <option disabled value="">Chọn phân loại</option>
+                        <option value="Cá nhân">Cá nhân</option>
+                        <option value="Tổ chức">Tổ chức</option>
+                        <option value="">Xem tất cả</option>
+                    </select>
+                    &nbsp;&nbsp;&nbsp;
+                </div><br />
+                <div class="input-group ">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><b>Tìm kiếm: </b></span>
+                    </div>
+
+                    <div class="input-group-append">
+                        <input ng-model="keyword" type="text" class="form-control" placeholder="Nhập từ khóa tìm kiếm">
+
+
+                    </div>  <div class="input-group-append">
+                        <a ng-click="getbykeyword(keyword)" class=" form-control btn btn-primary text-white"> Tìm</a>
+                    </div>
+                </div>
+
+            </form>
+
+
+        </div>
+        <br /><br /><br /><br />
+
+        <div class="col-md-12 table-responsive" ng-show="bangxem">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr style="background:#74b9ff">
+                        <th>STT</th>
+                        <th>Mã nhóm KH, NCC</th>
+                        <th>Tên nhóm KH, NCC</th>
+                        <th>Diễn giải</th>
+                        <th>Xem chi tiết</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in KhachHang|orderBy: 'NhomKH_NCC'">
+
+                        <th>{{$index+1}}</th>
+
+                        <td>{{item.NhomKH_NCC}}</td>
+                        <td><a href="" ng-click="getTTCN(item.NhomKH_NCC)">{{item.TenNhomKH_NCC}}</a></td>
+                        <td>{{item.DienGiai }}</td>
+                        <td><button type="button" class="btn btn-primary btn-sm " ng-click="getTTCN(item.NhomKH_NCC)">Xem chi tiết</button></td>
+
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+        </div>
+        <div class="col-md-6 col-md-offset-3 table-responsive" ng-show="bangchitiet">
+            <table class="table table-hover table-bordered">
+
+
+                <tr class="text-left">
+                    <td>Mã nhóm KH, NCC:</td>
+                    <th ng-show="view">{{TTCN.NhomKH_NCC}}</th>
+                    <th ng-show="edit">{{TTCN.NhomKH_NCC}}</th>
+                </tr>
+                <tr class="text-left">
+                    <td>Tên nhóm KH, NCC:</td>
+                    <th ng-show="view">{{TTCN.TenNhomKH_NCC}}</th>
+                    <th ng-show="edit"><input type="text" class="form-control" ng-model="TTCN.TenNhomKH_NCC" name="name" /></th>
+
+                </tr>
+                
+                <tr class="text-left">
+                    <td>Diễn giải</td>
+                    <th ng-show="view">{{TTCN.DienGiai}}</th>
+                    <th ng-show="edit"><input type="text" class="form-control" ng-model="TTCN.DienGiai" name="name" /></th>
+                </tr>
+                
+
+            </table>
+
+            <div class="col-md-6 col-md-offset-3 justify-content-center btn-block text-center">
+                <button type="button" class="btn btn-danger" ng-show="view" ng-click="trove()">Trở về</button> &nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-primary " ng-show="view" ng-click="thaydoithongtin()">Thay đổi thông tin</button>
+                <button type="button" class="btn btn-danger" ng-show="edit" ng-click="huy()">Hủy</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-primary" ng-show="edit" ng-click="updateTTCN()">Lưu</button>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+        <div class="modal fade bs-example-modal-lg1" id="stack2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false" data-keyboard="false" data-focus-on="input:first">
+            <div class="modal-dialog modal-lg" role="document" style="max-width: 505px;">
+                <div class="modal-content" style="border-radius: 10px;
+                     ">
+                    <div class="modal-header">
+                        <h3 style="text-align:center;color:red">Thêm nhóm KH, NCC</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                            <span aria-hidden="true" style="color:red">&times; Đóng</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row">
+
+
+                                <div class="col-md-12  table-responsive">
+                                    <fieldset class="well">
+                                        <table class="table table-bordered" style="border:solid #ddd 1px">
+                                            <tr>
+                                                <td> <b>Mã nhóm KH, NCC</b></td>
+                                                <td>
+
+                                                    <input ng-model="addKH.NhomKH_NCC" type="text" class="form-control">
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Tên nhóm KH, NCC</b></td>
+                                                <td> <input ng-model="addKH.TenNhomKH_NCC" type="text" class="form-control"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Diễn giải</b></td>
+                                                <td><input ng-model="addKH.DienGiai" type="text" class="form-control"></td>
+                                            </tr>
+
+
+                                        </table>
+                                    </fieldset>
+                                </div>
+
+
+
+
+
+                        </div>
+
+                        <br />
+
+
+                        <div class="col-md-6 col-md-offset-3 justify-content-center btn-block text-center">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>&nbsp;&nbsp;&nbsp;
+                            <button type="button" class="btn btn-primary" ng-click="addKhachHang()">Lưu</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,322 @@
+﻿@inherits System.Web.Mvc.WebViewPage
+
+<!DOCTYPE html>
+<html lang="en" data-ver="4.9">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mekong-tech platform</title>
+
+    <!-- Bootstrap -->
+    @*<link href="~/Assets/sinhvien/css/bootstrap.min.css?v=4.9" rel="stylesheet">*@
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.css" />
+    <link rel="stylesheet" type="text/css" href=" https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" media='all' />
+    <link rel="stylesheet" type="text/css" href=" https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" media='all' />
+    <script src=" https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <script src=" https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src=" https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <link href="~/Assets/giaovien/css/bootstrap.gv.css?v=4.9" rel="stylesheet" media='all' />
+    <link href="~/Assets/giaovien/css/style.css?v=4.9" rel="stylesheet" />
+
+    <link href="~/Assets/giaovien/css/bootstrap.min.css?v=4.9" rel="stylesheet" media='all' />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.21/angular-material.min.css">
+
+    <script src="~/Assets/giaovien/jslocal/jquery.min.js?v=4.9"></script>
+    <script src="~/Assets/giaovien/jslocal/popper.min.js?v=4.9"></script>
+    <script src="~/Assets/giaovien/jslocal/bootstrap.min.js?v=4.9"></script>
+    <link href="~/Assets/giaovien/jslocal/font-awesome.min.css?v=4.9" rel="stylesheet" />
+    <link href="~/Assets/giaovien/libs/toastr/toastr.css?v=4.9" rel="stylesheet" />
+    <link href="~/Assets/giaovien/css/yearpicker.css?v=4.9" rel="stylesheet" />
+    <link href="~/Assets/giaovien/libs/chart.js-2.9.3/package/dist/Chart.css?v=4.9" rel="stylesheet" />
+    <link href="~/Assets/giaovien/css/angucomplete-alt.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css">
+    <link href="~/Assets/giaovien/css/select.css" rel="stylesheet" />
+
+    <!--
+
+
+        pining
+    -->
+    <script src="~/Assets/giaovien/jslocal/angular-1.8.0/angular.js"></script>
+
+    @*<script src="~/Assets/giaovien/libs/angular/angular.js?v=4.9"></script>*@
+    <script src="~/Assets/giaovien/jslocal/angular-1.8.0/angular-touch.js"></script>
+
+    @*<script src="~/Assets/giaovien/libs/bower-angular-touch-master/angular-touch.js"></script>*@
+
+    <script src="https://ui-grid.info/docs/grunt-scripts/csv.js"></script>
+    <script src="https://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
+    <script src="https://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
+    <script src="https://ui-grid.info/docs/grunt-scripts/lodash.min.js"></script>
+    <script src="https://ui-grid.info/docs/grunt-scripts/jszip.min.js"></script>
+    <script src="https://ui-grid.info/docs/grunt-scripts/excel-builder.dist.js"></script>
+    <script src="https://ui-grid.info/release/ui-grid.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://ui-grid.info/release/ui-grid.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/angular-ui/bower-ui-grid/ui-grid.min.css" type="text/css">
+    <link href="~/Assets/giaovien/resizediv/angular-resizable.min.css" rel="stylesheet" />
+    <link href="~/Assets/giaovien/chart/Chart.css" rel="stylesheet" />
+
+
+    <script src="~/Assets/giaovien/libs/ui-grid/ui-grid.min.js"></script>
+    <!--
+
+
+        pining
+    -->
+    <!-- =======================================================
+      Theme Name: mekong-platform truong hoc
+      Author:Nghiale
+    ======================================================= -->
+</head>
+
+<body ng-app="platformTH_GV" ng-controller="rootController">
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.js"></script>
+
+    <div ui-view></div>
+
+    @*<script src="~/Assets/giaovien/libs/angular/angular.js?v=4.9"></script>*@
+    @*<script src="~/Assets/giaovien/libs/angular-ui-router/release/angular-ui-router.js?v=4.9"></script>*@
+    <script src="~/Assets/giaovien/jslocal/angular-ui-router.js"></script>
+    <script src="~/app/shared/modules/platformTH.common.js?v=4.9"></script>
+    <script src="~/app/shared/services/apiService.js?v=4.9"></script>
+    <script src="~/app/shared/services/authData.js?v=4.9"></script>
+    <script src="~/app/shared/services/authenticationService.js?v=4.9"></script>
+    <script src="~/app/shared/services/loginService.js?v=4.9"></script>
+    <script src="~/app/shared/app.js?v=4.9"></script>
+    <script src="~/Assets/sinhvien/libs/angular-local-storage/dist/angular-local-storage.js?v=4.9"></script>
+
+    <script src="~/app/shared/filters/statusFilter.js?v=4.9"></script>
+    <script src="~/app/shared/services/notificationService.js?v=4.9"></script>
+    <script src="~/app/shared/directives1/fileNameDirective.js?v=4.9"></script>
+    <script src="~/app/shared/directives1/asDateDirective.js?v=4.9"></script>
+    <script src="~/app/shared/directives1/ngOnlyNumberApp.js?v=4.9"></script>
+    <script src="~/app/shared/directives1/integersOnly.js?v=4.9"></script>
+
+
+    <script src="~/Assets/sinhvien/libs/bootbox/bootbox.js?v=4.9"></script>
+    <script src="~/Assets/sinhvien/libs/ngBootbox/ngBootbox.js?v=4.9"></script>
+    <script src="~/Assets/giaovien/libs/ckfinder/ckfinder.js?v=4.9"></script>
+    @*<script src="~/Assets/giaovien/jslocal/angular.js?v=4.9"></script>*@
+    <script src="~/Assets/giaovien/jslocal/angular-1.8.0/angular-animate.js"></script>
+    <script src="~/Assets/giaovien/jslocal/angular-1.8.0/angular-sanitize.js"></script>
+    <script src="~/Assets/giaovien/jslocal/angular-1.8.0/angular-aria.js"></script>
+    <script src="~/Assets/giaovien/jslocal/angular-1.8.0/angular-messages.js"></script>
+
+
+    <script src="~/Assets/giaovien/keypad/ng-keypad.min.js"></script>
+
+
+    @*<script src="~/Assets/giaovien/jslocal/angular-animate.js?v=4.9"></script>
+        <script src="~/Assets/giaovien/jslocal/angular-sanitize.js?v=4.9"></script>*@
+    <script src="~/Assets/giaovien/jslocal/ui-bootstrap-tpls-2.5.0.js?v=4.9"></script>
+    <script src="~/Assets/giaovien/jslocal/angular-datepicker.js?v=4.9"></script>
+    @*<script src="https://code.angularjs.org/1.5.5/angular-animate.js"></script>
+        <script src="https://code.angularjs.org/1.5.5/angular-aria.js"></script>
+        <script src="https://code.angularjs.org/1.5.5/angular-messages.js"></script>*@
+
+    <!-- AngularJS Material Javascript now available via Google CDN; version 1.1.21 used here -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.22/angular-material.min.js"></script>
+
+
+
+    <script src="~/Assets/giaovien/libs/toastr/toastr.js?v=4.9"></script>
+
+    <script src="~/app/conponents/dangnhap/dangNhapController.js?v=4.9"></script>
+    <script src="~/app/conponents/trangchu/rootController.js?v=4.9"></script>
+    <script src="~/app/conponents/trangchu/trangChuController.js?v=4.9"></script>
+    <script src="~/app/shared/services/commonService.js"></script>
+
+    <script src="~/app/conponents/thongbao/thongBao.module.js?v=4.9"></script>
+    <script src="~/app/conponents/thongbao/thongBaoController.js?v=4.9"></script>
+
+
+    <script src="~/app/conponents/application_groups/applicationGroups.module.js?v=4.9"></script>
+    <script src="~/app/conponents/application_groups/applicationGroupAddController.js?v=4.9"></script>
+    <script src="~/app/conponents/application_groups/applicationGroupEditController.js?v=4.9"></script>
+    <script src="~/app/conponents/application_groups/applicationGroupListController.js?v=4.9"></script>
+
+    <script src="~/app/conponents/application_roles/applicationRoles.module.js?v=4.9"></script>
+    <script src="~/app/conponents/application_roles/applicationRoleAddController.js?v=4.9"></script>
+    <script src="~/app/conponents/application_roles/applicationRoleEditController.js?v=4.9"></script>
+    <script src="~/app/conponents/application_roles/applicationRoleListController.js?v=4.9"></script>
+
+    <script src="~/app/conponents/application_users/applicationUsers.module.js?v=4.9"></script>
+    <script src="~/app/conponents/application_users/applicationUserAddController.js?v=4.9"></script>
+    <script src="~/app/conponents/application_users/applicationUserEditController.js?v=4.9"></script>
+    <script src="~/app/conponents/application_users/applicationUserListController.js?v=4.9"></script>
+
+    <script src="~/app/conponents/quanlychiphiseo/quanLyChiPhiSeo.module.js?v=4.9"></script>
+    <script src="~/app/conponents/quanlychiphiseo/quanLyChiPhiSeoController.js?v=4.9"></script>
+    <script src="~/app/conponents/quanlychiphiseo/themCoSo.js"></script>
+
+    <script src="~/app/conponents/quanlyhanghoa/quanLyHangHoa.module.js?v=4.9"></script>
+    <script src="~/app/conponents/quanlyhanghoa/quanLyHangHoaController.js?v=4.9"></script>
+    <script src="~/app/conponents/quanlykhachhang/quanLyKhachHang.module.js?v=4.9"></script>
+    <script src="~/app/conponents/quanlykhachhang/quanLyKhachhangController.js?v=4.9"></script>
+    <script src="~/app/conponents/quanlykhachhang/themKhachHangController.js?v=4.9"></script>
+    <script src="~/app/conponents/quanlykho/quanLyKho.module.js?v=4.9"></script>
+    <script src="~/app/conponents/quanlykho/quanLyKhoController.js?v=4.9"></script>
+    <script src="~/app/conponents/quanlynhansu/quanLyNhanSu.module.js?v=4.9"></script>
+    <script src="~/app/conponents/quanlynhansu/quanLyNhanSuController.js?v=4.9"></script>
+    <script src="~/app/conponents/quanlynhansu/themNhanVienMoiController.js?v=4.9"></script>
+    <script src="~/app/conponents/quanlynhansu/quanLyCongTacAdminController.js"></script>
+    <script src="~/app/conponents/quanlynhansu/quanLyNgayNghiAdminController.js"></script>
+
+    <script src="~/app/conponents/quanlyquytien/quanLyQuyTien.module.js?v=4.9"></script>
+    <script src="~/app/conponents/quanlyquytien/quanLyQuyTienController.js?v=4.9"></script>
+    <script src="~/app/conponents/quanlyquytien/themPhieuThuController.js?v=4.9"></script>
+    <script src="~/app/conponents/quanlyquytien/themPhieuChiController.js"></script>
+    <script src="~/app/conponents/thongke/thongKe.module.js?v=4.9"></script>
+    <script src="~/app/conponents/thongke/thongKeController.js?v=4.9"></script>
+
+    <script src="~/app/conponents/nopdon/nopDon.module.js?v=4.9"></script>
+    <script src="~/app/conponents/nopdon/nopDonController.js?v=4.9"></script>
+
+    <script src="~/app/conponents/quanlyvangmat/quanLyVangMat.module.js?v=4.9"></script>
+    <script src="~/app/conponents/quanlyvangmat/quanLyVangMatController.js?v=4.9"></script>
+    <script src="~/app/conponents/thongtincanhan/thongTinCaNhan.module.js?v=4.9"></script>
+    <script src="~/app/conponents/thongtincanhan/thongTinCaNhanController.js?v=4.9"></script>
+    <script src="~/app/conponents/thongtincanhan/HoanThanhCongViecController.js?v=4.9"></script>
+    <script src="~/app/conponents/thongtincanhan/LichSuLamViecController.js?v=4.9"></script>
+    <script src="~/app/conponents/thongtincanhan/NgonNguController.js?v=4.9"></script>
+    <script src="~/app/conponents/thongtincanhan/QuanLyCongTacController.js?v=4.9"></script>
+    <script src="~/app/conponents/thongtincanhan/QuanLyNgayNghiController.js?v=4.9"></script>
+    <script src="~/app/conponents/thongtincanhan/QuanLyQuaGioController.js?v=4.9"></script>
+    <script src="~/app/conponents/thongtincanhan/QuaTrinhDaoTaoController.js?v=4.9"></script>
+    <script src="~/app/conponents/thongtincanhan/TheController.js?v=4.9"></script>
+    <script src="~/app/conponents/thongtincanhan/ThongTinTuyenDungController.js?v=4.9"></script>
+    <script src="~/app/conponents/quanlytaisan/quanLyTaiSan.module.js?v=4.9"></script>
+    <script src="~/app/conponents/quanlytaisan/nhapTaiSanController.js?v=4.9"></script>
+    <script src="~/app/conponents/quanlytaisan/quanLyTaiSanController.js?v=4.9"></script>
+    <script src="~/app/conponents/quanlytaisan/thongKeTaiSanController.js?v=4.9"></script>
+
+    <script src="~/app/conponents/quanlynhacungcap/quanLyNhaCungCap.module.js?v=4.9"></script>
+    <script src="~/app/conponents/quanlynhacungcap/quanLyNhaCungCapController.js?v=4.9"></script>
+    <script src="~/app/conponents/themquanlynhacungcap/themQuanLyNhaCungCap.module.js?v=4.9"></script>
+    <script src="~/app/conponents/themquanlynhacungcap/themQuanLyNhaCungCapController.js?v=4.9"></script>
+
+    <script src="~/app/conponents/xemthongtinnhanvien/xemThongTinNhanVien.module.js?v=4.9"></script>
+    <script src="~/app/conponents/xemthongtinnhanvien/xemThongTinNhanVienController.js?v=4.9"></script>
+    <script src="~/app/conponents/thongtincanhan/QuanLyTaiSanController.js?v=4.9"></script>
+    <script src="~/app/conponents/quanlynhansu/QuanLyTheController.js?v=4.9"></script>
+
+    <script src="~/app/conponents/quy/Quy.Module.js?v=4.9"></script>
+    <script src="~/app/conponents/quy/ChiTienController.js?v=4.9"></script>
+    <script src="~/app/conponents/quy/KiemKeController.js?v=4.9"></script>
+    <script src="~/app/conponents/quy/NopBaoHiemController.js?v=4.9"></script>
+    <script src="~/app/conponents/quy/NopThueController.js?v=4.9"></script>
+    <script src="~/app/conponents/quy/QuyController.js?v=4.9"></script>
+    <script src="~/app/conponents/quy/ThongTinTongHopController.js?v=4.9"></script>
+    <script src="~/app/conponents/quy/ThuTienController.js?v=4.9"></script>
+    <script src="~/app/conponents/quy/ThuTienKhachHangController.js?v=4.9"></script>
+    <script src="~/app/conponents/quy/TraLuongController.js?v=4.9"></script>
+    <script src="~/app/conponents/quy/ThuTienKhachHangHangLoatController.js?v=4.9"></script>
+    <script src="~/app/conponents/quy/TraTienNhaCungCapController.js?v=4.9"></script>
+
+    <script src="~/app/conponents/muahang/MuaHang.Module.js?v=4.9"></script>
+    <script src="~/app/conponents/muahang/DonMuaHangController.js?v=4.9"></script>
+    <script src="~/app/conponents/muahang/HopDongMuaHangController.js?v=4.9"></script>
+    <script src="~/app/conponents/muahang/MuaHangController.js?v=4.9"></script>
+    <script src="~/app/conponents/muahang/ChungTuMuaHangController.js?v=4.9"></script>
+    <script src="~/app/conponents/muahang/ChungTuMuaHangNhieuHoaDonController.js"></script>
+    <script src="~/app/conponents/muahang/thongKeHopDongMuaHangController.js?v=4.9"></script>
+    <script src="~/app/conponents/muahang/thongKeChungTuMuaDichVuController.js?v=4.9"></script>
+    <script src="~/app/conponents/muahang/thongKeGiamGiaHangMuaController.js?v=4.9"></script>
+    <script src="~/app/conponents/muahang/thongKeNhanHoaDonController.js?v=4.9"></script>
+    <script src="~/app/conponents/muahang/thongKeTraLaiHangMuaController.js?v=4.9"></script>
+    <script src="~/app/conponents/muahang/TraLaiHangMuaController.js?v=4.9"></script>
+    <script src="~/app/conponents/muahang/GiamGiaHangMuaController.js?v=4.9"></script>
+    <script src="~/app/conponents/muahang/NhanHoaDonController.js?v=4.9"></script>
+    <script src="~/app/conponents/muahang/ChungTuMuaDichVuController.js?v=4.9"></script>
+
+    <script src="~/app/conponents/banhang/BanHang.Module.js?v=4.9"></script>
+    <script src="~/app/conponents/banhang/BaoGiaController.js?v=4.9"></script>
+    <script src="~/app/conponents/banhang/DonDatHangController.js?v=4.9"></script>
+    <script src="~/app/conponents/banhang/ChungTuBanHangController.js?v=4.9"></script>
+    <script src="~/app/conponents/banhang/ThongKeBanHangController.js?v=4.9"></script>
+    <script src="~/app/conponents/banhang/ThongKeDonDatHangController.js?v=4.9"></script>
+    <script src="~/app/conponents/banhang/ThongKeGiamGiaHangBanController.js?v=4.9"></script>
+    <script src="~/app/conponents/banhang/ThongkeTraLaiHangBanController.js?v=4.9"></script>
+    <script src="~/app/conponents/banhang/ThongKeXuatHoaDonController.js?v=4.9"></script>
+    <script src="~/app/conponents/banhang/BanHangController.js?v=4.9"></script>
+    <script src="~/app/conponents/banhang/HoaDonController.js?v=4.9"></script>
+    <script src="~/app/conponents/banhang/GiamGiaHangBanController.js?v=4.9"></script>
+    <script src="~/app/conponents/banhang/TraLaiHangBanController.js?v=4.9"></script>
+
+    <script src="~/app/conponents/doituong/DoiTuong.module.js?v=4.9"></script>
+    <script src="~/app/conponents/doituong/KhachhangController.js?v=4.9"></script>
+    <script src="~/app/conponents/doituong/NhomKH_NCCController.js?v=4.9"></script>
+    <script src="~/app/conponents/doituong/NhaCungCapController.js?v=4.9"></script>
+    <script src="~/app/conponents/doituong/NhanVienController.js?v=4.9"></script>
+
+    <script src="~/app/conponents/kho/Kho.Module.js?v=4.9"></script>
+    <script src="~/app/conponents/kho/NhapKhoController.js?v=4.9"></script>
+    <script src="~/app/conponents/kho/XuatKhoController.js?v=4.9"></script>
+    <script src="~/app/conponents/kho/LenhSanXuatController.js?v=4.9"></script>
+    <script src="~/app/conponents/kho/ThongKeChuyenKhoController.js?v=4.9"></script>
+    <script src="~/app/conponents/kho/ThongKeLapRapThaoDoController.js?v=4.9"></script>
+    <script src="~/app/conponents/kho/ThongKeLenhSanXuatController.js?v=4.9"></script>
+    <script src="~/app/conponents/kho/ThongKeXuatNhapKhoController.js?v=4.9"></script>
+    <script src="~/app/conponents/kho/LapRapThaoDoController.js?v=4.9"></script>
+    <script src="~/app/conponents/LoaiCongCuDungCu/LoaiCongCuDungCu.Module.js?v=4.9"></script>
+    <script src="~/app/conponents/LoaiCongCuDungCu/LoaiCongCuDungCuController.js?v=4.9"></script>
+
+
+    <script src="~/app/conponents/kho/LapRapThaoDoController.js?v=4.9"></script>
+
+
+    <script src="~/app/conponents/banhangnv/BanHang.module.js?v=4.9"></script>
+    <script src="~/app/conponents/banhangnv/BanHangNVController.js?v=4.9"></script>
+
+    <script src="~/app/conponents/quanlycuahang/QuanLyCuaHang.module.js?v=4.9"></script>
+    <script src="~/app/conponents/quanlycuahang/QuanLyCuaHangController.js?v=4.9"></script>
+
+    <script src="~/app/conponents/loaitaisancodinh/LoaiTaiSanCoDinh.module.js?v=4.9"></script>
+    <script src="~/app/conponents/loaitaisancodinh/LoaiTaiSanCoDinhController.js?v=4.9"></script>
+
+    <script src="~/app/conponents/cocautochuc/CoCauToChuc.Module.js?v=4.9"></script>
+    <script src="~/app/conponents/cocautochuc/CoCauToChucController.js?v=4.9"></script>
+    <script src="~/app/conponents/hethongtaikhoan/HeThongTaiKhoan.Module.js?v=4.9"></script>
+    <script src="~/app/conponents/hethongtaikhoan/HeThongTaiKhoanController.js?v=4.9"></script>
+    <script src="~/app/conponents/taikhoanketchuyen/TaiKhoanKetChuyen.Module.js?v=4.9"></script>
+    <script src="~/app/conponents/taikhoanketchuyen/TaiKhoanKetChuyenController.js?v=4.9"></script>
+    <script src="~/app/conponents/dinhkhoantudong/DinhKhoanTuDong.Module.js?v=4.9"></script>
+    <script src="~/app/conponents/dinhkhoantudong/DinhKhoanTuDongController.js?v=4.9"></script>
+    <script src="~/app/conponents/thongkehanghoa/ThongKeHangHoa.Module.js?v=4.9"></script>
+    <script src="~/app/conponents/thongkehanghoa/ThongKeHangHoaController.js?v=4.9"></script>
+
+    <script src="~/app/conponents/tongquan/tongQuan.module.js"></script>
+    <script src="~/app/conponents/tongquan/tongQuanController.js"></script>
+    <!--  Begin embed angularJS  -->
+    <script src="~/Assets/sinhvien/js/moment.js?v=4.9"></script>
+    <script src="~/Assets/sinhvien/js/activemenu.js?v=4.9"></script>
+    <script src="~/Assets/giaovien/js/yearpicker.js?v=4.9"></script>
+    <script src="~/Assets/giaovien/jslocal/xlsx.core.min.js?v=4.9"></script>
+    <script src="~/Assets/giaovien/jslocal/xls.core.min.js?v=4.9"></script>
+    <script src="~/Assets/sinhvien/libs/checklist-model/checklist-model.js?v=4.9"></script>
+    <script data-require="underscore.js?v=4.9" data-semver="1.8.3" src="~/Assets/giaovien/jslocal/underscore-min.js?v=4.9"></script>
+    <script src="~/Assets/giaovien/libs/chart.js-2.9.3/package/dist/Chart.js"></script>
+    <script src="~/Assets/giaovien/libs/angular-chart.js-master/dist/angular-chart.js"></script>
+    <script src="~/Assets/giaovien/js/angucomplete-alt.js"></script>
+    <script src="~/Assets/giaovien/js/select.js"></script>
+    <script src="~/app/shared/directives1/pagerDirective.js"></script>
+    <script src="~/Assets/giaovien/resizediv/angular-resizable.min.js"></script>
+    <script src="https://cdn.rawgit.com/Luegg/angularjs-scroll-glue/master/src/scrollglue.js"></script>
+    <script src="~/Assets/giaovien/chart/Chart.js"></script>
+    <script src="~/Assets/giaovien/chart/angular-chart.js"></script>
+
+</body>
+
+</html>
+
+
+
+

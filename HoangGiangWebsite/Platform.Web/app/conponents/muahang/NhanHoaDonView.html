@@ -1,0 +1,120 @@
+﻿<!-- Content Header (Page header) -->
+
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li><a href="">Kế toán</a></li>
+        <li><a href="">Nghiệp vụ</a></li>
+        <li><a href="">Mua hàng</a></li>
+        <li><a ui-sref="nhanhoadon">Nhận hóa đơn</a></li>
+    </ol>
+</section>
+
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">
+    Mở
+</button>
+
+<!-- Main content -->
+
+
+<div class="container">
+    <div class="row" id="of">
+
+
+        <div class="modal fade bs-example-modal-lg" id="off" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false" data-keyboard="false" data-focus-on="input:first">
+
+            <div class="modal-dialog modal-lg" role="document" style="max-width: 1305px;">
+                <div class="modal-content" style="border-radius: 10px;
+                     ">
+                    <div class="modal-header">
+                        <h3 style="text-align:center;color:red">Chọn chứng từ mua hàng hóa cần nhận hóa đơn</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                            <span aria-hidden="true" style="color:red">&times; Đóng</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="form1" role="form" ng-submit="LuuPhieuThu()">
+                            <div class="col-md-12">
+                                <fieldset class="well">
+                                    <table class="table table-bordered" style="border:solid #ddd 1px">
+                                        <tr>
+                                            <td> <b>Nhà cung cấp </b></td>
+                                            <td width="80%">
+                                                <div class="input-group">
+                                                    <div class="input-group-append">
+                                                        <select style="min-width:144px" class="selectpicker form-control" ng-model="KhacHang" title="item.TenNhaCungCap" ng-change="getKhachHang(KhacHang.MaNhaCungCap)"
+                                                                ng-options="item.MaNhaCungCap as item.TenNhaCungCap    for item in AllNCC">
+                                                            <option disabled value="">Chọn nhà cung cấp</option>
+                                                        </select>
+                                                    </div>
+                                                    &nbsp;&nbsp;&nbsp;
+                                                </div>
+                                            </td>
+                                        </tr>
+                                       <tr>
+                                            <td> <b>Kỳ </b></td>
+                                            <td width="80%">
+                                                <div class="input-group">
+
+                                                    <div class="input-group-append">
+                                                        <select style="min-width:144px" class="selectpicker form-control" ng-model="ky" ng-change="getKhachHang(KhacHang.MaNhaCungCap)">
+                                                            <option disabled value="">Chọn kỳ</option>
+                                                            <option value="Tháng này">Tháng này</option>
+                                                            <option value="Đầu tháng đến hiện tại">Đầu tháng đến hiện tại</option>
+                                                            <option value="Quý này">Quý này</option>
+                                                            <option value="Đầu quý đến hiện tại">Đầu quý đến hiện tại</option>
+                                                            <option value="Năm nay">Năm nay</option>
+                                                            <option value="Đầu năm đến hiện tại">Đầu năm đến hiện tại</option>
+                                                            <option value="6 tháng đầu năm">6 tháng đầu năm</option>
+                                                            <option value="6 tháng cuối năm">6 tháng cuối năm</option>
+                                                        </select>
+                                                    </div>
+
+                                                    &nbsp;&nbsp;&nbsp;
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">Từ</span>
+                                                    </div>  &nbsp;&nbsp;&nbsp;
+                                                    <div class="input-group-append">
+                                                        <input type="date" name="name" class="form-control" value="" ng-model="tu" ng-model-options="{timezone:'UTC',}"/>
+                                                    </div>  &nbsp;&nbsp;&nbsp;
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">Đến</span>
+                                                    </div>  &nbsp;&nbsp;&nbsp;
+                                                    <div class="input-group-append">
+                                                        <input type="date" name="name" class="form-control" value="" ng-model="den" ng-model-options="{timezone:'UTC',}"/>
+                                                    </div>
+                                                     &nbsp;&nbsp;&nbsp;
+                                                    <div class="input-group-append">
+                                                        <button type="button" class="btn btn-primary form-control">Lấy dữ liệu</button>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                      
+
+
+                                    </table>
+
+                                </fieldset>
+                            </div>
+
+
+                            <div class="col-md-6 col-md-offset-3 justify-content-center btn-block text-center">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>&nbsp;&nbsp;&nbsp;
+                                <button type="submit" class="btn btn-primary">Lưu</button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+

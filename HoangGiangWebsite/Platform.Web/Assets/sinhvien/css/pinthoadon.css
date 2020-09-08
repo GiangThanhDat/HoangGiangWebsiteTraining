@@ -1,0 +1,248 @@
+﻿
+@media print {
+    .invoice-title h4, .invoice-title h5 {
+        display: inline-block;
+        text-align: center
+    }
+
+    .table > tbody > tr > .no-line {
+        border-top: none;
+    }
+
+    .table > thead > tr > .no-line {
+        border-bottom: none;
+    }
+
+    .table > tbody > tr > .thick-line {
+        border-top: 2px solid;
+    }
+}
+
+
+
+.container11 {
+    width: 100%;
+    height: 300px;
+    border: 2px solid #444444;
+    overflow: scroll;
+    position: relative;
+}
+
+table {
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0;
+    position: absolute;
+    width: 100%;
+}
+
+th,
+td {
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 5px 10px;
+    
+    box-sizing: border-box;
+    margin: 0;
+}
+
+td {
+    background: #fff;
+}
+
+th,
+.fixed-cell {
+    background: #eee;
+}
+
+.cross {
+    position: relative;
+    z-index: 1;
+}
+
+
+
+
+@media (max-width : 768px) {
+
+    table > thead > tr > th {
+        font-size: xx-small
+    }
+
+    table > tbody > tr > td {
+        font-size: xx-small
+    }
+
+    table tr th:nth-child(1) {
+        width: 3%
+    }
+
+    table tr th:nth-child(2) {
+        width: 13%
+    }
+
+    select {
+        min-width: 37px;
+        min-height: 20px;
+    }
+
+    th, td {
+        padding: 0
+    }
+
+    .col-sm-3 {
+        /*-ms-flex: 0 0 25%;
+        flex: 0 0 25%;*/
+        max-width: 22.8%;
+    }
+
+    md-card {
+        width: 55px !important;
+        height: 109px !important;
+    }
+
+        md-card md-card-title md-card-title-text {
+            font-size: xx-small;
+        }
+
+    .col-md-2 {
+        height: 123px !important;
+        max-width: 24.666667%;
+    }
+
+
+
+    .md-card-image {
+        height: 40px !important;
+    }
+
+    .khongcach {
+        padding: 0 !important
+    }
+
+    .gia {
+        bottom: 9px;
+        position: absolute;
+        right: 4px;
+    }
+
+    .banhrang {
+        left: -18px
+    }
+
+    .chuyentrang {
+        right: 214px !important;
+    }
+
+    .khachtra {
+        font-size: 12px !important;
+    }
+
+    .thanhtrai {
+        width: 30px !important
+    }
+
+    .thanhphai {
+        width: 43px !important
+    }
+
+    .icontren {
+        width: 6px !important;
+    }
+
+    .khoangcach {
+        display: none !important
+    }
+}
+
+@media (max-width : 1024px) and (min-width:769px){
+
+    table > thead > tr > th {
+        font-size: xx-small
+    }
+
+    table > tbody > tr > td {
+        font-size: xx-small
+    }
+
+    table tr th:nth-child(1) {
+        width: 3%
+    }
+
+    table tr th:nth-child(2) {
+        width: 13%
+    }
+
+    select {
+        min-width: 37px;
+        min-height: 20px;
+    }
+
+    th, td {
+        padding: 0
+    }
+
+    .col-sm-3 {
+       
+        max-width: 34.8%;
+    }
+
+    md-card {
+        width: 55px !important;
+        height: 109px !important;
+    }
+
+        md-card md-card-title md-card-title-text {
+            font-size: xx-small;
+        }
+
+    .col-md-2 {
+        height: 123px !important;
+        max-width: 24.666667%;
+    }
+
+
+
+    .md-card-image {
+        height: 40px !important;
+    }
+
+    .khongcach {
+        padding: 0 !important
+    }
+
+    .gia {
+        bottom: 9px;
+        position: absolute;
+        right: 12px;
+    }
+
+    .banhrang {
+        left: -18px
+    }
+
+    .chuyentrang {
+        right: 329px !important;
+    }
+
+    .khachtra {
+        font-size: 12px !important;
+    }
+
+    .thanhtrai {
+        width: 30px !important
+    }
+
+    .thanhphai {
+        width: 43px !important
+    }
+
+    .icontren {
+        width: 6px !important;
+    }
+
+    .khoangcach {
+        display: none !important
+    }
+}
+.activehoadon{background-color:#eee}

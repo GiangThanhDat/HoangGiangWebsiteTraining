@@ -1,0 +1,121 @@
+﻿<!-- Content Header (Page header) -->
+<section class="content-header">
+    
+    <ol class="breadcrumb">
+        <li><a href="" ui-sref="trangchu_sv"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li><a href="" ui-sref="nopdon">Nộp đơn</a></li>
+
+    </ol>
+</section>
+<!-- Main content -->
+<!--<div class="container-fluid">
+    <div class=" row">
+        <div class="col-md-12">
+            <div class="col-md-3">-->
+               
+                <!--<label>Chọn Học Kỳ</label>-->
+                <!-- Example single danger button -->
+                <!-- Example single danger button -->
+                <!-- Split button -->
+                <!--<div class="btn-group">
+                    <button type="button" class="btn btn-info">Xin Nghĩ Học</button>
+                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+<div class="container ">
+    <div class="row">
+        <div class="  col-md-10" style="margin:auto">
+            <table class="table   table-bordered " style="margin-top:10px;background:#74b9ff">
+                <tr>
+                    <td><a style="text-align:center;color:#ffffff; " ui-sref="dondenghikiemtralai">Đơn đề nghị kiểm tra lại kết quả thi kết thúc học phần</a></td>
+
+                </tr>
+                <tr>
+                    <td><a style="text-align:center;color:#ffffff; " ui-sref="dondangkythilaitotnghiep">Đơn đăng ký thi lại tốt nghiệp</a></td>
+
+                </tr>
+                <tr>
+                    <td><a style="text-align:center;color:#ffffff; " ui-sref="dondenghihotrochiphihoctap">Đơn đề nghị hỗ trợ chi phí học tập</a></td>
+                </tr>
+                <tr>
+                    <td><a style="text-align:center;color:#ffffff; " ui-sref="dondangkyduthitotnghiep">Đơn đăng ký dự thi tốt nghiệp</a></td>
+                </tr>
+                <tr>
+                    <td><a style="text-align:center;color:#ffffff; " ui-sref="donxincapbangdiemhocky">Đơn xin cấp bảng điểm học kỳ</a></td>
+                </tr>
+
+                <tr>
+                    <td><a style="text-align:center;color:#ffffff; " ui-sref="dodenghimiengiamhocphi">Đơn đề nghị miễn,giảm học phí</a></td>
+                </tr>
+                <tr ng-show="allnopdon">
+                    <td><a style="text-align:center;color:#ffffff; " ui-sref="donxinmienhoc_mienthi_tamhoancachocphan_tienganh">Đơn xin miễn học miễn học miễn thi tạm hoãn các học phần Tiếng anh</a></td>
+                </tr>
+                <tr ng-show="allnopdon">
+                    <td><a style="text-align:center;color:#ffffff; " ui-sref="donxinmienhoc_mienthi_tamhoancachocphan_gdtc_gdqp">Đơn xin miễn học miễn học miễn thi tạm hoãn các học phần GDTC GDQP</a></td>
+                </tr>
+                <tr ng-show="allnopdon">
+                    <td><a style="text-align:center;color:#ffffff; " ui-sref="donxinhoan_chamnophocphi">Đơn xin hoãn chậm nộp học phí</a></td>
+                </tr>
+                <tr ng-show="allnopdon">
+                    <td><a style="text-align:center;color:#ffffff; " ui-sref="donxinxacnhandanophocphi">Đơn xin xác nhận đã nộp học phí</a></td>
+                </tr>
+                <tr ng-show="allnopdon">
+                    <td><a style="text-align:center;color:#ffffff; " ui-sref="dondenghixettotnghiep_hetinchi">Đơn đề nghị xét tốt nghiệp hệ tín chỉ</a></td>
+                </tr>
+                <tr ng-show="allnopdon">
+                    <td><a style="text-align:center;color:#ffffff; " ui-sref="dondenghixettotnghiep_henienche">Đơn đề nghị xét tốt nghiệp hệ niên chế</a></td>
+                </tr>
+                <tr ng-show="allnopdon">
+                    <td><a style="text-align:center;color:#ffffff; " ui-sref="dondenghikiemtralaiketquathitotnghiep">Đơn đề nghị kiểm tra lại kết quả thi tốt nghiệp</a></td>
+                </tr>
+                <tr ng-show="allnopdon">
+                    <td><a style="text-align:center;color:#ffffff; " ui-sref="donxincapbangdiemtotnghiep">Đơn xin cấp bảng điểm tốt nghiệp</a></td>
+                </tr>
+                <tr ng-show="allnopdon">
+                    <td><a style="text-align:center;color:#ffffff; " ui-sref="donxinvangthi">Đơn xin vắng thi</a></td>
+                </tr>
+                <tr ng-show="allnopdon">
+                    <td><a style="text-align:center;color:#ffffff; " ui-sref="donxincaplaigiayxacnhantotnghieptamthoi">Đơn xin cấp lại giấy xác nhận tốt nghiệp tạm thời</a></td>
+                </tr>
+                <tr ng-show="allnopdon">
+                    <td> <a style="text-align:center;color:#ffffff; " ui-sref="phieuyeucaucapgiayxacnhanlasinhviencuatruong">Phiếu yêu cầu cấp giấy xác nhận là sinh viên của trường</a></td>
+                </tr>
+                <tr ng-show="allnopdon">
+                    <td><a style="text-align:center;color:#ffffff; " ui-sref="donxinchuyentulamkhoaluan_doansanghcomonthaythetot">Đơn xin chuyển từ làm khóa luận/đồ án sang học môn thay thế tốt</a></td>
+                </tr>
+                <tr ng-show="allnopdon">
+                    <td> <a style="text-align:center;color:#ffffff; " ui-sref="donxincapgiayxacnhanhoanthanhkhoahoc">Đơn xin cấp giấy xác nhận hoàn thành khóa học</a></td>
+                </tr>
+                <tr ng-show="allnopdon">
+                    <td><a style="text-align:center;color:#ffffff; " ui-sref="phieudangkyhocphan">Phiếu đăng ký học phần</a></td>
+                </tr>
+                <tr ng-show="allnopdon">
+                    <td><a style="text-align:center;color:#ffffff; " ui-sref="donxinbaoluuketquahoctap">Đơn xin bảo lưu kết quả học tập</a></td>
+                </tr>
+                <tr ng-show="allnopdon">
+                    <td><a style="text-align:center;color:#ffffff; " ui-sref="phieucauhoidanhchosinhvien">Phiếu câu hỏi dành cho sinh viên</a></td>
+                </tr>
+
+            </table>
+            <div class="center-block  text-center" style="margin-top:20px;">
+                <button type="submit" class="btn btn-primary " style="background:#74b9ff;" ng-click="clickshownopdon();toggle()" ng-show="btnxem">Xem tất cả nộp đơn</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-danger "ng-click="clickan()" ng-show="btnan">Thu nhỏ</button>
+
+            </div>
+           <!--<button class="btn-danger" ng-click="clickshownopdon()"></button>-->
+        </div>
+    </div>
+</div>

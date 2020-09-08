@@ -1,0 +1,27 @@
+﻿<!--<div>
+  <div ng-hide="(!pagesCount || pagesCount < 2)" style="display:inline">
+    <ul class="pagination pagination-sm">
+      <li><a ng-hide="page == 0" ng-click="search(0)"><<</a></li>
+      <li><a ng-hide="page == 0" ng-click="search(page-1)"><</a></li>
+      <li ng-repeat="n in range()" ng-class="{active: n == page}">
+        <a ng-click="search(n)" ng-if="n != page">{{n+1}}</a>
+        <span ng-if="n == page">{{n+1}}</span>
+      </li>
+      <li><a ng-hide="page == pagesCount - 1" ng-click="search(pagePlus(1))">></a></li>
+      <li><a ng-hide="page == pagesCount - 1" ng-click="search(pagesCount - 1)">></a></li>
+    </ul>
+  </div>
+</div>-->
+
+
+    <div class="col-md-1 chuyentrang" style="position:absolute;right:331px" ng-hide="(!pagesCount || pagesCount < 2)">
+        <div style="display:block ;width:100%">
+            <button type="button" ng-disabled="page==0" style="background-color:#007bff!important" class="btn btn-primary" ng-click="search(page-1)"> <span style="font-weight:bold"><</span></button>
+        </div>
+       &nbsp;&nbsp;&nbsp;
+        <div>
+            <button style="display:block;background-color:#007bff!important" ng-disabled="page==pagesCount-1" type="button"  ng-click="search(pagePlus(1))" class="btn btn-primary"><span style="font-weight:bold">></span></button>
+        </div>
+    </div>
+
+

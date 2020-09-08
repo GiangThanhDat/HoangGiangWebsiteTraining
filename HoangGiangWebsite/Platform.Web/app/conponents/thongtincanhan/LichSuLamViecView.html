@@ -1,0 +1,123 @@
+﻿  <!-- Content Header (Page header) -->
+<section class="content-header">
+
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li><a ui-sref="lichsulamviec">Lịch sử lảm việc</a></li>
+
+    </ol>
+</section>
+<div class="container-fluid">
+    <h1 style="margin-bottom:20px;text-align:center">Lịch sử làm việc</h1>
+    <div class="row">
+
+        <div class="col-md-10" style="margin:auto">
+            <div class="table-responsive">
+                <table class="table  table-bordered chu">
+                    <tr style="background:#74b9ff">
+                        <th>Mã số nhân viên</th>
+                        <th>Tên nhân viên</th>
+
+                        <th>Ngày bắt đầu</th>
+                        <th>Ngày kết thúc</th>
+                        <th>Tên công ty</th>
+                        <th>Vị trí làm việc</th>
+                        <th>Nội dung công việc</th>
+                        <th ng-show="delete">Xóa</th>
+
+                    </tr>
+                    <tr ng-repeat=" item in LichSulamViec">
+                        <th>{{msvc}}</th>
+                        <th>{{tennhanvien}}</th>
+
+
+
+                        <td>
+
+                            <input ng-show="Edit " ng-model="LichSulamViec[$index].NgayBatDau" ng-value="LichSulamViec[$index].NgayBatDau" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+                            <span ng-show="hide">{{item.NgayBatDau|date:'dd/MM/yyyy'}}</span>
+
+
+                        </td>
+                        <td>
+                            <input ng-show="Edit " ng-model="LichSulamViec[$index].NgayKetThuc" ng-value="LichSulamViec[$index].NgayKetThuc" style="height:22px" type="date" ng-model-options="{timezone:'UTC',} " />
+                            <span ng-show="hide">{{item.NgayKetThuc |date:'dd/MM/yyyy'}}</span>
+
+
+                        </td>
+                        <td>
+                            <input ng-show="Edit " ng-model="LichSulamViec[$index].TenCongTy" type="text" />
+                            <span ng-show="hide">{{item.TenCongTy}}</span>
+
+                        </td>
+                        <td>
+                            <input ng-show="Edit " ng-model="LichSulamViec[$index].ViTriLamViec" type="text" />
+                            <span ng-show="hide">{{item.ViTriLamViec}}</span>
+
+                        </td>
+                        <td>
+                            <input ng-show="Edit " ng-model="LichSulamViec[$index].NoiDungCongViec" type="text" />
+                            <span ng-show="hide">{{item.NoiDungCongViec}}</span>
+
+                        </td>
+                        <td ng-show="delete">
+                            <button class="btn  btn-danger" ng-click="deleteItem(item.ID)"><i class="fa fa-trash-o"></i></button>
+                        </td>
+                    </tr>
+                    <tr ng-repeat=" item in solanlap2">
+                        <th>{{msvc}}</th>
+                        <th>{{tennhanvien}}</th>
+
+
+
+                        <td>
+
+                            <input ng-model="AddLichSulamViec[$index].NgayBatDau" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+
+
+
+                        </td>
+                        <td>
+                            <input ng-model="AddLichSulamViec[$index].NgayKetThuc" style="height:22px" type="date" ng-model-options="{timezone:'UTC',} " />
+
+
+
+                        </td>
+                        <td>
+                            <input ng-model="AddLichSulamViec[$index].TenCongTy" type="text" />
+
+
+                        </td>
+                        <td>
+                            <input ng-model="AddLichSulamViec[$index].ViTriLamViec" type="text" />
+
+
+                        </td>
+                        <td>
+                            <input ng-model="AddLichSulamViec[$index].NoiDungCongViec" type="text" />
+
+
+                        </td>
+                        <td></td>
+
+                    </tr>
+
+
+                </table>
+
+            </div>
+            <button type="button" class="btn btn-primary " ng-show="Add" ng-click="myFunction2()" style="background:#74b9ff;">Thêm mới</button>
+        </div>
+
+    </div>
+</div>
+
+<div class="center-block  text-center">
+    <button type="submit" class="btn btn-primary " ng-show="close" style="background:#74b9ff;" ng-click="mobang()">Thay đổi lịch sử làm việc</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</div>
+<div class="row" style="margin-top:10px" ng-show="save">
+    <div class="col-md-6 col-md-offset-3 justify-content-center btn-block text-center">
+        <button type="button" class="btn btn-primary " ng-disabled="form.$invalid" ng-click="kiemtra()">Lưu</button>
+        <button type="submit" class="btn btn-danger" ng-show="closehuy" ng-click="huy()">Hủy</button>
+    </div>
+</div>

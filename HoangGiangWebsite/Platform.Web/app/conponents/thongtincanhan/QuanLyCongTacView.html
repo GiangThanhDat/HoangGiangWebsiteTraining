@@ -1,0 +1,179 @@
+﻿  <!-- Content Header (Page header) -->
+<section class="content-header">
+
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li><a ui-sref="quanlycongtac">Quản lý công tác</a></li>
+
+    </ol>
+</section>
+
+    <div>
+        <div class="container-fluid" style="margin-bottom:20px">
+            <h1 style="margin-bottom:20px;text-align:center">Quản lý đi công tác</h1>
+            <div class="row">
+
+                <div class="col-md-10" style="margin:auto">
+                    <div class="table-responsive">
+                        <table class="table  table-bordered chu">
+                            <tr style="background:#74b9ff">
+                                <th>Mã số nhân viên</th>
+                                <th>Tên nhân viên</th>
+
+                                <th>Giờ bắt đầu </th>
+                                <th>Ngày bắt đầu</th>
+                                <th>Giờ kết thúc </th>
+                                <th>Ngày kết thúc</th>
+
+                                <th>Tổng giờ</th>
+
+                                <th>Tổng ngày làm việc </th>
+                                <th>Tổng ngày</th>
+                                <th>Địa điểm </th>
+                                <th>Nội dung </th>
+
+
+
+
+                            </tr>
+                            <tr ng-repeat=" item in QuanLyCongTac ">
+                                <th>{{item.MaSoNhanVien}}</th>
+                                <th>{{tennhanvien}}</th>
+
+
+
+                                <td>
+
+
+                                    <input  ng-show="Edit " ng-model="QuanLyCongTac[$index].GioBatDau" type="text" />
+                                    <span ng-show="hide">{{item.GioBatDau}}</span>
+
+
+                                </td>
+
+                                <td>
+
+                                    <input  ng-show="Edit " ng-model="QuanLyCongTac[$index].NgayBatDau" ng-value="QuanLyCongTac[$index].NgayBatDau" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+                                    <span ng-show="hide">{{item.NgayBatDau|date:'dd/MM/yyyy' }}</span>
+
+                                </td>
+                                <td>
+                                    <input  ng-show="Edit " ng-model="QuanLyCongTac[$index].GioKetThuc" type="text" />
+                                    <span ng-show="hide">{{item.GioKetThuc}}</span>
+
+                                </td>
+                                <td>
+                                    <input  ng-show="Edit " ng-model="QuanLyCongTac[$index].NgayKetThuc" ng-value="QuanLyCongTac[$index].NgayKetThuc" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+                                    <span ng-show="hide">{{item.NgayKetThuc|date:'dd/MM/yyyy' }}</span>
+
+                                </td>
+                                <td>
+                                    <input pattern="[0-9]{1,12}"  maxlength="3" title="nhập số không được nhập ký tự "   ng-show="Edit " ng-model="QuanLyCongTac[$index].TongGio" type="text" />
+                                    <span ng-show="hide">{{item.TongGio}}</span>
+
+                                </td>
+                                <td>
+                                    <input pattern="[0-9]{1,12}"  maxlength="3" title="nhập số không được nhập ký tự "    ng-show="Edit " ng-model="QuanLyCongTac[$index].TongNgayLamViec" type="text" />
+                                    <span ng-show="hide">{{item.TongNgayLamViec}}</span>
+
+                                </td>
+                                <td>
+                                    <input pattern="[0-9]{1,12}"  maxlength="3" title="nhập số không được nhập ký tự "   ng-show="Edit " ng-model="QuanLyCongTac[$index].TongNgay" type="text" />
+                                    <span ng-show="hide">{{item.TongNgay}}</span>
+
+                                </td>
+                                <td>
+                                    <input ng-show="Edit " ng-model="QuanLyCongTac[$index].DiaDiem" type="text" />
+                                    <span ng-show="hide">{{item.DiaDiem}}</span>
+
+                                </td>
+                                <td>
+                                    <input ng-show="Edit " ng-model="QuanLyCongTac[$index].NoiDung" type="text" />
+                                    <span ng-show="hide">{{item.NoiDung}}</span>
+
+                                </td>
+
+
+
+                            </tr>
+                            <!--<tr>
+                                <th> <input class="form-control" disabled ng-model="msvc" type="text" /></th>
+
+
+
+                                <td>
+
+
+                                    <input pattern="[0-9]{1,12}" title="nhập số không được nhập ký tự "   ng-model="QuanLyCongTacAdd .GioBatDau" type="text" />
+
+
+
+                                </td>
+
+                                <td>
+
+                                    <input  ng-model="QuanLyCongTacAdd .NgayBatDau" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+
+
+                                </td>
+                                <td>
+                                    <input pattern="[0-9]{1,12}" title="nhập số không được nhập ký tự "   ng-model="QuanLyCongTacAdd .GioKetThuc" type="text" />
+
+
+                                </td>
+                                <td>
+                                    <input  ng-model="QuanLyCongTacAdd .NgayKetThuc" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+
+
+                                </td>
+                                <td>
+                                    <input pattern="[0-9]{1,12}" maxlength="3" title="nhập số không được nhập ký tự "   ng-model="QuanLyCongTacAdd .TongGio" type="tel" />
+
+
+                                </td>
+                                <td>
+                                    <input pattern="[0-9]{1,12}" maxlength="3" title="nhập số không được nhập ký tự "   ng-model="QuanLyCongTacAdd .TongNgayLamViec" type="tel" />
+
+
+                                </td>
+                                <td>
+                                    <input pattern="[0-9]{1,12}"  maxlength="3" title="nhập số không được nhập ký tự "   ng-model="QuanLyCongTacAdd .TongNgay" type="tel" />
+
+
+                                </td>
+                                <td>
+                                    <input ng-model="QuanLyCongTacAdd .DiaDiem" type="text" />
+
+
+                                </td>
+                                <td>
+                                    <input ng-model="QuanLyCongTacAdd .NoiDung" type="text" />
+
+
+                                </td>
+
+
+
+                            </tr>-->
+
+
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--<div class="center-block  text-center">
+            <button type="button" ng-show="anmobang" class="btn btn-primary " style="background:#74b9ff;" ng-click="mobang()">Thay đổi quá trình công tác</button>
+            <button type="button" class="btn btn-primary "  ng-click="AddQuanLYCongTac()" style="background:#74b9ff;">Thêm</button>
+
+        </div>
+        <div class="row" style="margin-top:10px" ng-show="save">
+            <div class="col-md-5" style="margin-left:710px">
+                <button type="submit" class="btn btn-primary " ng-click="UpDateQuanLyCongTac()"  >Lưu</button>
+                <button type="button" class="btn btn-danger" ng-show="closehuy" ng-click="huy()">Hủy</button>
+            </div>
+        </div>-->
+
+
+    </div>

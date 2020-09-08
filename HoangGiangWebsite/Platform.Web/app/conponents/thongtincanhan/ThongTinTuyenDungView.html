@@ -1,0 +1,98 @@
+﻿  <!-- Content Header (Page header) -->
+<section class="content-header">
+
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li><a ui-sref="thongtintuyendung">Thông tin tuyển dụng</a></li>
+
+    </ol>
+</section>
+<div class="container-fluid" style="margin-bottom:20px">
+    <h1 style="margin-bottom:20px;text-align:center">Thông tin tuyển dụng</h1>
+    <div class="row">
+
+        <div class="col-md-10" style="margin:auto">
+            <div class="table-responsive">
+                <table class="table  table-bordered chu">
+                    <tr style="background:#74b9ff">
+                        <th>Mã số nhân viên</th>
+                        <th>Tên nhân viên</th>
+
+                        <th>Ngày tuyển</th>
+                        <th>Loại hợp đồng</th>
+                        <th>Địa điểm làm việc</th>
+                        <th>Ngày bắt đầu</th>
+                        <th>Ngày kết thúc</th>
+                        <th>Hình thức lương</th>
+                        <th>Số tiền lương</th>
+
+
+                    </tr>
+                    <tr ng-repeat=" item in ThongTinTuyenDung">
+                        <th>{{item.MaSoNhanVien}}</th>
+                        <th>{{tennhanvien}}</th>
+
+
+
+                        <td>
+
+
+                            <input ng-show="Edit " ng-model="ThongTinTuyenDung[$index].NgayTuyen" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+                            <span ng-show="hide">{{item.NgayTuyen |date:'dd/MM/yyyy'}}</span>
+
+
+                        </td>
+
+                        <td>
+
+                            <input ng-show="Edit " ng-model="ThongTinTuyenDung[$index].LoaiHopDong" type="text" />
+                            <span ng-show="hide">{{item.LoaiHopDong}}</span>
+
+                        </td>
+                        <td>
+                            <input ng-show="Edit " ng-model="ThongTinTuyenDung[$index].DiaDiemLamViec" type="text" />
+                            <span ng-show="hide">{{item.DiaDiemLamViec}}</span>
+
+                        </td>
+                        <td>
+                            <input ng-show="Edit " ng-model="ThongTinTuyenDung[$index].NgayBatDau" style="height:22px" type="date" ng-model-options="{timezone:'UTC'}" />
+                            <span ng-show="hide">{{item.NgayBatDau |date:'dd/MM/yyyy'}}</span>
+
+                        </td>
+                        <td>
+                            <input ng-show="Edit " ng-model="ThongTinTuyenDung[$index].NgayKetThuc" style="height:22px" type="date" ng-model-options="{timezone:'UTC'}" />
+                            <span ng-show="hide">{{item.NgayKetThuc |date:'dd/MM/yyyy'}}</span>
+
+                        </td>
+                        <td>
+                            <input ng-show="Edit " placeholder="dd-mm-yyyy" style="height:22px" ng-model="ThongTinTuyenDung[$index].HinhThucLuong" type="text" />
+                            <span ng-show="hide">{{item.HinhThucLuong}}</span>
+
+                        </td>
+                        <td>
+                            <input ng-show="Edit " style="height:22px" ng-model="ThongTinTuyenDung[$index].SoTienLuong" type="text" />
+                            <span ng-show="hide">{{item.SoTienLuong}}</span>
+
+                        </td>
+
+
+                    </tr>
+
+
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--<div class="center-block  text-center">
+    <button type="submit" class="btn btn-primary " style="background:#74b9ff;" ng-click="mobang()">Thay đổi thông tin cá nhân</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</div>
+<div class="row" style="margin-top:10px" ng-show="save">
+    <div class="col-md-5" style="margin-left:710px">
+        <button type="button" class="btn btn-primary " ng-disabled="form.$invalid" ng-click="UpDateThongTinTuyenDung()">Lưu</button>
+        <button type="submit" class="btn btn-danger" ng-show="closehuy" ng-click="huy()">Hủy</button>
+    </div>
+</div>-->
+

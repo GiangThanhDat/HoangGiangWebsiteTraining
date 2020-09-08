@@ -1,0 +1,183 @@
+﻿<div class="container-fluid" style="margin-bottom:20px">
+    <h1 style="margin-bottom:20px;text-align:center">Thống kê tài sản </h1>
+
+    <div class="row" style="margin-bottom:20px">
+        <div class="col-md-4"></div>
+        <div class="col-md-2"></div>
+        <div class="col-md-1"></div>
+        <div class="col-md-1">
+            <button type="button" class="btn btn-primary" ng-click="GetThongKeTaiSan()">Xem tất cả</button>
+        </div>
+        <div class="col-md-2" ng-show="hideCoSo">
+            <div class="input-group ">
+                <div class="input-group-append">
+                    <span class="input-group-text"><b>Mã Cơ Sở: </b></span>
+                </div>
+                <select class="selectpicker form-control" ng-model="MaSoCoSo"
+                        ng-options="item.MaCoSo  as  '('+item.MaCoSo + ') ' +' '+item.TenCoSo  for item in ThongKeTaiSan|unique:'TenCoSo'">
+                    <option disabled  value="">Chọn cơ sở</option>
+                </select>
+
+            </div>
+        </div>
+
+
+
+        <div class="col-md-2">
+            <div class="input-group ">
+                <div class="input-group-append">
+                    <span class="input-group-text"><b>Loại tài sản: </b></span>
+                </div>
+                <select class="selectpicker form-control" ng-model="KieuTaiSan"
+                        ng-options="item.KieuTaiSan  as  item.KieuTaiSan   for item in ThongKeTaiSan|unique:'KieuTaiSan'">
+                    <option disabled value="">Chọn loại tài sản</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-12" >
+            <div class="table-responsive" >
+                <table class="table  table-bordered chu">
+                    <tr style="background:#74b9ff">
+                        <th width="3%">STT</th>
+                        <th width="5%">Mã tài sản</th>
+                        <th width="7%">Ngày nhập kho</th>
+                        <th width="7%">Ngày bắt đầu sử dụng</th>
+                        <th width="7%">Ngày hết hạn</th>
+                        <th width="8%">Cơ sở</th>
+                        <th width="8%">Kiểu tài sản</th>
+                        <th>Mô tả chi tiết</th>
+                        <th width="5%">Tình trạng</th>
+                        <th width="7%">Ngày nhập liệu</th>
+                        <th width="10%">Người nhập</th>
+                        <th width="10%">Người quản lý tài sản</th>
+
+
+
+                    </tr>
+                    <tr ng-repeat="item in ThongKeTaiSan|filter:{MaCoSo:MaSoCoSo,KieuTaiSan:KieuTaiSan }">
+                        <th>
+                            {{$index+1}}
+                        </th>
+                        <td>
+                            {{item.MaTaiSan}}
+                        </td>
+                        <td>
+                            {{item.NgayNhap|date:"dd/MM/yyyy"}}
+                        </td>
+                        <td>
+                            {{item.NgayBatDauSuDung|date:"dd/MM/yyyy"}}
+                        </td>
+                        <td>
+                            {{item.NgayHetHan|date:"dd/MM/yyyy"}}
+                        </td>
+                        <td>
+                            {{item.TenCoSo}}
+                        </td>
+                        <td>
+                            {{item.KieuTaiSan}}
+                        </td>
+                        <td>
+                            <p style="text-align:justify">{{item.MoTaChiTiet}}</p>
+
+                        </td>
+                        <td>
+                            {{item.TinhTrang}}
+                        </td>
+                        <td>
+                            {{item.NgayNhapLieu|date:"dd/MM/yyyy"}}
+                        </td>
+                        <td>
+                            ({{item.NguoiNhap}}) {{item.TenNguoiNhap}}
+                        </td>
+                        <td>
+                            ({{item.MaSoNhanVien}}) {{item.HoVaTen}} ({{item.TenCoSoNguoiQL}})
+                        </td>
+                    </tr>
+                    <!--<tr ng-show="hideThongKeMaCoSo" ng-repeat="item in FilerMaCoSo">
+                        <th>
+                            {{$index+1}}
+                        </th>
+                        <td>
+                            {{item.MaTaiSan}}
+                        </td>
+                        <td>
+                            {{item.NgayNhap|date:"dd/MM/yyyy"}}
+                        </td>
+                        <td>
+                            {{item.NgayBatDauSuDung|date:"dd/MM/yyyy"}}
+                        </td>
+                        <td>
+                            {{item.NgayHetHan|date:"dd/MM/yyyy"}}
+                        </td>
+                        <td>
+                            {{item.TenCoSo}}
+                        </td>
+                        <td>
+                            {{item.KieuTaiSan}}
+                        </td>
+                        <td>
+                            <p style="text-align:justify">{{item.MoTaChiTiet}}</p>
+
+                        </td>
+                        <td>
+                            {{item.TinhTrang}}
+                        </td>
+                        <td>
+                            {{item.NgayNhapLieu|date:"dd/MM/yyyy"}}
+                        </td>
+                        <td>
+                            ({{item.NguoiNhap}}) {{item.TenNguoiNhap}}
+                        </td>
+                        <td>
+                            ({{item.MaSoNhanVien}}) {{item.HoVaTen}} ({{item.TenCoSo}})
+                        </td>
+                    </tr>
+                    <tr ng-show="hideThongKeKieuTaiSan" ng-repeat="item in FilerKieuTaiSan">
+                        <th>
+                            {{$index+1}}
+                        </th>
+                        <td>
+                            {{item.MaTaiSan}}
+                        </td>
+                        <td>
+                            {{item.NgayNhap|date:"dd/MM/yyyy"}}
+                        </td>
+                        <td>
+                            {{item.NgayBatDauSuDung|date:"dd/MM/yyyy"}}
+                        </td>
+                        <td>
+                            {{item.NgayHetHan|date:"dd/MM/yyyy"}}
+                        </td>
+                        <td>
+                            {{item.TenCoSo}}
+                        </td>
+                        <td>
+                            {{item.KieuTaiSan}}
+                        </td>
+                        <td>
+                            <p style="text-align:justify">{{item.MoTaChiTiet}}</p>
+
+                        </td>
+                        <td>
+                            {{item.TinhTrang}}
+                        </td>
+                        <td>
+                            {{item.NgayNhapLieu|date:"dd/MM/yyyy"}}
+                        </td>
+                        <td>
+                            ({{item.NguoiNhap}}) {{item.TenNguoiNhap}}
+                        </td>
+                        <td>
+                            ({{item.MaSoNhanVien}}) {{item.HoVaTen}} ({{item.TenCoSo}})
+                        </td>
+                    </tr>-->
+
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>

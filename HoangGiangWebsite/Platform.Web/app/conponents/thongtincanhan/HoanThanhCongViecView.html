@@ -1,0 +1,82 @@
+﻿  <!-- Content Header (Page header) -->
+<section class="content-header">
+
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li><a ui-sref="hoanthanhcongviec">Hoàn thành công việc</a></li>
+
+    </ol>
+</section>
+<div class="container-fluid" style="margin-bottom:20px">
+    <h1 style="margin-bottom:20px;text-align:center">Hoàn thành công việc</h1>
+    <div class="row">
+
+        <div class="col-md-10" style="margin:auto">
+            <div class="table-responsive">
+                <table class="table  table-bordered chu">
+                    <tr style="background:#74b9ff">
+                        <th>Mã số nhân viên</th>
+                        <th>Tên nhân viên</th>
+
+                        <th>Loại đánh giá</th>
+                        <th>Ngày bắt đầu</th>
+                        <th>Ngày kết thúc</th>
+                        <th>Xếp loại</th>
+
+
+
+                    </tr>
+                    <tr ng-repeat=" item in HoanThanhCongViec">
+                        <th>{{item.MaSoNhanVien}}</th>
+                        <th>{{tenNhanVien}}</th>
+
+
+
+                        <td>
+
+
+                            <input ng-show="Edit " ng-model="HoanThanhCongViec[$index].LoaiDanhGia" type="text" />
+                            <span ng-show="hide">{{item.LoaiDanhGia }}</span>
+
+
+                        </td>
+
+                        <td>
+
+                            <input ng-show="Edit " ng-model="HoanThanhCongViec[$index].NgayBatDau" ng-value="HoanThanhCongViec[$index].NgayBatDau" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+                            <span ng-show="hide">{{item.NgayBatDau|date:'dd/MM/yyyy'}}</span>
+
+                        </td>
+                        <td>
+                            <input ng-show="Edit " ng-model="HoanThanhCongViec[$index].NgayKetThuc"  ng-value="HoanThanhCongViec[$index].NgayKetThuc"  style="height:22px"  type="date" ng-model-options="{timezone:'UTC',}" />
+                            <span ng-show="hide">{{item.NgayKetThuc|date:'dd/MM/yyyy'}}</span>
+
+                        </td>
+                        <td>
+                            <input ng-show="Edit " ng-model="HoanThanhCongViec[$index].XepLoai" type="text" />
+                            <span ng-show="hide">{{item.XepLoai}}</span>
+
+                        </td>
+
+
+
+                    </tr>
+
+
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--<div class="center-block  text-center">
+    <button ng-show="close" type="submit"  class="btn btn-primary " style="background:#74b9ff;" ng-click="mobang()">Thay đổi lịch sử làm việc</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</div>
+<div class="row" style="margin-top:10px" ng-show="save">
+    <div class="col-md-5" style="margin-left:710px">
+        <button type="button" class="btn btn-primary " ng-disabled="form.$invalid" ng-click="UpDateHoanThanhCongViec()">Lưu</button>
+        <button type="submit" class="btn btn-danger" ng-show="closehuy" ng-click="huy()">Hủy</button>
+    </div>
+</div>-->
+

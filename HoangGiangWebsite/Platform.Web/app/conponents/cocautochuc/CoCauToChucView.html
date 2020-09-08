@@ -1,0 +1,243 @@
+﻿<!-- Content Header (Page header) -->
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li><a href="">kế toán</a></li>
+        <li><a href="">Danh mục</a></li>
+        <li><a ui-sref="cocautochuc">Cơ cấu tổ chức</a></li>
+
+    </ol>
+</section>
+<!-- Main content -->
+
+
+
+<div class=" container">
+    <div class="row">
+        <div class=" col-md-12">
+            <h1 style="margin:20px 0px;text-align:center">Xem thông tin loại công cụ dụng cụ</h1>
+
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-6 table-responsive" style="margin:auto">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr style="background:#74b9ff">
+
+
+
+                            <th>Mã đơn vị</th>
+                            <th>Tên đơn vị</th>
+                            <th>Địa chỉ</th>
+                            <th>Cấp tổ chức</th>
+                            <th>Xem chi tiết</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat=" i in AllView">
+                            <td>{{i.MaDonVi}}</td>
+                            <td>{{i.TenDonVi}}</td>
+                            <td>{{i.DiaChi}}</td>
+                            <td>{{i.CapToChuc}}</td>
+                            <td><input type="button" class=" btn btn-primary" ng-click="XemChiTiet(i.MaDonVi)" value="Xem chi tiết" /></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <input type="button" class=" btn btn-primary" ng-click="showcreate()" value="Thêm mới" />
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+    <div class="row" id="of">
+
+
+        <div class="modal fade bs-example-modal-lg" id="off" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false" data-keyboard="false" data-focus-on="input:first">
+
+            <div class="modal-dialog modal-lg" role="document" style="max-width: 500px;">
+                <div class="modal-content" style="border-radius: 10px;min-height:300px;margin:50% 0%
+                     ">
+                    <div class="modal-header">
+                        <h3 style="text-align:center;color:red">Sửa loại công cụ dụng cụ</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                            <span aria-hidden="true" style="color:red">&times; Đóng</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="form1" class="form-horizontal" role="form" data-toggle="validator" ng-submit="save()">
+                            <div class=" row">
+                                <div class="col-md-12 table-responsive">
+                                    <fieldset class="well">
+
+
+                                        <table class="table table-bordered" style="border:solid #ddd 1px">
+                                            <tr>
+                                                <td> <b>Mã <span class="has-error text-left">(*)</span></b></td>
+                                                <td width="85%">
+                                                    <div class="input-group">
+
+                                                        <input disabled ng-model="singer.MaDonVi" type="text" class="form-control">
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><b>Tên <span class="has-error text-left">(*)</span></b></td>
+                                                <td>
+                                                    <div class="input-group">
+
+                                                        <input required ng-model="singer.TenDonVi" type="text" class="form-control">
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td> <b>Thuộc</b></td>
+                                                <td width="85%">
+                                                    <div class="input-group">
+
+                                                        <input required ng-model="singer.DiaChi" type="text" class="form-control">
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Diễn giải</b></td>
+                                                <td>
+                                                    <textarea style="width:100%" ng-model="singer.CapToChuc"></textarea>
+                                                </td>
+                                            </tr>
+
+
+                                        </table>
+
+                                    </fieldset>
+                                </div>
+
+                            </div>
+                            <div class=" row" style="margin:10px 0px">
+                                <div class=" col-md-9"></div>
+                                <div class=" col-md-2">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <button type="submit" class="btn btn-primary">Lưu</button> &nbsp;&nbsp;
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button> &nbsp;&nbsp;
+
+
+                                    </div>
+                                </div>
+                                <div class=" col-md-1"></div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+    <div class="row" id="of">
+
+
+        <div class="modal fade bs-example-modal-lg1" id="off" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false" data-keyboard="false" data-focus-on="input:first">
+
+            <div class="modal-dialog modal-lg" role="document" style="max-width: 550px;">
+                <div class="modal-content" style="border-radius: 10px;min-height:300px;margin:50% 0%
+                     ">
+                    <div class="modal-header">
+                        <h3 style="text-align:center;color:red">Thêm cơ cấu tổ chức</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                            <span aria-hidden="true" style="color:red">&times; Đóng</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="form1" class="form-horizontal" role="form" data-toggle="validator" ng-submit="create()">
+                            <div class=" row">
+                                <div class="col-md-12 table-responsive">
+                                    <fieldset class="well">
+
+
+                                        <table class="table table-bordered" style="border:solid #ddd 1px">
+                                            <tr>
+                                                <td> <b>Mã <span class="has-error text-left">(*)</span></b></td>
+                                                <td width="85%">
+                                                    <div class="input-group">
+
+                                                        <input disabled ng-model="Add.MaDonVi" type="text" class="form-control">
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><b>Tên đơn vị <span class="has-error text-left">(*)</span></b></td>
+                                                <td>
+                                                    <div class="input-group">
+
+                                                        <input required ng-model="Add.TenDonVi" type="text" class="form-control">
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td> <b>Địa chỉ</b></td>
+                                                <td width="85%">
+                                                    <div class="input-group">
+
+                                                        <input required ng-model="Add.DiaChi" type="text" class="form-control">
+
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Cấp tổ chức</b></td>
+                                                <td>
+                                                    <textarea style="width:100%" ng-model="Add.CapToChuc"></textarea>
+                                                </td>
+                                            </tr>
+
+
+                                        </table>
+
+                                    </fieldset>
+                                </div>
+
+                            </div>
+                            <div class=" row" style="margin:10px 0px">
+                                <div class=" col-md-9"></div>
+                                <div class=" col-md-2">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <button type="submit" class="btn btn-primary">Lưu</button> &nbsp;&nbsp;
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button> &nbsp;&nbsp;
+
+
+                                    </div>
+                                </div>
+                                <div class=" col-md-1"></div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>

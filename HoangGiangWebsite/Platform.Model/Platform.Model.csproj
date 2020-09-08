@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3149B731-7D20-4B7C-9D1B-F883276D3382}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Platform.Model</RootNamespace>
+    <AssemblyName>Platform.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationGroup.cs" />
+    <Compile Include="ApplicationRole.cs" />
+    <Compile Include="ApplicationRoleGroup.cs" />
+    <Compile Include="ApplicationUser.cs" />
+    <Compile Include="ApplicationUserGroup.cs" />
+    <Compile Include="BaoGia.cs" />
+    <Compile Include="chitietthognke.cs" />
+    <Compile Include="CoCauToChuc.cs" />
+    <Compile Include="ChiTietBaoGia.cs" />
+    <Compile Include="ChiTietChungTuBanHang.cs" />
+    <Compile Include="ChiTietChungTuMuaDichVu.cs" />
+    <Compile Include="ChiTietChungTuMuaHang.cs" />
+    <Compile Include="ChiTietDonDatHang.cs" />
+    <Compile Include="ChiTietDonMuaHang.cs" />
+    <Compile Include="ChiTietGiamGiaHangBan.cs" />
+    <Compile Include="ChiTietGiamGiaHangMua.cs" />
+    <Compile Include="ChiTietHoaDon_BanHang.cs" />
+    <Compile Include="ChiTietHopDongMua.cs" />
+    <Compile Include="ChiTietLapRapThaoDo.cs" />
+    <Compile Include="ChiTietPhieuChi.cs" />
+    <Compile Include="ChiTietPhieuNhapKho.cs" />
+    <Compile Include="ChiTietPhieuXuat_BanHang.cs" />
+    <Compile Include="ChiTietThu.cs" />
+    <Compile Include="ChiTietTraLaiHangBan.cs" />
+    <Compile Include="ChiTietTraLaiHangMua.cs" />
+    <Compile Include="chitietxuatnhapkho.cs" />
+    <Compile Include="Chucnangthongketaisan.cs" />
+    <Compile Include="ChungTuBanHang.cs" />
+    <Compile Include="ChungTuMuaDichVu.cs" />
+    <Compile Include="ChungTuMuaHang.cs" />
+    <Compile Include="DichVu.cs" />
+    <Compile Include="DieuKhoanTT.cs" />
+    <Compile Include="DinhKhoanTuDong.cs" />
+    <Compile Include="DonDatHang.cs" />
+    <Compile Include="DonMuaHang.cs" />
+    <Compile Include="DonViTinh.cs" />
+    <Compile Include="getbaogia.cs" />
+    <Compile Include="getchitietbaogia.cs" />
+    <Compile Include="getchitietchungtubanhang.cs" />
+    <Compile Include="getchitietdondathang.cs" />
+    <Compile Include="getchitietgiamgiahangban.cs" />
+    <Compile Include="getchitietgiamgiahnagmua.cs" />
+    <Compile Include="getchitiethoadonbanhang.cs" />
+    <Compile Include="getchitiethopdongmua.cs" />
+    <Compile Include="getchitietlenhlaprapthaodo.cs" />
+    <Compile Include="getchitietlenhsanxuatthanhpham.cs" />
+    <Compile Include="getchitietmuahang.cs" />
+    <Compile Include="getchitietphieuthu.cs" />
+    <Compile Include="getchitiettralaihangban.cs" />
+    <Compile Include="getchitiettralaihangmua.cs" />
+    <Compile Include="getchungtubanhang.cs" />
+    <Compile Include="getchungtumuadichvu.cs" />
+    <Compile Include="getdondathang.cs" />
+    <Compile Include="getdonmuahang.cs" />
+    <Compile Include="getdvt.cs" />
+    <Compile Include="getgiamgiahangban.cs" />
+    <Compile Include="getgiamgiahangmua.cs" />
+    <Compile Include="gethopdongmuahang.cs" />
+    <Compile Include="getlenhlaprapthaodo.cs" />
+    <Compile Include="getLenhSanXuat.cs" />
+    <Compile Include="getlenhsanxuatNVL.cs" />
+    <Compile Include="getmultiTheTheoTen.cs" />
+    <Compile Include="getphieuchi.cs" />
+    <Compile Include="getphieunhapxuatkho.cs" />
+    <Compile Include="getQuanLyTaiSanCaNhan.cs" />
+    <Compile Include="gettennhanvienthe.cs" />
+    <Compile Include="getThongTinTongHopQuy.cs" />
+    <Compile Include="gettralaihangban.cs" />
+    <Compile Include="gettralaihangmua.cs" />
+    <Compile Include="getxuathoadonbanhang.cs" />
+    <Compile Include="GiamGiaHangBan.cs" />
+    <Compile Include="GiamGiaHangMua.cs" />
+    <Compile Include="HangHoa.cs" />
+    <Compile Include="HangHoa_DonViTinh.cs" />
+    <Compile Include="HeThongTaiKhoan.cs" />
+    <Compile Include="HoaDon_BanHang.cs" />
+    <Compile Include="HopDongMua.cs" />
+    <Compile Include="KhachHangNhanVien.cs" />
+    <Compile Include="KhachHang_TaiKhoan.cs" />
+    <Compile Include="LapRapThaoDo.cs" />
+    <Compile Include="LenhSanXuat.cs" />
+    <Compile Include="LenhSanXuat_NVL.cs" />
+    <Compile Include="LenhSanXuat_ThanhPham.cs" />
+    <Compile Include="lichsutongquan.cs" />
+    <Compile Include="LoaiChi.cs" />
+    <Compile Include="LoaiCongCuDungCu.cs" />
+    <Compile Include="LoaiTaiSanCoDinh.cs" />
+    <Compile Include="LoaiThu.cs" />
+    <Compile Include="LoaiTien.cs" />
+    <Compile Include="NhaCungCap_TaiKhoan.cs" />
+    <Compile Include="NhomHangHoa.cs" />
+    <Compile Include="NhomKH_NCC.cs" />
+    <Compile Include="NhaCungCap.cs" />
+    <Compile Include="KhachHang.cs" />
+    <Compile Include="CoSo.cs" />
+    <Compile Include="getChucVu.cs" />
+    <Compile Include="getCoSo.cs" />
+    <Compile Include="getnhanvien.cs" />
+    <Compile Include="getQuanLyNgayNghi.cs" />
+    <Compile Include="getQuanLyCongTac.cs" />
+    <Compile Include="HoanThanhCongViec.cs" />
+    <Compile Include="LichSuLamViec.cs" />
+    <Compile Include="Loi.cs" />
+    <Compile Include="NgonNgu.cs" />
+    <Compile Include="NhanVien.cs" />
+    <Compile Include="NhanVienVangMat.cs" />
+    <Compile Include="getnguoinhap.cs" />
+    <Compile Include="PhieuChi.cs" />
+    <Compile Include="PhieuNhapKho.cs" />
+    <Compile Include="PhieuThu.cs" />
+    <Compile Include="PhieuXuat_BanHang.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuanLyCongTac.cs" />
+    <Compile Include="QuanLyNgayNghi.cs" />
+    <Compile Include="QuanLyQuaGio.cs" />
+    <Compile Include="QuanLyTaiSan.cs" />
+    <Compile Include="QuanLyVangMat.cs" />
+    <Compile Include="QuaTrinhDaoTao.cs" />
+    <Compile Include="QuetThe.cs" />
+    <Compile Include="QuetTheTheoNgay.cs" />
+    <Compile Include="QuetTheTheoNgayViewModel.cs" />
+    <Compile Include="TaiKhoanCo.cs" />
+    <Compile Include="TaiKhoanKetChuyen.cs" />
+    <Compile Include="TaiKhoanNganHang.cs" />
+    <Compile Include="TaiKhoanNo.cs" />
+    <Compile Include="TaiSan.cs" />
+    <Compile Include="ChucVu.cs" />
+    <Compile Include="ThanhPham.cs" />
+    <Compile Include="The.cs" />
+    <Compile Include="ThongBao.cs" />
+    <Compile Include="thongkechungtucoso.cs" />
+    <Compile Include="thongketop10.cs" />
+    <Compile Include="ThongTinCaNhan.cs" />
+    <Compile Include="ThongTinTuyenDung.cs" />
+    <Compile Include="TinhChatHangHoa.cs" />
+    <Compile Include="TinhTrang.cs" />
+    <Compile Include="TraLaiHangBan.cs" />
+    <Compile Include="TraLaiHangMua.cs" />
+    <Compile Include="xemchitietphieuchi.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Platform.Common\Platform.Common.csproj">
+      <Project>{37cefe7a-f289-4d7f-a882-09d117e48291}</Project>
+      <Name>Platform.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="bin\Debug\Platform.Model.dll.config" />
+    <None Include="obj\Debug\build.force" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\edmxResourcesToEmbed\QLTH.csdl" />
+    <None Include="obj\Debug\edmxResourcesToEmbed\QLTH.msl" />
+    <None Include="obj\Debug\edmxResourcesToEmbed\QLTH.ssdl" />
+    <None Include="obj\Debug\Platform.Model.csproj.CopyComplete" />
+    <None Include="obj\Debug\Platform.Model.csprojAssemblyReference.cache" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\EntityFramework.dll" />
+    <Content Include="bin\Debug\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\Debug\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\Debug\EntityFramework.xml" />
+    <Content Include="bin\Debug\Microsoft.AspNet.Identity.Core.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNet.Identity.Core.xml" />
+    <Content Include="bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml" />
+    <Content Include="bin\Debug\Platform.Common.dll" />
+    <Content Include="bin\Debug\Platform.Common.pdb" />
+    <Content Include="bin\Debug\Platform.Model.dll" />
+    <Content Include="bin\Debug\Platform.Model.pdb" />
+    <Content Include="obj\Debug\Platform.Model.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\Platform.Model.dll" />
+    <Content Include="obj\Debug\Platform.Model.pdb" />
+    <Content Include="obj\Debug\TempPE\QLTH.Context.cs.dll" />
+    <Content Include="obj\Debug\TempPE\QLTH.cs.dll" />
+    <Content Include="obj\Debug\TempPE\QLTH.Designer.cs.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" />
+</Project>

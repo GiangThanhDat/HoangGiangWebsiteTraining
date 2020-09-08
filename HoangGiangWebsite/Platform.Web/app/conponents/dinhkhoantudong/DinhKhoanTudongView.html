@@ -1,0 +1,255 @@
+﻿<!-- Content Header (Page header) -->
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li><a href="">kế toán</a></li>
+        <li><a href="">Danh mục</a></li>
+        <li><a ui-sref="dinhkhoantudong">Định khoản tự động</a></li>
+
+    </ol>
+</section>
+<!-- Main content -->
+
+
+
+<div class=" container-fluid">
+    <div class="row">
+        <div class=" col-md-12">
+            <h1 style="margin:20px 0px;text-align:center">Xem định khoản tự động</h1>
+
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-6 table-responsive" style="margin:auto">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr style="background:#74b9ff">
+
+
+
+                            <th>Loại chứng từ</th>
+                            <th>Tên định khoản</th>
+                            <th>Tài khoản Nợ</th>
+                            <th>Tài khoản có</th>
+                            <th>Xem chi tiết</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat=" i in AllView">
+                            <td>{{i.LoaiChungTu}}</td>
+                            <td>{{i.TenDinhKhoan}}</td>
+                            <td>{{i.SoTaiKhoanCo}}</td>
+                            <td>{{i.SoTaiKhoanNo}}</td>
+                           
+                            <td><input type="button" class=" btn btn-primary" ng-click="XemChiTiet(i.Id)" value="Xem chi tiết" /></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <input type="button" class=" btn btn-primary" ng-click="showcreate()" value="Thêm mới" />
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+    <div class="row" id="of">
+
+
+        <div class="modal fade bs-example-modal-lg" id="off" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false" data-keyboard="false" data-focus-on="input:first">
+
+            <div class="modal-dialog modal-lg" role="document" style="max-width: 500px;">
+                <div class="modal-content" style="border-radius: 10px;min-height:300px;margin:50% 0%
+                     ">
+                    <div class="modal-header">
+                        <h3 style="text-align:center;color:red">Sửa định khoản tự động</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                            <span aria-hidden="true" style="color:red">&times; Đóng</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="form1" class="form-horizontal" role="form" data-toggle="validator" ng-submit="save()">
+                            <div class=" row">
+                                <div class="col-md-12 table-responsive">
+                                    <fieldset class="well">
+
+
+                                        <table class="table table-bordered" style="border:solid #ddd 1px">
+                                            <tr>
+                                                <td> <b>Loại chứng từ <span class="has-error text-left">(*)</span></b></td>
+                                                <td width="85%">
+                                                    <div class="input-group">
+
+                                                        <input required ng-model="singer.LoaiChungTu" type="text" class="form-control">
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><b>Tên định khoản <span class="has-error text-left">(*)</span></b></td>
+                                                <td>
+                                                    <div class="input-group">
+
+                                                        <input  required ng-model="singer.TenDinhKhoan" type="text" class="form-control">
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td> <b>Số tài khoản có</b></td>
+                                                <td width="85%">
+                                                    <div class="input-group">
+
+                                                        <select class="selectpicker form-control" ng-model="singer.SoTaiKhoanCo"
+                                                                ng-options="item.SoTaiKhoanCo  as  '('+item.SoTaiKhoanCo + ') ' +' '+item.TenTaiKhoan  for item in AllTKco">
+                                                        </select>
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Số tài khoản nợ</b></td>
+                                                <td>
+                                                    <select class="selectpicker form-control" ng-model="singer.SoTaiKhoanNo"
+                                                            ng-options="item.SoTaiKhoanNo  as  '('+item.SoTaiKhoanNo + ') ' +' '+item.TenTaiKhoan  for item in AllTKno">
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                           
+
+
+                                        </table>
+
+                                    </fieldset>
+                                </div>
+
+                            </div>
+                            <div class=" row" style="margin:10px 0px">
+                                <div class=" col-md-9"></div>
+                                <div class=" col-md-2">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <button type="submit" class="btn btn-primary">Lưu</button> &nbsp;&nbsp;
+                                        <button type="button" class="btn btn-danger"  ng-click="huy()" data-dismiss="modal">Hủy</button> &nbsp;&nbsp;
+
+
+                                    </div>
+                                </div>
+                                <div class=" col-md-1"></div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+    <div class="row" id="of">
+
+
+        <div class="modal fade bs-example-modal-lg1" id="off" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false" data-keyboard="false" data-focus-on="input:first">
+
+            <div class="modal-dialog modal-lg" role="document" style="max-width: 550px;">
+                <div class="modal-content" style="border-radius: 10px;min-height:400px;margin:50% 0%
+                     ">
+                    <div class="modal-header">
+                        <h3 style="text-align:center;color:red">Thêm định khoản tự động</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                            <span aria-hidden="true" style="color:red">&times; Đóng</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="form1" class="form-horizontal" role="form" data-toggle="validator" ng-submit="create()">
+                            <div class=" row">
+                                <div class="col-md-12 table-responsive">
+                                    <fieldset class="well">
+
+
+                                        <table class="table table-bordered" style="border:solid #ddd 1px">
+                                            <tr>
+                                                <td> <b>Loại chứng từ <span class="has-error text-left">(*)</span></b></td>
+                                                <td width="85%">
+                                                    <div class="input-group">
+
+                                                        <input ng-model="Add.LoaiChungTu" type="text" class="form-control">
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><b>Tên định khoản<span class="has-error text-left">(*)</span></b></td>
+                                                <td>
+                                                    <div class="input-group">
+
+                                                        <input required ng-model="Add.TenDinhKhoan" type="text" class="form-control">
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td> <b>Số tài khoản có</b></td>
+                                                <td width="85%">
+                                                    <select class="selectpicker form-control" ng-model="Add.SoTaiKhoanCo"
+                                                            ng-options="item.SoTaiKhoanCo  as  '('+item.SoTaiKhoanCo + ') ' +' '+item.TenTaiKhoan  for item in AllTKco">
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Số tài khoản nợ</b></td>
+                                                <td>
+
+                                                    <select class="selectpicker form-control" ng-model="Add.SoTaiKhoanNo"
+                                                            ng-options="item.SoTaiKhoanNo  as  '('+item.SoTaiKhoanNo + ') ' +' '+item.TenTaiKhoan  for item in AllTKno">
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                           
+                                           
+                                            
+
+                                            
+
+
+                                        </table>
+
+                                    </fieldset>
+                                </div>
+
+                            </div>
+                            <div class=" row" style="margin:10px 0px">
+                                <div class=" col-md-9"></div>
+                                <div class=" col-md-2">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <button type="submit" class="btn btn-primary">Lưu</button> &nbsp;&nbsp;
+                                        <button type="button" class="btn btn-danger" ng-click="huy()" data-dismiss="modal">Hủy</button> &nbsp;&nbsp;
+
+
+                                    </div>
+                                </div>
+                                <div class=" col-md-1"></div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>

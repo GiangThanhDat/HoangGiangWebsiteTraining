@@ -1,0 +1,135 @@
+﻿  <!-- Content Header (Page header) -->
+<section class="content-header">
+
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li><a ui-sref="quatrinhdaodao">Quá trình đào tạo</a></li>
+
+    </ol>
+</section>
+
+
+<!--<form class="form-horizontal" data-toggle="validator" name="formtestsssss" role="form" ng-submit="kiemtra()">-->
+    <div class="container-fluid">
+        <h1 style="margin-bottom:20px;text-align:center">Quá trình đào tạo</h1>
+        <div class="row">
+
+            <div class="col-md-10" style="margin:auto">
+                <div class="table-responsive">
+                    <table class="table  table-bordered chu">
+                        <tr style="background:#74b9ff">
+                            <th>Mã số nhân viên</th>
+                            <th>Tên nhân viên</th>
+
+                            <th>Ngày bắt đầu</th>
+                            <th>Ngày kết thúc</th>
+                            <th>Tên trường</th>
+                            <th>Loại bằng</th>
+                            <th>Chuyên ngành</th>
+                            <th>Xếp loại</th>
+                            <th ng-show="delete">Xóa</th>
+
+                        </tr>
+                        <tr ng-repeat=" item in QuaTrinhDaotao">
+                            <th>{{item.MaSoNhanVien}}</th>
+                            <th>{{tenNhanVien}}</th>
+
+
+                            <td>
+                                <input ng-show="Edit " ng-model="QuaTrinhDaotao[$index].NgayBatDau" style="height:22px" ng-value="newarr[$index].NgayBatDau" type="date" name="Hocten" ng-model-options="{timezone:'UTC',}" />
+                                <span ng-show="hide">{{item.NgayBatDau}}</span>
+
+                            </td>
+
+                            <td>
+
+
+                                <input ng-show="Edit " ng-model="QuaTrinhDaotao[$index].NgayKetThuc" style="height:22px" ng-value="newarr[$index].NgayKetThuc" type="date" name="Hocten" ng-model-options="{timezone:'UTC',}" />
+                                <span ng-show="hide">{{item.NgayKetThuc}}</span>
+
+                            </td>
+                            <td>
+                                <input ng-show="Edit " ng-model="QuaTrinhDaotao[$index].TenTruong" type="text" name="Hocten" />
+                                <span ng-show="hide">{{item.TenTruong}}</span>
+                            </td>
+                            <td>
+                                <input ng-show="Edit " ng-model="QuaTrinhDaotao[$index].LoaiBang" type="text" name="Hocten" />
+                                <span ng-show="hide">{{item.LoaiBang}}</span>
+                            </td>
+                            <td>
+                                <input ng-show="Edit " ng-model="QuaTrinhDaotao[$index].ChuyenNganh" type="text" name="Hocten" />
+                                <span ng-show="hide">{{item.ChuyenNganh}}</span>
+                            </td>
+                            <td>
+                                <input ng-show="Edit " ng-model="QuaTrinhDaotao[$index].XepLoai" type="text" name="Hocten" />
+                                <span ng-show="hide">{{item.XepLoai}}</span>
+                            </td>
+                            <td ng-show="delete">
+                                <button class="btn  btn-danger" ng-click="deleteItem(item.ID)"><i class="fa fa-trash-o"></i></button>
+                            </td>
+
+                        </tr>
+
+                        <tr ng-repeat=" item in solanlap2">
+                            <th>{{msvc}}</th>
+                            <th>{{tenNhanVien}}</th>
+
+
+                            <td>
+                                <input required ng-model="AddQuaTrinhDaotao [$index].NgayBatDau" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+
+
+                            </td>
+
+                            <td>
+
+
+                                <input required ng-model="AddQuaTrinhDaotao [$index].NgayKetThuc" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+
+
+                            </td>
+                            <td>
+                                <input required ng-model="AddQuaTrinhDaotao [$index].TenTruong" type="text" name="Hocten" />
+
+                            </td>
+                            <td>
+                                <input required ng-model="AddQuaTrinhDaotao[$index] .LoaiBang" type="text" name="Hocten" />
+
+                            </td>
+                            <td>
+                                <input required ng-model="AddQuaTrinhDaotao [$index].ChuyenNganh" type="text" name="Hocten" />
+
+                            </td>
+                            <td>
+                                <input required ng-model="AddQuaTrinhDaotao [$index].XepLoai" type="text" name="Hocten" />
+
+                            </td>
+                            <td>
+                            </td>
+
+                        </tr>
+
+                    </table>
+
+
+                </div>
+                <button type="button" class="btn btn-primary " ng-show="Add" ng-click="myFunction2()" style="background:#74b9ff;">Thêm mới</button>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="center-block  text-center">
+        <button type="button" class="btn btn-primary " ng-show="close" style="background:#74b9ff;" ng-click="mobang()">Thay đổi quá trình đào tạo </button>
+
+    </div>
+    <div class="row" style="margin-top:10px" ng-show="save">
+        <div class="col-md-6 col-md-offset-3 justify-content-center btn-block text-center">
+            <button type="submit" class="btn btn-primary " ng-click="kiemtra()">Lưu</button>
+            <button type="button" class="btn btn-danger" ng-show="closehuy" ng-click="huy()">Hủy</button>
+
+
+        </div>
+    </div>
+<!--</form>-->

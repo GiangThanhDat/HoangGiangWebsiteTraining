@@ -1,0 +1,1124 @@
+﻿<!-- Content Header (Page header) -->
+
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li><a href="">Kế toán</a></li>
+        <li><a href="">Nghiệp vụ</a></li>
+        <li><a href="">Bán hàng</a></li>
+        <li><a ui-sref="dondathang">Đơn đặt hàng</a></li>
+    </ol>
+</section>
+
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">
+    Mở
+</button>
+
+<!-- Main content -->
+
+
+<div class="container">
+    <div class="row" id="of">
+
+
+        <div class="modal fade bs-example-modal-lg" id="off" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false" data-keyboard="false" data-focus-on="input:first">
+
+            <div class="modal-dialog modal-lg" role="document" style="max-width: 1305px;">
+                <div class="modal-content" style="border-radius: 10px;
+                     ">
+                    <div class="modal-header">
+                        <h3 style="text-align:center;color:red">Đơn đặt hàng - Công ty cổ phần, thương mại và dịch vụ Mekong</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                            <span aria-hidden="true" style="color:red">&times; Đóng</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="form1" role="form" ng-submit="LuuPhieuThu()">
+                            <div class="row">
+                                
+                                <div class=" col-md-12  input-group  justify-content-center">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                                    <div class="input-group-append   ">
+                                        <div class="padded-row" >
+                                             <div angucomplete-alt id="ex4" placeholder="Nhập mã số báo giá" pause="100" selected-object="newPhieuThu" local-data="AllBaoGia" search-fields="MaSoBaoGia" title-field="MaSoBaoGia" minlength="1" input-class="form-control form-control-small" match-class="highlight" override-suggestions="true">
+                                             </div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                </div>
+                                <div class="col-md-9 table-responsive">
+                                    <fieldset class="well">
+                                        <legend class="well-legend">Thông tin chung</legend>
+
+                                        <table class="table table-bordered" style="border:solid #ddd 1px">
+                                            <tr>
+                                                <td> <b>Khách hàng </b></td>
+                                                <td width="85%">
+                                                    <div class="input-group">
+                                                        <div class="input-group-append">
+                                                            <input disabled ng-model="KhacHang.MaKhachHang" type="text" class="form-control">
+
+                                                        </div>
+                                                        <div class="input-group-append">
+                                                            <a data-toggle="modal" data-target=".bs-example-modal-lg1" class=" form-control btn btn-primary text-white"><i class=" fa fa-plus"></i></a>
+                                                        </div>
+                                                        <select style="min-width:144px" class="selectpicker form-control" ng-model="KhacHang" ng-change="getKhachHang(KhacHang.MaKhachHang)"
+                                                                ng-options="item as item.TenKhachHang    for item in AllKhachHang">
+                                                            <option disabled value="">Chọn đối tượng</option>
+                                                        </select>
+                                                        &nbsp;&nbsp;&nbsp;
+
+                                                        <!--<div class="padded-row" style="width:50%" ng-show="timkiem">
+                                <div angucomplete-alt id="ex4" placeholder="Nhập tên khách hàng" pause="100" selected-object="test" local-data="AllKhachHang" search-fields="TenKhachHang" title-field="TenKhachHang" minlength="1" input-class="form-control form-control-small" match-class="highlight" override-suggestions="true" clear-selected="true">
+                                </div>
+                            </div>-->
+                                                        <div style="width:50%">
+                                                            <input disabled ng-model="KhacHang.TenKhachHang" type="text" class="form-control">
+
+                                                        </div>
+
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Địa chỉ</b></td>
+                                                <td><input disabled ng-model="KhacHang.DiaChi" type="text" class="form-control"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Mã số thuế</b></td>
+                                                <td>
+                                                    <div class="input-group">
+                                                        <div class="input-group-append">
+                                                            <input disabled ng-model="KhacHang.MaSoThue" type="text" class="form-control">
+                                                        </div>
+                                                        &nbsp;  &nbsp;  &nbsp;  &nbsp;
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">Người nhận hàng</span>
+                                                        </div>
+
+                                                        <input ng-model="PhieuThu.NguoiNhanHang" type="text" class="form-control">
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Diễn giải</b></td>
+                                                <td><input ng-model="PhieuThu.DienGiai" type="text" class="form-control"></td>
+                                            </tr>
+                                            <tr>
+                                                <td> <b>Nhân viên bán hàng</b></td>
+                                                <td width="85%">
+                                                    <div class="input-group">
+                                                        <div class="input-group-append">
+                                                            <input disabled ng-model="PhieuThu.MaSoNhanVien" type="text" class="form-control" placeholder="">
+                                                        </div>
+                                                        <div class="input-group-append">
+                                                            <select class="selectpicker form-control" ng-model="PhieuThu.MaSoNhanVien"
+                                                                    ng-options="item.MaSoNhanVien  as  '('+''+item.MaSoNhanVien + ') ' +' '+item.HoVaTen  for item in LyLichNhanVien">
+                                                                <option disabled value="">Chọn nhân viên</option>
+                                                            </select>
+                                                        </div>
+
+                                                        &nbsp;&nbsp;&nbsp;
+                                                        <div class="input-group-append   ">
+                                                            <span class="input-group-text "><b>Điều khoản TT </b></span>
+                                                        </div>
+                                                        <div class="input-group-append   ">
+                                                            <select class="selectpicker form-control" ng-model="PhieuThu.MaDieuKhoan"
+                                                                    ng-options="item.MaDieuKhoan  as  item.TenDieuKhoan  for item in DieuKhoan">
+                                                                <option disabled value="">Chọn điều khoản</option>
+                                                            </select>
+                                                        </div>
+                                                        &nbsp;&nbsp;&nbsp;
+                                                        <div class="input-group-append   ">
+                                                            <span class="input-group-text "><b>Số ngày được nợ </b></span>
+                                                        </div>
+                                                        <div class="input-group-append">
+                                                            <input  ng-model="PhieuThu.SoNgayDuocNo" type="text" class="form-control" placeholder="">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Tham chiếu</b></td>
+                                                <td>
+                                                    <a ng-click="getbykeyword(keyword)" class=" btn btn-primary text-white"> <i class="fa fa-search-plus"></i></a>
+
+                                                </td>
+                                            </tr>
+
+
+                                        </table>
+
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-3 table-responsive">
+                                    <fieldset class="well">
+                                        <legend class="well-legend">Báo giá</legend>
+                                        <table class="table table-bordered" style="border:solid #ddd 1px">
+                                            <tr>
+                                                <td> <b>Ngày đơn hàng </b></td>
+                                                <td width="60%">
+                                                    <input ng-model="PhieuThu.NgayDonHang" type="date" class="form-control">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Số đơn hàng</b></td>
+                                                <td><input ng-model="PhieuThu.MaDonDatHang" type="text" class="form-control"></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td> <b>Tình trạng </b></td>
+                                                <td>
+                                                    <select class="selectpicker form-control" ng-model="TinhTrang" ng-change="getTinhTrang(TinhTrang.MaTinhTrang)"
+                                                            ng-options="item as item.TenTinhTrang for item in AllTinhTrang">
+                                                        <option disabled value="">Chọn tình trạng</option>
+
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td> <b>Ngày giao hàng </b></td>
+                                                <td width="60%">
+                                                    <input ng-model="PhieuThu.NgayGiaoHang" type="date" class="form-control"  ng-model-options="{timezone:'UTC',}">
+                                                </td>
+                                            </tr>
+                                            <tr>
+
+
+
+                                        </table>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            
+
+                            <div class=" col-md-6 col-md-offset-6 input-group justify-content-end ">
+
+                                <div class="input-group-append   ">
+                                    <span class="input-group-text "><b>Loại tiền </b></span>
+                                </div>
+                                <div class="input-group-append   ">
+                                    <select class="selectpicker form-control" ng-model="TyGia" ng-options="item as item.VietTat for item in LoaiTien" ng-change="LuuMaLoaiTien(TyGia.MaLoaiTien,TyGia.TyGia_VND)">
+                                        <option disabled value="">Chọn loại tiền</option>
+                                    </select>
+                                </div>
+
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <div class="input-group-append   ">
+                                    <span class="input-group-text "><b>Tỷ giá </b></span>
+                                </div>
+                                <div class="input-group-append">
+                                    <input type="text" class="form-control" ng-model="TyGia.TyGia_VND" name="name" format="number" ng-change="luutygia(TyGia.TyGia_VND)" />
+                                </div>
+
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </div>
+                            <div class="col-md-12" style="overflow-x:auto;background-color:#f5f5f5">
+                                <table border="1">
+                                    <caption style="caption-side:top">Hoạch toán</caption>
+                                    <tr style="background:#74b9ff">
+                                        <th>Xóa</th>
+                                        <th width="20%">Mã hàng</th>
+                                        <th>Tên hàng</th>
+                                        <th>ĐVT</th>
+                                        <th>Số lượng</th>
+                                        <th>Số lượng đã giao</th>
+                                        <th>Đơn giá</th>
+                                        <th>Thành tiền</th>
+
+                                        <th>% thuế GTGT</th>
+                                        <th>Tiền thuế GTGT</th>
+
+                                    </tr>
+                                    <tr ng-repeat="item in solanlap">
+                                        <td> <button type="button" class="btn  btn-xs btn-danger" ng-click="deletesolanlap(item)"><i class="fa fa-trash"></i></button></td>
+                                        <td width="20%">
+                                            <input disabled class="form-control" ng-model="ChiTietThu[$index].MaHang" type="text" name="name" value="" />
+                                            <select class="selectpicker form-control" ng-model="HangHoa" ng-change="checktrung(HangHoa.MaHang,item,$index,HangHoa.GiaKhuyenMai,ChiTietThu[$index].SoLuong,HangHoa.VAT,HangHoa.ChietKhau,HangHoa.TenHang,HangHoa.DonViTinh);"
+                                                    ng-options="item  as  item.TenHang  for item in AllHangHoa">
+                                                <option disabled value="">Chọn hàng hóa</option>
+                                            </select>
+                                        </td>
+                                        <td>{{ChiTietThu[$index].TenHang}}</td>
+                                        <td>{{ChiTietThu[$index].DonViTinh}}</td>
+                                        <td><input class="form-control" ng-model="ChiTietThu[$index].SoLuong" ng-change="tinhTienThueGTGT(ChiTietThu[$index].GiaKhuyenMai,ChiTietThu[$index].SoLuong,ChiTietThu[$index].VAT,$index,ChiTietThu[$index].ChietKhau,ChiTietThu[$index].MaHang,ChiTietThu[$index].SoLuongDaGiao,ChiTietThu[$index].TenHang,ChiTietThu[$index].DonViTinh)" type="number" name="name" /></td>
+                                        <td><input class="form-control" ng-model="ChiTietThu[$index].SoLuongDaGiao" type="number" name="name" /></td>
+                                        <td>{{ChiTietThu[$index].GiaKhuyenMai|number}}</td>
+                                        <td><span ng-show="ChiTietThu[$index].SoLuong>0">{{ChiTietThu[$index].ThanhTien|number}}</span></td>
+                                        <td>{{ChiTietThu[$index].VAT}}</td>
+                                        <td>{{ChiTietThu[$index].TienThueGTGT|number}}</td>
+
+
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+
+                                        <td>Số dòng = {{ (solanlap|total)}}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>{{(ChiTietThu|total:'SoLuong')}}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>{{(ThanhTien|total:'TongTienHang'|number)}} </td>
+                                        <td></td>
+                                        <td></td>
+
+
+                                    </tr>
+                                </table>
+
+                                <button type="button" class="btn btn-primary " ng-click="themdong()" style="background:#74b9ff;">Thêm dòng</button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                <button type="button" class="btn btn-primary " data-toggle="modal" data-target=".bs-example-modal-lg3" style="background:#74b9ff;">Thêm hàng hóa</button>
+                                <br />
+                                <br />
+                                <div class="col-md-6 col-md-offset-3">
+                                    <table class="table table-sm table-bordered table-hover" style="background-color:#ddd">
+                                        <thead>
+                                            <tr>
+                                                <td>Tiền hàng</td>
+                                                <th>{{ (ThanhTien|total:'TongTienHang'|number)}}</th>
+                                                <td>Tiền thuế GTGT</td>
+                                                <th>{{ (TienThueGTGT|total:'TienThueGTGT'|number)}}</th>
+
+                                            </tr>
+                                            <tr>
+                                                <td>Tiền chiết khấu</td>
+                                                <th>0</th>
+
+                                                <td>Tổng tiền thanh toán</td>
+                                                <th>{{ (TongTienThanhToan|total:'TongTienThanhToan'|number)}}</th>
+                                            </tr>
+
+
+                                        </thead>
+
+
+                                    </table>
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-6 col-md-offset-3 justify-content-center btn-block text-center">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>&nbsp;&nbsp;&nbsp;
+                                <button type="submit" class="btn btn-primary">Lưu</button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal fade bs-example-modal-lg1" id="stack2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false" data-keyboard="false" data-focus-on="input:first">
+            <div class="modal-dialog modal-lg" role="document" style="max-width: 1205px;">
+                <div class="modal-content" style="border-radius: 10px;
+                     ">
+                    <div class="modal-header">
+                        <h3 style="text-align:center;color:red">Thêm khách hàng</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                            <span aria-hidden="true" style="color:red">&times; Đóng</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="formtest" role="form" ng-submit="addKhachHang()">
+                            <div class="row">
+                                <div class=" col-md-3">
+                                    <div class="input-group">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div class="input-group-append">
+
+                                            <input type="radio" id="tochuc" name="nhom" ng-model="addKH.PhanLoai" value="Tổ chức" ng-click="tochuc()" />
+                                            <label for="tochuc">1. Tổ chức</label>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <input type="radio" id="canhan" name="nhom" ng-model="addKH.PhanLoai" value="Cá nhân" ng-click="canhan()" />
+                                            <label for="canhan">2. Cá nhân</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" col-md-2">
+                                    <div class="input-group ">
+                                        <div class="input-group-append">
+                                            <input type="checkbox" name="nhacungcap" ng-model="NCC" />&nbsp;
+                                            <label for="nhacungcap">Nhà cung cấp</label>
+                                        </div>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </div>
+                                </div>
+                                <div ng-show="showtochuc">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active" ng-class="{'active':ttchung==true,'':ttchung==false}"><a ng-click="mottchung()" data-toggle="tab">Thông tin chung</a></li>
+                                        <li ng-class="{'active':khac==true,'':khac==false}"><a ng-click="mokhac()" data-toggle="tab">Khác</a></li>
+                                    </ul>
+                                    <div class="col-md-12 table-responsive" ng-show="ttchung">
+                                        <fieldset class="well">
+                                            <table class="table table-bordered" style="border:solid #ddd 1px">
+                                                <tr>
+                                                    <td> <b>Mã số thuế</b></td>
+                                                    <td colspan="2" width="80%">
+                                                        <div class="input-group">
+                                                            <div class="input-group-append">
+                                                                <input ng-model="addKH.MaSoThue" type="text" class="form-control">
+                                                            </div>
+                                                            <div class="input-group-append">
+                                                                <a class=" form-control btn btn-primary text-white"><i class="fa fa-download">  Lấy thông tin</i></a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Mã (*)</b></td>
+                                                    <td colspan="2"> <input disabled ng-model="addKH.MaKhachHang" type="text" class="form-control"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Tên <span ng-show="formtest.tenkh.$error.required" class="has-error text-left"> &nbsp;* Bắt buộc</span></b></td>
+                                                    <td colspan="2"><input required name="tenkh" ng-model="addKH.TenKhachHang" type="text" class="form-control"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>Địa chỉ</b></td>
+                                                    <td colspan="2"><input ng-model="addKH.DiaChi" type="text" class="form-control"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>Diễn giải</b></td>
+                                                    <td colspan="2"><input ng-model="addKH.DienGiai" type="text" class="form-control"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Nhóm KH, NCC <span ng-show="formtest.nhomkh.$error.required" class="has-error text-left"> &nbsp;* Bắt buộc</span> </b></td>
+                                                    <td colspan="2">
+                                                        <div class="input-group">
+
+                                                            <select style="min-width:144px" class="selectpicker form-control" ng-model="addKH.NhomKH_NCC"
+                                                                    required name="nhomkh" ng-options="item.NhomKH_NCC  as item.TenNhomKH_NCC + ' ('+''+item.NhomKH_NCC +') '   for item in NhomKH">
+                                                                <option disabled value="">Chọn nhóm khách hàng</option>
+                                                            </select>
+
+                                                            <div class="input-group-append">
+                                                                <a ng-click="getbykeyword(keyword)" class="form-control btn btn-primary text-white"><i class="">  ...</i></a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Điện thoại</b></td>
+                                                    <td>
+                                                        <div class="input-group">
+                                                            <input ng-model="addKH.SoDienThoai" type="text" class="form-control">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="input-group">
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text">Website </span>
+                                                            </div>
+                                                            <input ng-model="addKH.Website" type="text" class="form-control">
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Fax</b></td>
+                                                    <td>
+                                                        <div class="input-group">
+                                                            <input ng-model="addKH.Fax" type="text" class="form-control">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="input-group">
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text">Điều khoản TT </span>
+                                                            </div>
+                                                            <input ng-model="addKH.DieuKhoanTT" type="text" class="form-control">
+                                                            <!--<div class="input-group-append">
+                                                        <a ng-click="getbykeyword(keyword)" class=" form-control btn btn-primary text-white"><i class=" fa fa-plus"></i></a>
+                                                    </div>
+                                                    <select class="selectpicker">
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                    </select>-->
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Email</b></td>
+                                                    <td>
+                                                        <div class="input-group">
+                                                            <input ng-model="addKH.Email" type="text" class="form-control">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="input-group">
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text">Số ngày được nợ </span>
+                                                            </div>
+                                                            <input ng-model="addKH.SoNgayDuocNo" type="number" class="form-control">
+                                                            &nbsp;&nbsp;&nbsp;
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text">ngày </span>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Nhân viên bán hàng</b></td>
+                                                    <td>
+                                                        <div class="input-group">
+                                                            <input disabled ng-model="addKH.NVBanHang" type="text" class="form-control">
+                                                            <!--<div class="input-group-append">
+                                                        <a ng-click="getbykeyword(keyword)" class=" form-control btn btn-primary text-white"><i class=" fa fa-plus"></i></a>
+                                                    </div>-->
+                                                            <select class="selectpicker form-control" ng-model="addKH.NVBanHang"
+                                                                    ng-options="item.MaSoNhanVien  as  '('+''+item.MaSoNhanVien + ') ' +' '+item.HoVaTen  for item in LyLichNhanVien">
+                                                                <option disabled value="">Chọn nhân viên</option>
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="input-group">
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text">Số nợ tối đa </span>
+                                                            </div>
+                                                            <input ng-model="addKH.SoNoToiDa" type="text" class="form-control">
+
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-12" ng-show="khac">
+                                        <fieldset class="well">
+                                            <table border="1" class=" table table-bordered" style="border:solid 1px">
+                                                <caption style="caption-side:top;font-weight:bold">Vị trí địa lý</caption>
+                                                <tr>
+                                                    <th>Quốc gia</th>
+                                                    <td>
+                                                        <input class="form-control" type="text" name="name" ng-model="addKH.QuocGia" />
+
+
+                                                    </td>
+                                                    <th>Quận/Huyện</th>
+                                                    <td>
+                                                        <input class="form-control" type="text" name="name" ng-model="addKH.Quan_Huyen" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Tỉnh/TP</th>
+                                                    <td>
+                                                        <input class="form-control" type="text" name="name" ng-model="addKH.Tinh_TP" />
+                                                    </td>
+                                                    <th>Xã/Phường</th>
+                                                    <td>
+                                                        <input class="form-control" type="text" name="name" ng-model="addKH.Xa_Phuong" />
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+                                            <table border="1" class=" table table-bordered" style="border:solid 1px">
+                                                <caption style="caption-side:top;font-weight:bold">Thông tin liên hệ</caption>
+                                                <tr>
+                                                    <th>Xưng hô</th>
+                                                    <td>
+                                                        <select class="form-control" type="text" name="name" ng-model="addKH.XungHo">
+                                                            <option disabled value="" selected>Chọn xưng hô</option>
+                                                            <option value="Ông">Ông</option>
+                                                            <option value="Bà">Bà</option>
+                                                            <option value="Anh">Anh</option>
+                                                            <option value="Chị">Chị</option>
+                                                            <option value="Bạn">Bạn</option>
+                                                            <option value="Mr">Mr</option>
+                                                            <option value="Mrs">Mrs</option>
+                                                            <option value="Miss">Miss</option>
+                                                        </select>
+                                                    </td>
+                                                    <th>Điện thoại cố định</th>
+                                                    <td>
+                                                        <input class="form-control" type="text" name="name" ng-model="addKH.DienThoaiCoDinh_LH" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Họ và tên</th>
+                                                    <td>
+                                                        <input class="form-control" type="text" name="name" ng-model="addKH.HoVaTen_LH" />
+                                                    </td>
+                                                    <th>Email</th>
+                                                    <td>
+                                                        <input class="form-control" type="text" name="name" ng-model="addKH.Email_LH" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Chức danh</th>
+                                                    <td>
+                                                        <input class="form-control" type="text" name="name" ng-model="addKH.ChucDanh_LH" />
+                                                    </td>
+                                                    <th rowspan="2">Địa chỉ</th>
+                                                    <td rowspan="2">
+                                                        <input class="form-control" type="text" name="name" ng-model="addKH.DiaChi_LH" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>ĐT di động</th>
+                                                    <td>
+                                                        <input class="form-control" type="text" name="name" ng-model="addKH.DTdidong_LH" />
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <th>ĐT khác</th>
+                                                    <td>
+                                                        <input class="form-control" type="text" name="name" ng-model="addKH.DTKhac_LH" />
+                                                    </td>
+                                                    <th>Đại diện theo PL</th>
+                                                    <td>
+                                                        <input class="form-control" type="text" name="name" ng-model="addKH.DaiDienTheoPL_LH" />
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <table border="1" class=" table table-bordered" style="border:solid 1px">
+                                                <caption style="caption-side:top;font-weight:bold">Thông tin người nhận hóa đơn</caption>
+                                                <tr>
+                                                    <th>Tên người nhận</th>
+                                                    <td>
+                                                        <input class="form-control" type="text" name="name" ng-model="addKH.TenNguoiNhan" />
+                                                    </td>
+                                                    <th>Điện thoại</th>
+                                                    <td>
+                                                        <input class="form-control" type="text" name="name" ng-model="addKH.DienThoaiNguoiNhan" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Địa chỉ</th>
+                                                    <td>
+                                                        <input class="form-control" type="text" name="name" ng-model="addKH.DiaChiNguoiNhan" />
+                                                    </td>
+                                                    <th>Email</th>
+                                                    <td>
+                                                        <input class="form-control" type="text" name="name" ng-model="addKH.EmailNguoiNhan" />
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <table border="1" class=" table table-bordered" style="border:solid 1px">
+                                                <caption style="caption-side:top;font-weight:bold">Địa điểm giao hàng</caption>
+                                                <tr>
+                                                    <th>Địa điểm</th>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <textarea class="form-control" ng-model="addKH.DiaDiemGiaoHang"> </textarea>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div ng-show="showcanhan">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active" ng-class="{'active':ttchung==true,'':ttchung==false}"><a ng-click="mottchung()" data-toggle="tab">Thông tin chung</a></li>
+                                        <li ng-class="{'active':khac==true,'':khac==false}"><a ng-click="mokhac()" data-toggle="tab">Khác</a></li>
+                                    </ul>
+                                    <div class="col-md-12 table-responsive" ng-show="ttchung">
+                                        <fieldset class="well">
+                                            <table class="table table-bordered" style="border:solid #ddd 1px">
+                                                <tr>
+                                                    <td><b>Mã (*)</b></td>
+                                                    <td> <input disabled ng-model="addKH.MaKhachHang" type="text" class="form-control"></td>
+
+                                                    <td><b>Xưng hô</b></td>
+                                                    <td>
+                                                        <select class="form-control" type="text" name="name" ng-model="addKH.XungHo">
+                                                            <option disabled value="" selected>Chọn xưng hô</option>
+                                                            <option value="Ông">Ông</option>
+                                                            <option value="Bà">Bà</option>
+                                                            <option value="Anh">Anh</option>
+                                                            <option value="Chị">Chị</option>
+                                                            <option value="Bạn">Bạn</option>
+                                                            <option value="Mr">Mr</option>
+                                                            <option value="Mrs">Mrs</option>
+                                                            <option value="Miss">Miss</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Họ và tên (*)</b></td>
+                                                    <td colspan="3"><input ng-model="addKH.TenKhachHang" type="text" class="form-control"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>Địa chỉ</b></td>
+                                                    <td colspan="3"><input ng-model="addKH.DiaChi" type="text" class="form-control"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>Diễn giải</b></td>
+                                                    <td colspan="3"><input ng-model="addKH.DienGiai" type="text" class="form-control"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Nhóm KH, NCC </b></td>
+                                                    <td colspan="3">
+                                                        <div class="input-group">
+
+                                                            <select style="min-width:144px" class="selectpicker form-control" ng-model="addKH.NhomKH_NCC"
+                                                                    ng-options="item.NhomKH_NCC  as item.TenNhomKH_NCC + ' ('+''+item.NhomKH_NCC +') '   for item in NhomKH">
+                                                                <option disabled value="">Chọn nhóm khách hàng</option>
+                                                            </select>
+
+                                                            <div class="input-group-append">
+                                                                <a class="form-control btn btn-primary text-white"><i class="">  ...</i></a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Mã số thuế </b></td>
+                                                    <td><input ng-model="addKH.MaSoThue" type="text" class="form-control"></td>
+                                                    <td><b>Ngày cấp</b></td>
+                                                    <td><input ng-model="addKH.NgayCap" type="date" class="form-control" ng-model-options="{timezone:'UTC',}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Điện thoại di động</b></td>
+                                                    <td>
+                                                        <div class="input-group">
+                                                            <input ng-model="addKH.DTdidong_LH" type="text" class="form-control">
+                                                        </div>
+                                                    </td>
+                                                    <td><b>Nơi cấp</b></td>
+                                                    <td>
+                                                        <div class="input-group">
+                                                            <input ng-model="addKH.NoiCap" type="text" class="form-control">
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Điện thoại cố định</b></td>
+                                                    <td>
+                                                        <div class="input-group">
+                                                            <input ng-model="addKH.DienThoaiCoDinh_LH" type="text" class="form-control">
+                                                        </div>
+                                                    </td>
+                                                    <td><b>Điều khoản TT</b></td>
+
+                                                    <td>
+                                                        <input ng-model="addKH.DieuKhoanTT" type="text" class="form-control">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Email</b></td>
+                                                    <td>
+                                                        <div class="input-group">
+                                                            <input ng-model="addKH.Email" type="text" class="form-control">
+                                                        </div>
+                                                    </td>
+                                                    <td><b>Số ngày được nợ </b></td>
+
+                                                    <td>
+                                                        <div class="input-group">
+
+                                                            <input ng-model="addKH.SoNgayDuocNo" type="number" class="form-control">
+                                                            &nbsp;&nbsp;&nbsp;
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text">ngày </span>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Số CMND</b></td>
+                                                    <td>
+                                                        <div class="input-group">
+                                                            <input ng-model="addKH.CMND" type="text" class="form-control">
+                                                        </div>
+                                                    </td>
+                                                    <td><b>Số nợ tối đa</b></td>
+                                                    <td>
+                                                        <div class="input-group">
+                                                            <input ng-model="addKH.SoNoToiDa" type="text" class="form-control">
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Nhân viên bán hàng</b></td>
+                                                    <td>
+                                                        <div class="input-group">
+                                                            <input disabled ng-model="addKH.NVBanHang" type="text" class="form-control">
+
+                                                            <select class="selectpicker form-control" ng-model="addKH.NVBanHang"
+                                                                    ng-options="item.MaSoNhanVien  as  '('+''+item.MaSoNhanVien + ') ' +' '+item.HoVaTen  for item in LyLichNhanVien">
+                                                                <option disabled value="">Chọn nhân viên</option>
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-12" ng-show="khac">
+                                        <fieldset class="well">
+                                            <table border="1" class=" table table-bordered" style="border:solid 1px">
+                                                <caption style="caption-side:top;font-weight:bold">Vị trí địa lý</caption>
+                                                <tr>
+                                                <tr>
+                                                    <th>Quốc gia</th>
+                                                    <td>
+                                                        <input class="form-control" type="text" name="name" ng-model="addKH.QuocGia" />
+
+
+                                                    </td>
+                                                    <th>Quận/Huyện</th>
+                                                    <td>
+                                                        <input class="form-control" type="text" name="name" ng-model="addKH.Quan_Huyen" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Tỉnh/TP</th>
+                                                    <td>
+                                                        <input class="form-control" type="text" name="name" ng-model="addKH.Tinh_TP" />
+                                                    </td>
+                                                    <th>Xã/Phường</th>
+                                                    <td>
+                                                        <input class="form-control" type="text" name="name" ng-model="addKH.Xa_Phuong" />
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <table border="1" class=" table table-bordered" style="border:solid 1px">
+                                                <caption style="caption-side:top;font-weight:bold">Địa điểm giao hàng</caption>
+                                                <tr>
+                                                    <th>Địa điểm</th>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <textarea class="form-control" ng-model="addKH.DiaDiemGiaoHang"> </textarea>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </fieldset>
+                                    </div>
+                                </div>
+
+                                <br />
+                                <div class="col-md-12" style="overflow-x:auto;background-color:#f5f5f5" ng-show="ttchung">
+                                    <table border="1" class=" table" style="border:solid 1px">
+                                        <caption style="caption-side:top">Tài khoản ngân hàng</caption>
+                                        <tr style="background:#74b9ff">
+                                            <th>Số tài khoản</th>
+                                            <th>Tên ngân hàng</th>
+                                            <th>Chi nhánh</th>
+                                            <th>Tỉnh/TP của ngân hàng</th>
+
+                                        </tr>
+                                        <tr ng-repeat="item in solanlap1">
+                                            <td><input class="form-control" ng-model="addNganHang[$index].MaTaiKhoan" type="text" name="name" value="" ng-change="addMaTK(addNganHang[$index].MaTaiKhoan,$index)" /></td>
+                                            <td><input class="form-control" ng-model="addNganHang[$index].TenNganHang" type="text" name="name" value="" /></td>
+                                            <td><input class="form-control" ng-model="addNganHang[$index].ChiNhanh" type="text" name="name" value="" /></td>
+                                            <td><input class="form-control" ng-model="addNganHang[$index].TinhTP" type="text" name="name" value="" /></td>
+                                        </tr>
+
+                                    </table>
+                                    <button type="button" class="btn btn-primary " ng-click="themdong1()" style="background:#74b9ff;">Thêm dòng</button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+                                </div>
+
+
+                            </div>
+
+
+
+
+                            <div class="col-md-6 col-md-offset-3 justify-content-center btn-block text-center">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>&nbsp;&nbsp;&nbsp;
+                                <button type="submit" class="btn btn-primary">Lưu</button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal fade bs-example-modal-lg2" id="stack2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false" data-keyboard="false" data-focus-on="input:first">
+            <div class="modal-dialog modal-lg" role="document" style="max-width: 1205px;">
+                <div class="modal-content" style="border-radius: 10px;
+                     ">
+                    <div class="modal-header">
+                        <h3 style="text-align:center;color:red">Thêm nhân viên</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                            <span aria-hidden="true" style="color:red">&times; Đóng</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+
+                            <div class=" col-md-12 justify-content-end">
+                                <div class="input-group justify-content-end">
+
+                                    <div class="input-group-append">
+
+                                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                                        <label for="vehicle1"> Là khách hàng</label><br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+                                        <label for="vehicle2"> Là nhà cung cấp</label><br>
+
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 table-responsive">
+                                <fieldset class="well">
+                                    <legend class="well-legend">1. Thông tin chung</legend>
+                                    <table class="table table-bordered" style="border:solid #ddd 1px">
+
+                                        <tr>
+                                            <td width="8%"><b>Mã (*)</b></td>
+                                            <td> <input disabled ng-model="addNV.MaSoNhanVien" type="text" class="form-control"></td>
+                                            <td><b>Chức danh</b></td>
+                                            <td> <input disabled type="text" class="form-control"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Tên (*)</b></td>
+                                            <td><input ng-model="addNV.HoVaTen" type="text" class="form-control"></td>
+                                            <td><b>Đơn vị (*)</b></td>
+                                            <td><input disabled type="text" class="form-control"></td>
+                                        </tr>
+                                        <tr>
+                                            <td> <b>Giới tính</b></td>
+                                            <td>
+                                                <input type="radio" id="male" name="gender" ng-model="addNV.GioiTinh" value="Nam">
+                                                <label for="male">Nam</label> &nbsp;&nbsp;&nbsp;&nbsp;
+                                                <input type="radio" id="female" name="gender" ng-model="addNV.GioiTinh" value="Nữ">
+                                                <label for="female">Nữ</label>
+                                            </td>
+                                            <td><b>Mã số thuế</b></td>
+                                            <td><input ng-model="addNV.MaSoThue" type="text" class="form-control"></td>
+                                        </tr>
+                                        <tr>
+                                            <td> <b>Ngày sinh</b></td>
+                                            <td><input ng-model="addNV.NgaySinh" type="date" class="form-control" ng-model-options="{timezone:'UTC',}"></td>
+                                            <td> <b>Lương thỏa thuận</b></td>
+                                            <td><input disabled type="text" class="form-control"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Số CMND</b></td>
+                                            <td><input ng-model="addNV.SoCMND" type="text" class="form-control"></td>
+                                            <td><b>Hệ số lương</b></td>
+                                            <td><input disabled type="text" class="form-control"></td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td> <b>Ngày cấp</b></td>
+                                            <td><input ng-model="addNV.NgayCapCMND" type="date" class="form-control" ng-model-options="{timezone:'UTC',}"></td>
+                                            <td> <b>Lương đóng bảo hiểm</b></td>
+                                            <td><input disabled type="text" class="form-control"></td>
+                                        </tr>
+                                        <tr>
+                                            <td> <b>Nơi cấp</b></td>
+                                            <td><input ng-model="addNV.NoiCapCMND" type="text" class="form-control"></td>
+                                            <td> <b>Số người phụ thuộc</b></td>
+                                            <td><input disabled type="text" class="form-control"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Nhóm KH, NCC </b></td>
+                                            <td colspan="3">
+                                                <div class="input-group">
+
+                                                    <select disabled style="min-width:144px" class="selectpicker form-control">
+                                                    </select>
+
+                                                    <div class="input-group-append">
+                                                        <a ng-click="getbykeyword(keyword)" class="form-control btn btn-primary text-white"><i class="">  ...</i></a>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                    </table>
+                                </fieldset>
+                            </div>
+
+                        </div>
+
+                        <br />
+                        <div class="col-md-12" style="background-color:#f5f5f5">
+                            <table border="1" class=" table" style="border:solid 1px">
+                                <caption style="caption-side:top">Tài khoản ngân hàng</caption>
+                                <tr style="background:#74b9ff">
+                                    <th>Số tài khoản</th>
+                                    <th>Tên ngân hàng</th>
+                                    <th>Chi nhánh</th>
+                                    <th>Tỉnh/TP của ngân hàng</th>
+
+                                </tr>
+                                <tr>
+                                    <td><input class="form-control" ng-model="addNV.SoTaiKhoanNganHang" type="text" name="name" value="" /></td>
+                                    <td><input class="form-control" ng-model="addNV.TenNganHang" type="text" name="name" value="" /></td>
+                                    <td><input class="form-control" ng-model="addNV.ChiNhanh" type="text" name="name" value="" /></td>
+                                    <td><input disabled class="form-control" type="text" name="name" value="" /></td>
+
+                                </tr>
+
+                            </table>
+
+                        </div>
+
+
+
+                        <div class="col-md-6 col-md-offset-3 justify-content-center btn-block text-center">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>&nbsp;&nbsp;&nbsp;
+                            <button type="button" class="btn btn-primary" ng-click="LuuNhanVien()">Lưu</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal fade bs-example-modal-lg3" id="stack2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false" data-keyboard="false" data-focus-on="input:first">
+            <div class="modal-dialog modal-lg" role="document" style="max-width: 1205px;">
+                <div class="modal-content" style="border-radius: 10px;
+                     ">
+                    <div class="modal-header">
+                        <h3 style="text-align:center;color:red">Thêm hàng hóa</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                            <span aria-hidden="true" style="color:red">&times; Đóng</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12 table-responsive">
+                                <fieldset class="well">
+                                    <legend class="well-legend">Thông tin chung</legend>
+                                    <table class="table table-bordered" style="border:solid #ddd 1px">
+
+                                        <tr>
+                                            <td width="15%"><b>Mã (*)</b></td>
+                                            <td> <input disabled ng-model="addHH.MaHang" type="text" class="form-control"></td>
+                                            <td><b>Tên (*)</b></td>
+                                            <td> <input ng-model="addHH.TenHang" type="text" class="form-control" ng-change="GetSeoTitle()"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Tính chất (*)</b></td>
+                                            <td>
+                                                <select style="min-width:144px" class="selectpicker form-control" ng-model="addHH.MaTinhChat"
+                                                        ng-options="item.MaTinhChat  as item.TenTinhChat   for item in AllTinhChatHangHoa">
+                                                    <option disabled value="">Chọn tính chất hàng hóa</option>
+                                                </select>
+                                            </td>
+                                            <td><b>Nhóm VTHH</b></td>
+                                            <td>
+                                                <div class="input-group">
+
+                                                    <input disabled type="text" class="form-control">
+
+                                                    <div class="input-group-append">
+                                                        <a class="form-control btn btn-primary text-white"><i class="">  ...</i></a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td> <b>Mô tả</b></td>
+                                            <td colspan="3">
+                                                <textarea ng-model="addHH.MoTa" class="form-control"></textarea>
+
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td> <b>ĐVT chính</b></td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <div class="input-group-append">
+                                                        <input disabled ng-model="addHH.DonViTinh" type="text" class="form-control">
+                                                    </div>
+                                                    <div class="input-group-append">
+                                                        <a data-toggle="modal" data-target=".bs-example-modal-lg1" class=" form-control btn btn-primary text-white"><i class=" fa fa-plus"></i></a>
+                                                    </div>
+                                                    <select class="selectpicker form-cont rol" ng-model="addHH.DonViTinh">
+
+                                                        <option disabled value="">Chọn đơn vị tính</option>
+                                                        <option value="VND">VND</option>
+                                                        <option value="USD">USD</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td colspan="2">
+                                                <a class="form-control btn btn-primary text-white">Công thức tính số lượng...</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td> <b>Thời hạn BH</b></td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <div class="input-group-append">
+                                                        <input disabled type="text" class="form-control">
+                                                    </div>
+                                                    <div class="input-group-append">
+                                                        <a data-toggle="modal" data-target=".bs-example-modal-lg1" class=" form-control btn btn-primary text-white"><i class=" fa fa-plus"></i></a>
+                                                    </div>
+                                                    <select disabled class="selectpicker form-cont rol">
+
+                                                        <option disabled value="">Chọn thời hạn</option>
+
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td colspan="2">
+                                                <div class="input-group">
+
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">Số lượng tồn tối thiểu</span>
+                                                    </div>&nbsp;&nbsp;
+
+                                                    <input type="text" placeholder="0.00" class="form-control">
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td> <b>Nguồn gốc</b></td>
+                                            <td colspan="3"><input ng-model="addHH.NguonGoc" type="text" class="form-control"></td>
+
+                                        </tr>
+                                        <tr>
+                                            <td> <b>Diễn giải khi mua</b></td>
+                                            <td colspan="3"><input disabled type="text" class="form-control"></td>
+
+                                        </tr>
+                                        <tr>
+                                            <td> <b>Diễn giải khi bán</b></td>
+                                            <td colspan="3"><input disabled type="text" class="form-control"></td>
+
+                                        </tr>
+
+                                    </table>
+                                </fieldset>
+                            </div>
+
+                        </div>
+
+                        <br />
+
+
+
+
+                        <div class="col-md-6 col-md-offset-3 justify-content-center btn-block text-center">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>&nbsp;&nbsp;&nbsp;
+                            <button type="button" class="btn btn-primary" ng-click="LuuHH()">Lưu</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

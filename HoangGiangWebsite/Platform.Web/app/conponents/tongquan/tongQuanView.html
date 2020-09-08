@@ -1,0 +1,188 @@
+﻿
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li><a ui-sref="tongquan">Tổng quan</a></li>
+    </ol>
+</section>
+<!--{{authentication.ChucVu[0].MaChucVu}}-->
+<!-- Main content -->
+<div class="container-fluid " style="background-color:#d6d4ce">
+    <div class=" row">
+        <div class="col-md-12 mt-2" style="background-color:white;border-radius:5px;">
+            <h4 class="text-left">KẾT QUẢ BÁN HÀNG HÔM NAY</h4>
+            <table class="table border-right" style="float:left;width:15%">
+                <tr>
+                    <td width="15%" rowspan="3" style="vertical-align:middle;border-top:none"> <i style="color: #007bff;font-size: 20px;" class="fas ">&#xf155;</i></td>
+                    <td class="text-left " style="border-top:none"><b>{{demhoadon}} hóa đơn</b></td>
+                </tr>
+                <tr>
+                    <td class="text-left" style="font-size:30px;color:#007bff;border-top:none">{{danhthuhomnay|number}}</td>
+                </tr>
+                <tr>
+                    <td class="text-left" style="color:darkgrey;border-top:none">Doanh thu thuần</td>
+                </tr>
+
+            </table>
+            <table class="table border-right" style="float:left;width:15%">
+                <tr>
+                    <td width="15%" rowspan="3" style="vertical-align:middle;border-top:none"> <i style="color:orangered;font-size:20px" class="fas ">&#xf122;</i></td>
+                    <td class="text-left" style="border-top:none"><b>{{demhoadontrahang}} phiếu</b></td>
+                </tr>
+                <tr>
+                    <td class="text-left" style="font-size:30px;color:orangered;border-top:none">{{danhthuhomnaytrahang|number}}</td>
+                </tr>
+                <tr>
+                    <td class="text-left" style="color: darkgrey;border-top:none">Trả hàng</td>
+                </tr>
+
+            </table>
+            <table class="table border-right" style="float:left;width:15%">
+                <tr>
+                    <td width="15%" rowspan="3" style="vertical-align:middle;border-top:none">
+                        <i ng-show="(((danhthuhomnay)-(danhthuhomhomqua))/(danhthuhomhomqua))>0" style="color:deeppink;font-size:20px" class="fas ">&#xf062;</i>
+                        <i ng-show="(((danhthuhomnay)-(danhthuhomhomqua))/(danhthuhomhomqua))<0" style="color:deeppink;font-size:20px" class="fas ">&#xf063;</i>
+                    </td>
+                    <td class="text-left" style="height: 33.6px;border-top:none"><b></b></td>
+                </tr>
+                <tr>
+                    <td class="text-left" style="font-size:30px;color:deeppink;border-top:none">{{((danhthuhomnay)-(danhthuhomhomqua))/(danhthuhomhomqua)|number:2}}%</td>
+                </tr>
+                <tr>
+                    <td class="text-left" style="color:darkgrey;border-top:none">So với hôm qua</td>
+                </tr>
+
+            </table>
+            <table class="table " style="float:left;width:15%">
+                <tr>
+                    <td width="15%" rowspan="3" style="vertical-align:middle;border-top:none">
+                        <i ng-show="(((danhthuhomnay)-(danhthuhomthangtruoc))/(danhthuhomthangtruoc))>0" style="color:cyan;font-size:20px" class="fas ">&#xf062;</i>
+                        <i ng-show="(((danhthuhomnay)-(danhthuhomthangtruoc))/(danhthuhomthangtruoc))<0" style="color:cyan;font-size:20px" class="fas ">&#xf063;</i>
+                    </td>
+                    <td class="text-left" style="height:33.6px;border-top:none"><b></b></td>
+                </tr>
+                <tr>
+                    <td class="text-left" style="font-size:30px;color:cyan;border-top:none">{{((danhthuhomnay)-(danhthuhomthangtruoc))/(danhthuhomthangtruoc)|number:2}}%</td>
+                </tr>
+                <tr>
+                    <td class="text-left" style="color:darkgrey;border-top:none">So với cùng kỳ tháng trước</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+        <div class="col-md-8 mt-5" style="background-color:white;border-radius:5px;width:98%!important">
+
+            <div class="mt-2">
+                <h4 class="text-left" style="width:50%;float:left;text-transform:uppercase">DOANH THU THUẦN {{textselect}} &nbsp;&nbsp;&nbsp;<i class="fas fa-arrow-right"></i> <span style="color:#007bff">{{(danhthutheoselect)|number}}</span></h4>
+                <div class="pull-right">
+                    <select class="form-control" ng-model="select" ng-change="setupngay()">
+                        <option value="homnay">Hôm nay</option>
+                        <option value="homqua">Hôm qua</option>
+                        <option value="7ngayqua">7 ngày qua</option>
+                        <option value="thangnay">Tháng này</option>
+                        <option value="thangtruoc">Tháng trước</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                
+                <ul class="nav nav-tabs">
+                    <li ng-class="{active: theongay==true,'':theongay==false}"><a ng-click="theongay=true;theogio=false;theothu=false;gettheongay()" data-toggle="tab">Theo ngày</a></li>
+                    <li ng-class="{active:theogio==true,'':theogio==false}"><a ng-click="theongay=false;theogio=true;theothu=false;gettheogio()" data-toggle="tab">Theo giờ</a></li>
+                    <li ng-class="{active:theothu==true,'':theothu==false}"><a ng-click="theongay=false;theogio=false;theothu=true;gettheothu()" data-toggle="tab">Theo thứ</a></li>
+                </ul>
+                <canvas id="bar" class="chart chart-bar" chart-colors="colors" chart-data="datatest" chart-labels="labels" chart-series="series" chart-legend="true" chart-options="options">
+                </canvas>
+            </div>
+
+            <div class="col-md-12" style="height:50px;background-color:#d6d4ce;width:100%!important;padding:0!important"></div>
+
+
+            <div class="mt-2">
+                <h4 class="text-left" style="width:80%;float:left;text-transform:uppercase;margin-top:5px">DOANH THU THUẦN THEO CHI NHÁNH {{textselect1}} &nbsp;&nbsp;&nbsp;<i class="fas fa-arrow-right"></i> <span style="color:#007bff">{{(danhthutheoselectcs)|number}}</span></h4>
+                <div class="pull-right" style=";margin-top:5px">
+                    <select class="form-control" ng-model="select1" ng-change="setupngay1()">
+                        <option value="homnay">Hôm nay</option>
+                        <option value="homqua">Hôm qua</option>
+                        <option value="7ngayqua">7 ngày qua</option>
+                        <option value="thangnay">Tháng này</option>
+                        <option value="thangtruoc">Tháng trước</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <canvas id="pie" class="chart chart-pie"
+                        chart-data="datacs" chart-labels="labelscs" chart-legend="true" chart-series="seriescs" chart-options="optionscs">
+                </canvas>
+            </div>
+
+            <div class="col-md-12" style="height:50px;background-color:#d6d4ce;width:100%!important;padding:0!important"></div>
+
+
+            <div class="mt-2">
+                <h4 class="text-left" style="width:80%;float:left;text-transform:uppercase;margin-top:5px">
+                    TOP 10 HÀNG HÓA BÁN CHẠY {{textselect2}} &nbsp;&nbsp;&nbsp;
+                    <select class="form-control" style="display:inline!important;width:auto!important" ng-model="orderby" ng-change="getorderby()">
+                        <option value="doanhthu">THEO DOANH THU</option>
+                        <option value="soluong">THEO SỐ LƯỢNG</option>
+
+                    </select>
+                </h4>
+                <div class="pull-right" style=";margin-top:5px">
+                    <select class="form-control" ng-model="select2" ng-change="setupngay2()">
+                        <option value="homnay">Hôm nay</option>
+                        <option value="homqua">Hôm qua</option>
+                        <option value="7ngayqua">7 ngày qua</option>
+                        <option value="thangnay">Tháng này</option>
+                        <option value="thangtruoc">Tháng trước</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <canvas id="base" class="chart-horizontal-bar"
+                        chart-data="datatop10" chart-labels="labelstop10" chart-options="optionstop10">
+                </canvas>
+            </div>
+
+
+        </div>
+
+        <div class="col-md-4 mt-5" style="background-color:white;border-radius:5px;max-width:31%!important;right:-1.5%">
+            <DIV class="mt-2">
+                <h4 class="text-left" style="width:50%;float:left">CÁC HOẠT ĐỘNG GẦN ĐÂY </h4>
+                &nbsp;&nbsp;&nbsp;
+                <span ng-show="98<=authentication.ChucVu[0].MaChucVu&&authentication.ChucVu[0].MaChucVu<=99">
+                    <select class="form-control" style="display:inline!important;width:auto!important" ng-model="loccoso" ng-options="i.MaCoSo as i.TenCoSo for i in timeline|unique:'TenCoSo'">
+                        <option value="" disabled>Chọn cơ sở</option>
+                    </select>
+                </span>
+                <br />
+            </DIV>
+            <HR />
+            <div id="tracking">
+
+                <div class="tracking-list">
+                    <div class="tracking-item" ng-repeat="item in timeline|filter:{MaCoSo:loccoso}">
+                        <div class="tracking-icon status-intransit">
+
+                            <i style="font-size: 14px;color: #007bff;" class="fas fa-paste" ng-show="(item.Ma.indexOf('BH')>-1)"></i>
+                            <i style="font-size: 14px;color: deeppink;" class="fas fa-flip-horizontal" ng-show="(item.Ma.indexOf('NK')>-1)">&#xf122;</i>
+                            <i style="font-size: 14px;color: cyan;" class="fas fa-flip-horizontal" ng-show="(item.Ma.indexOf('NK')==-1)&&(item.Ma.indexOf('BH')==-1)">&#xf122;</i>
+                        </div>
+                        <div class="tracking-date">{{item.Ngay|date:'dd/MM/yyyy '}}<span>{{item.Ngay|date:'hh:mm:ss a '}}</span></div>
+                        <div class="tracking-content" ng-show="(item.Ma.indexOf('NK')>-1)||(item.Ma.indexOf('BH')>-1)"><a style="color:#007bff">{{item.HoVaTen}}</a> vừa <a style="color:#007bff">{{gettentimeline(item.Ma)}}</a> với giá trị <b>{{item.Tien}}</b><span></span></div>
+                        <div class="tracking-content" ng-show="(item.Ma.indexOf('NK')==-1)&&(item.Ma.indexOf('BH')==-1)"><a style="color:#007bff">{{item.HoVaTen}}</a> vừa <a style="color:#007bff">{{gettentimeline(item.Ma)}}</a> <span></span></div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>

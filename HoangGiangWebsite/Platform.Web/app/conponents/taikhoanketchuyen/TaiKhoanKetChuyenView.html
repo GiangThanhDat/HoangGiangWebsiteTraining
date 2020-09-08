@@ -1,0 +1,308 @@
+﻿<!-- Content Header (Page header) -->
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li><a href="">kế toán</a></li>
+        <li><a href="">Danh mục</a></li>
+        <li><a ui-sref="taikhoanketchuyen">Tài khoản kết chuyển</a></li>
+
+    </ol>
+</section>
+
+{{changedata}}
+<div class=" container-fluid">
+    <div class="row">
+        <div class=" col-md-12">
+            <h1 style="margin:20px 0px;text-align:center">Xem tài khoản kết chuyển</h1>
+
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-11 table-responsive" style="margin:auto">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr style="background:#74b9ff">
+
+
+
+                            <th>Thứ tự kết chuyển</th>
+                            <th>Mã kết chuyển</th>
+                            <th>Kết chuyển từ</th>
+                            <th>Kết chuyển đến</th>
+                            <th>Bên kết chuyển</th>
+                            <th>Diễn giải</th>
+                            <th>Loại kết chuyển</th>
+                            <th>Ngừng theo dõi</th>
+                            <th>Xem chi tiết</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat=" i in AllView">
+                            <td>{{i.ThuTuKetChuyen}}</td>
+                            <td>{{i.MaKetChuyen}}</td>
+                            <td>{{i.KetChuyenTu}}</td>
+                            <td>{{i.KetChuyenDen}}</td>
+                            <td>{{i.BenKetChuyen}}</td>
+                            <td>{{i.DienGiai}}</td>
+                            <td style="">{{i.LoaiKetChuyen}}</td>
+                            <td><input ng-if="i.NgungTheoDoi==true" id="change" ng-click="changeNgungTheoDoi(i.Id,$index)" ng-checked="true" type="checkbox"><input ng-click="changeNgungTheoDoi(i.Id)" id="change" ng-if="i.NgungTheoDoi==false" ng-checked="false" type="checkbox"> </td>
+                            <td><input type="button" class=" btn btn-primary" ng-click="XemChiTiet(i.Id)" value="Xem chi tiết" /></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <input type="button" class=" btn btn-primary" ng-click="showcreate()" value="Thêm mới" />
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+    <div class="row" id="of">
+
+
+        <div class="modal fade bs-example-modal-lg" id="off" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false" data-keyboard="false" data-focus-on="input:first">
+
+            <div class="modal-dialog modal-lg" role="document" style="max-width: 700px;">
+                <div class="modal-content" style="border-radius: 10px;min-height:300px;margin:50% 0%
+                     ">
+                    <div class="modal-header">
+                        <h3 style="text-align:center;color:red">Sửa tài khoản kết chuyển</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Đóng" ng-click="huy()">
+                            <span aria-hidden="true" style="color:red">&times; Đóng</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="form1" class="form-horizontal" role="form" data-toggle="validator" ng-submit="save()">
+                            <div class=" row">
+                                <div class="col-md-12 table-responsive">
+                                    <fieldset class="well">
+
+
+                                        <table class="table table-bordered" style="border:solid #ddd 1px">
+                                            <tr>
+                                                <td> <b>Thứ tự kết chuyển <span class="has-error text-left">(*)</span></b></td>
+                                                <td width="85%">
+                                                    <div class="input-group">
+
+                                                        <input disabled ng-model="singer.ThuTuKetChuyen" type="text" class="form-control">
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><b>Mã kết chuyển <span class="has-error text-left">(*)</span></b></td>
+                                                <td>
+                                                    <div class="input-group">
+
+                                                        <input required ng-model="singer.MaKetChuyen" type="text" class="form-control">
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td> <b>Kết chuyển từ</b></td>
+                                                <td width="85%">
+                                                    <div class="input-group">
+
+                                                        <input required ng-model="singer.KetChuyenTu" type="text" class="form-control">
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Kết chuyển đến</b></td>
+                                                <td>
+                                                    <textarea style="width:100%" ng-model="singer.KetChuyenDen"></textarea>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Bên kết chuyển</b></td>
+                                                <td>
+                                                    <textarea style="width:100%" ng-model="singer.BenKetChuyen"></textarea>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Diễn giải</b></td>
+                                                <td>
+                                                    <textarea style="width:100%" ng-model="singer.DienGiai"></textarea>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Loại kết chuyển</b></td>
+                                                <td>
+                                                    <textarea style="width:100%" ng-model="singer.LoaiKetChuyen"></textarea>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><b>Ngừng theo dõi</b></td>
+                                                <td>
+                                                    <div class="input-group">
+
+                                                        <input type="checkbox" id="edit">
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+
+                                        </table>
+
+                                    </fieldset>
+                                </div>
+
+                            </div>
+                            <div class=" row" style="margin:10px 0px">
+                                <div class=" col-md-9"></div>
+                                <div class=" col-md-2">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <button type="submit" class="btn btn-primary">Lưu</button> &nbsp;&nbsp;
+                                        <button type="button" ng-click="huy()" class="btn btn-danger" data-dismiss="modal">Hủy</button> &nbsp;&nbsp;
+
+
+                                    </div>
+                                </div>
+                                <div class=" col-md-1"></div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+    <div class="row" id="of">
+
+
+        <div class="modal fade bs-example-modal-lg1" id="off" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false" data-keyboard="false" data-focus-on="input:first">
+
+            <div class="modal-dialog modal-lg" role="document" style="max-width: 700px;">
+                <div class="modal-content" style="border-radius: 10px;min-height:300px;margin:50% 0%
+                     ">
+                    <div class="modal-header">
+                        <h3 style="text-align:center;color:red">Thêm tài khoản kết chuyển</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Đóng" ng-click="huy()">
+                            <span aria-hidden="true" style="color:red">&times; Đóng</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="form1" class="form-horizontal" role="form" data-toggle="validator" ng-submit="create()">
+                            <div class=" row">
+                                <div class="col-md-12 table-responsive">
+                                    <fieldset class="well">
+
+
+                                        <table class="table table-bordered" style="border:solid #ddd 1px">
+                                            <tr>
+                                                <td> <b>Thứ tự kết chuyển <span class="has-error text-left">(*)</span></b></td>
+                                                <td width="85%">
+                                                    <div class="input-group">
+
+                                                        <input required ng-model="Add.ThuTuKetChuyen" type="text" class="form-control">
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><b>Mã kết chuyển<span class="has-error text-left">(*)</span></b></td>
+                                                <td>
+                                                    <div class="input-group">
+
+                                                        <input required ng-model="Add.MaKetChuyen" type="text" class="form-control">
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td> <b>Kết chuyển từ</b></td>
+                                                <td width="85%">
+                                                    <div class="input-group">
+
+                                                        <input required ng-model="Add.KetChuyenTu" type="text" class="form-control">
+
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Kết chuyển đến</b></td>
+                                                <td>
+
+                                                    <input required ng-model="Add.KetChuyenDen" type="text" class="form-control">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Bên kết chuyển</b></td>
+                                                <td>
+
+                                                    <input required ng-model="Add.BenKetChuyen" type="text" class="form-control">
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><b>Diễn giải</b></td>
+                                                <td>
+                                                    <textarea style="width:100%" ng-model="Add.DienGiai"></textarea>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Loại kết chuyển</b></td>
+                                                <td>
+
+                                                    <input required ng-model="Add.LoaiKetChuyen" type="text" class="form-control">
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td colspan="2">
+                                                    <div class="input-group">
+                                                        <label>Theo dõi</label>&nbsp;&nbsp;&nbsp;
+                                                        <input type="checkbox" id="action" value="1">
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+
+                                        </table>
+
+                                    </fieldset>
+                                </div>
+
+                            </div>
+                            <div class=" row" style="margin:10px 0px">
+                                <div class=" col-md-9"></div>
+                                <div class=" col-md-2">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <button type="submit" class="btn btn-primary">Lưu</button> &nbsp;&nbsp;
+                                        <button type="button" class="btn btn-danger" ng-click="huy()" data-dismiss="modal">Hủy</button> &nbsp;&nbsp;
+
+
+                                    </div>
+                                </div>
+                                <div class=" col-md-1"></div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>

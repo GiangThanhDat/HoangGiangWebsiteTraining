@@ -1,0 +1,91 @@
+﻿  <!-- Content Header (Page header) -->
+<section class="content-header">
+
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li><a ui-sref="nhaptaisan">Nhập tài sản </a></li>
+
+    </ol>
+</section>
+
+<!-- Main content -->
+<form class="form-horizontal" data-toggle="validator" name="formtestngongngu" role="form" ng-submit="getAddTaiSan()">
+    <div class="container-fluid" style="margin-bottom:20px">
+        <h1 style="margin-bottom:20px;text-align:center">Nhập tài sản </h1>
+        <div class="row">
+
+            <div class="col-md-12" style="margin:auto">
+                <div class="table-responsive ">
+                    <table class="table  table-bordered chu">
+                        <tr style="background:#74b9ff">
+                            <th width="6%">Mã tài sản </th>
+
+                            <th>Ngày nhập kho</th>
+                            <th>Ngày bắt đầu sử dụng</th>
+                            <th>Ngày hết hạn</th>
+                            <th>Cơ sở</th>
+                            <th>Kiểu tài sản</th>
+                            <th>Mô tả chi tiết</th>
+                            <th>Tình trạng</th>
+                            <th>Ngày nhập liệu</th>
+                            <th>Người nhập</th>
+                            <th>Người quản lý tài sản</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input disabled ng-model="NhapTaiSan.MaTaiSan" type="text" />
+                            </td>
+                            <td>
+                                <input required ng-model="NhapTaiSan.NgayNhap" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+                            </td>
+                            <td>
+                                <input required ng-model="NhapTaiSan.NgayBatDauSuDung" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+                            </td>
+                            <td>
+                                <input required ng-model="NhapTaiSan.NgayHetHan" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+                            </td>
+                            <td>
+                                <select class="selectpicker form-control" ng-model="MaSoCoSo" ng-change="getmasocoso(MaSoCoSo)" required
+                                        ng-options="item.MaCoSo  as  '('+' '+item.MaCoSo + ') ' +' '+item.TenCoSo  for item in getALLCoSo">
+                                    <option disabled value="">Chọn cơ sở</option>
+                                </select>
+
+                            </td>
+                            <td>
+                                <input required ng-model="NhapTaiSan.KieuTaiSan " type="text" />
+                            </td>
+                            <td>
+                                <input required ng-model="NhapTaiSan.MoTaChiTiet" type="text" />
+                            </td>
+                            <td>
+                                <input required ng-model="NhapTaiSan.TinhTrang" type="text" />
+                            </td>
+                            <td>
+                                {{newDate|date:"dd/MM/yyyy"}}
+                            </td>
+                            <td>
+                                ({{authentication.userName}}) {{tennhanvien}}
+                            </td>
+                            <td>
+                                <select class="selectpicker form-control" ng-model="saveMaSoNhanVien" ng-change="getMaSoNhanVien(saveMaSoNhanVien)" required
+                                        ng-options="item.MaSoNhanVien  as  '('+' '+item.MaSoNhanVien + ') ' +' '+item.HoVaTen+ '('+' '+item.TenCoSo + ') '  for item in LyLichNhanVien">
+                                    <option disabled value="">Chọn nhân viên</option>
+                                </select>
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="row" style="margin-top:10px">
+        <div class="col-md-1  btn-group " style="margin:auto">
+            <button type="submit" class="btn btn-primary " >Lưu</button>
+            <button type="button" class="btn btn-danger" ng-click="huy()">Hủy</button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,94 @@
+﻿  <!-- Content Header (Page header) -->
+<section class="content-header">
+
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li><a ui-sref="the">Thẻ</a></li>
+
+    </ol>
+</section>
+<div class="container-fluid" style="margin-bottom:20px">
+    <h1 style="margin-bottom:20px;text-align:center">Thẻ đang quản lý</h1>
+    <div class="row">
+
+        <div class="col-md-10" style="margin:auto">
+            <div class="table-responsive">
+                <table class="table  table-bordered chu">
+                    <tr style="background:#74b9ff">
+                        <th>Mã số nhân viên</th>
+                        <th>Tên nhân viên</th>
+
+                        <th>Mã thẻ </th>
+                        <th>Loại thẻ</th>
+                        <th>Ngày yêu cầu </th>
+                        <th>Ngày cấp</th>
+                        <th>Ngày hết hạn</th>
+                        <th>Trạng thái</th>
+
+
+
+
+                    </tr>
+                    <tr ng-repeat=" item in The">
+                        <th>{{item.MaSoNhanVien}}</th>
+                        <th>{{tennhanvien}}</th>
+
+
+
+                        <td>
+
+
+                            <input ng-show="Edit " ng-model="The[$index].MaThe" type="text" />
+                            <span ng-show="hide">{{item.MaThe}}</span>
+
+
+                        </td>
+
+                        <td>
+
+                            <input ng-show="Edit " ng-model="The[$index].LoaiThe" type="text" />
+                            <span ng-show="hide">{{item.LoaiThe}}</span>
+
+                        </td>
+                        <td>
+                            <input ng-show="Edit " ng-model="The[$index].NgayYeuCau" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+                            <span ng-show="hide">{{item.NgayYeuCau |date:'dd/MM/yyyy'}}</span>
+
+                        </td>
+                        <td>
+                            <input ng-show="Edit " ng-model="The[$index].NgayCap" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+                            <span ng-show="hide">{{item.NgayCap |date:'dd/MM/yyyy'}}</span>
+
+                        </td>
+                        <td>
+                            <input ng-show="Edit " ng-model="The[$index].NgayHetHan" style="height:22px" type="date" ng-model-options="{timezone:'UTC',}" />
+                            <span ng-show="hide">{{item.NgayHetHan  |date:'dd/MM/yyyy'}}</span>
+
+                        </td>
+                        <td>
+                            <input ng-show="Edit " ng-model="The[$index].TrangThai" type="text" />
+                            <span ng-show="hide">{{item.TrangThai }}</span>
+
+                        </td>
+
+
+
+                    </tr>
+
+
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--<div class="center-block  text-center">
+    <button type="submit" class="btn btn-primary " style="background:#74b9ff;" ng-click="mobang()">Thay đổi thông tin cá nhân</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</div>
+<div class="row" style="margin-top:10px" ng-show="save">
+    <div class="col-md-5" style="margin-left:710px">
+        <button type="button" class="btn btn-primary " ng-disabled="form.$invalid" ng-click="UpDateThe()">Lưu</button>
+        <button type="submit" class="btn btn-danger" ng-show="closehuy" ng-click="huy()">Hủy</button>
+    </div>
+</div>-->

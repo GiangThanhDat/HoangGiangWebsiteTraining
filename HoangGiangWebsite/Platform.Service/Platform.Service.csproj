@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{37A89048-9465-4793-816C-62D806EEF304}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Platform.Service</RootNamespace>
+    <AssemblyName>Platform.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationGroupService.cs" />
+    <Compile Include="ApplicationRoleService.cs" />
+    <Compile Include="DonViTinhService.cs" />
+    <Compile Include="HangHoa_DonViTinhService.cs" />
+    <Compile Include="DinhKhoanTuDongService.cs" />
+    <Compile Include="HeThongTaiKhoanService.cs" />
+    <Compile Include="TaiKhoanKetChuyenService.cs" />
+    <Compile Include="CoCauToChucService.cs" />
+    <Compile Include="LoaiCongCuDungCuService.cs" />
+    <Compile Include="LoaiTaiSanCoDinhService.cs" />
+    <Compile Include="NhomHangHoaService.cs" />
+    <Compile Include="LapRapThaoDoService.cs" />
+    <Compile Include="ChiTietTraLaiHangBanService.cs" />
+    <Compile Include="ChiTietPhieuNhapKhoService.cs" />
+    <Compile Include="ChiTietLapRapThaoDoService.cs" />
+    <Compile Include="LenhSanXuat_NVLService.cs" />
+    <Compile Include="LenhSanXuat_ThanhPhamService.cs" />
+    <Compile Include="LenhSanXuatService.cs" />
+    <Compile Include="ThanhPhamService.cs" />
+    <Compile Include="PhieuNhapKhoService.cs" />
+    <Compile Include="TraLaiHangBanService.cs" />
+    <Compile Include="GiamGiaHangBanService.cs" />
+    <Compile Include="ChiTietGiamGiaHangBanService.cs" />
+    <Compile Include="HoaDon_BanHangService.cs" />
+    <Compile Include="ChiTietHoaDon_BanHangService.cs" />
+    <Compile Include="PhieuXuat_BanHangService.cs" />
+    <Compile Include="ChiTietPhieuXuat_BanHangService.cs" />
+    <Compile Include="ChiTietChungTuBanHangService.cs" />
+    <Compile Include="ChungTuBanHangService.cs" />
+    <Compile Include="DonDatHangService.cs" />
+    <Compile Include="BaoGiaService.cs" />
+    <Compile Include="ChiTietDonDatHangService.cs" />
+    <Compile Include="ChiTietChungTuMuaDichVuService.cs" />
+    <Compile Include="ChiTietChungTuMuaHangService.cs" />
+    <Compile Include="ChiTietGiamGiaHangMuaService.cs" />
+    <Compile Include="ChiTietTraLaiHangMuaService.cs" />
+    <Compile Include="ChungTuMuaDichVuService.cs" />
+    <Compile Include="ChiTietBaoGiaService.cs" />
+    <Compile Include="GiamGiaHangMuaService.cs" />
+    <Compile Include="DichVuService.cs" />
+    <Compile Include="TraLaiHangMuaService.cs" />
+    <Compile Include="ChungTuMuaHangService.cs" />
+    <Compile Include="HopDongMuaService.cs" />
+    <Compile Include="ChiTietPhieuChiService.cs" />
+    <Compile Include="DonMuaHangService.cs" />
+    <Compile Include="ChiTietDonMuaHangService.cs" />
+    <Compile Include="DieuKhoanTTService.cs" />
+    <Compile Include="LoaiChiService.cs" />
+    <Compile Include="ChiTietHopDongMuaService .cs" />
+    <Compile Include="NhaCungCap_TaiKhoanService.cs" />
+    <Compile Include="LoaiTienService.cs" />
+    <Compile Include="TaiKhoanCoService.cs" />
+    <Compile Include="TaiKhoanNoService.cs" />
+    <Compile Include="TaiKhoanNganHangService.cs" />
+    <Compile Include="KhachHang_TaiKhoanService.cs" />
+    <Compile Include="LoaiThuService.cs" />
+    <Compile Include="PhieuChiService.cs" />
+    <Compile Include="TinhChatHangHoaService.cs" />
+    <Compile Include="TinhTrangService.cs" />
+    <Compile Include="CoSoService.cs" />
+    <Compile Include="ChiTietThuService.cs" />
+    <Compile Include="PhieuThuService.cs" />
+    <Compile Include="HoanThanhCongViecService.cs" />
+    <Compile Include="NhomKH_NCC1Service.cs" />
+    <Compile Include="LichSuLamViecService.cs" />
+    <Compile Include="KhachHangService.cs" />
+    <Compile Include="LoiService.cs" />
+    <Compile Include="NgonNguService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuanLyCongTacService.cs" />
+    <Compile Include="QuanLyNgayNghiService.cs" />
+    <Compile Include="QuanLyNhaCungCapService.cs" />
+    <Compile Include="QuanLyQuaGioService.cs" />
+    <Compile Include="QuanLyTaiSanService.cs" />
+    <Compile Include="QuanLyVangMatService.cs" />
+    <Compile Include="QuaTrinhDaoTaoService.cs" />
+    <Compile Include="ChucVuService.cs" />
+    <Compile Include="QuetTheTheoNgayService.cs" />
+    <Compile Include="QuetTheService.cs" />
+    <Compile Include="TaiSanService.cs" />
+    <Compile Include="HangHoaService.cs" />
+    <Compile Include="TheService.cs" />
+    <Compile Include="ThongBaoService.cs" />
+    <Compile Include="NhanVienService.cs" />
+    <Compile Include="ThongTinCaNhanService.cs" />
+    <Compile Include="ThongTinTuyenDungService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Platform.Common\Platform.Common.csproj">
+      <Project>{37cefe7a-f289-4d7f-a882-09d117e48291}</Project>
+      <Name>Platform.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Platform.Data\Platform.Data.csproj">
+      <Project>{53b19078-8297-4ee4-86ad-762628b4fde0}</Project>
+      <Name>Platform.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Platform.Model\Platform.Model.csproj">
+      <Project>{3149b731-7d20-4b7c-9d1b-f883276d3382}</Project>
+      <Name>Platform.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="bin\Debug\Platform.Data.dll.config" />
+    <None Include="bin\Debug\Platform.Model.dll.config" />
+    <None Include="bin\Debug\Platform.Service.dll.config" />
+    <None Include="bin\Release\Platform.Data.dll.config" />
+    <None Include="bin\Release\Platform.Model.dll.config" />
+    <None Include="bin\Release\Platform.Service.dll.config" />
+    <None Include="obj\Debug\build.force" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\Platform.Service.csproj.CopyComplete" />
+    <None Include="obj\Debug\Platform.Service.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\Platform.Service.csprojAssemblyReference.cache" />
+    <None Include="obj\Release\Platform.Service.csproj.CopyComplete" />
+    <None Include="obj\Release\Platform.Service.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Release\Platform.Service.csprojAssemblyReference.cache" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\EntityFramework.dll" />
+    <Content Include="bin\Debug\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\Debug\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\Debug\EntityFramework.xml" />
+    <Content Include="bin\Debug\Microsoft.AspNet.Identity.Core.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNet.Identity.Core.xml" />
+    <Content Include="bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml" />
+    <Content Include="bin\Debug\Platform.Common.dll" />
+    <Content Include="bin\Debug\Platform.Common.pdb" />
+    <Content Include="bin\Debug\Platform.Data.dll" />
+    <Content Include="bin\Debug\Platform.Data.pdb" />
+    <Content Include="bin\Debug\Platform.Model.dll" />
+    <Content Include="bin\Debug\Platform.Model.pdb" />
+    <Content Include="bin\Debug\Platform.Service.dll" />
+    <Content Include="bin\Debug\Platform.Service.pdb" />
+    <Content Include="bin\Release\EntityFramework.dll" />
+    <Content Include="bin\Release\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\Release\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\Release\EntityFramework.xml" />
+    <Content Include="bin\Release\Microsoft.AspNet.Identity.Core.dll" />
+    <Content Include="bin\Release\Microsoft.AspNet.Identity.Core.xml" />
+    <Content Include="bin\Release\Microsoft.AspNet.Identity.EntityFramework.dll" />
+    <Content Include="bin\Release\Microsoft.AspNet.Identity.EntityFramework.xml" />
+    <Content Include="bin\Release\Platform.Common.dll" />
+    <Content Include="bin\Release\Platform.Common.pdb" />
+    <Content Include="bin\Release\Platform.Data.dll" />
+    <Content Include="bin\Release\Platform.Data.pdb" />
+    <Content Include="bin\Release\Platform.Model.dll" />
+    <Content Include="bin\Release\Platform.Model.pdb" />
+    <Content Include="bin\Release\Platform.Service.dll" />
+    <Content Include="bin\Release\Platform.Service.pdb" />
+    <Content Include="obj\Debug\Platform.Service.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\Platform.Service.dll" />
+    <Content Include="obj\Debug\Platform.Service.pdb" />
+    <Content Include="obj\Release\Platform.Service.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Release\Platform.Service.dll" />
+    <Content Include="obj\Release\Platform.Service.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="obj\Release\TempPE\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

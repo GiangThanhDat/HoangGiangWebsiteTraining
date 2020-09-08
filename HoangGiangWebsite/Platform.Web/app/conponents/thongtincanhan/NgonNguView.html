@@ -1,0 +1,131 @@
+﻿  <!-- Content Header (Page header) -->
+<section class="content-header">
+
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li><a ui-sref="ngonngu">Ngôn ngữ</a></li>
+
+    </ol>
+</section>
+<div class="container-fluid">
+    <h1 style="margin-bottom:20px;text-align:center">Ngôn ngữ</h1>
+    <div class="row">
+
+        <div class="col-md-10" style="margin:auto">
+            <div class="table-responsive">
+                <table class="table  table-bordered chu">
+                    <tr style="background:#74b9ff">
+                        <th>Mã số nhân viên</th>
+                        <th>Tên nhân viên</th>
+
+                        <th>Tên ngôn ngữ</th>
+                        <th>Nghe</th>
+                        <th>Nói</th>
+                        <th>Đọc</th>
+                        <th>Viết</th>
+                        <th ng-show="delete">Xóa</th>
+
+
+                    </tr>
+                    <tr ng-repeat=" item in NgonNgu">
+                        <th>{{item.MaSoNhanVien}}</th>
+                        <th>{{tennhanvien}}</th>
+                        <td>
+
+                            <input ng-show="Edit " ng-model="NgonNgu[$index].TenNgonNgu" type="text" />
+                            <span ng-show="hide">{{item.TenNgonNgu}}</span>
+
+
+                        </td>
+                        <td>
+                            <input ng-show="Edit " ng-model="NgonNgu[$index].Nghe" type="text" />
+                            <span ng-show="hide">{{item.Nghe}}</span>
+
+
+                        </td>
+                        <td>
+                            <input ng-show="Edit " ng-model="NgonNgu[$index].Noi" type="text" />
+                            <span ng-show="hide">{{item.Noi}}</span>
+
+
+                        </td>
+                        <td>
+                            <input ng-show="Edit " ng-model="NgonNgu[$index].Doc" type="text" />
+                            <span ng-show="hide">{{item.Doc}}</span>
+
+
+                        </td>
+                        <td>
+                            <input ng-show="Edit " ng-model="NgonNgu[$index].Viet" type="text" />
+                            <span ng-show="hide">{{item.Viet}}</span>
+
+
+                        </td>
+                        <td ng-show="delete">
+                            <button class="btn  btn-danger" ng-click="deleteItem(item.ID)"><i class="fa fa-trash-o"></i></button>
+                        </td>
+
+
+                    </tr>
+                    <tr ng-repeat=" item in solanlap2">
+                        <th>{{msvc}}</th>
+                        <th>{{tennhanvien}}</th>
+                        <td>
+
+                            <input ng-model="AddNgonNgu[$index].TenNgonNgu" type="text" />
+
+
+
+                        </td>
+                        <td>
+                            <input ng-model="AddNgonNgu[$index].Nghe" type="text" />
+
+
+
+                        </td>
+                        <td>
+                            <input ng-model="AddNgonNgu[$index].Noi" type="text" />
+
+
+
+                        </td>
+                        <td>
+                            <input ng-model="AddNgonNgu[$index].Doc" type="text" />
+
+
+
+                        </td>
+                        <td>
+                            <input ng-model="AddNgonNgu[$index].Viet" type="text" />
+
+
+
+                        </td>
+                        <td></td>
+
+                    </tr>
+
+
+
+
+                </table>
+
+
+            </div>
+            <button type="button" class="btn btn-primary " ng-show="Add" ng-click="myFunction2()" style="background:#74b9ff;">Thêm mới</button>
+        </div>
+
+    </div>
+</div>
+
+<div class="center-block  text-center">
+
+    <button type="submit" class="btn btn-primary " ng-show="clone" style="background:#74b9ff;" ng-click="mobang()">Thay đổi ngôn ngữ</button>
+    </div>
+<div class="row" style="margin-top:10px" ng-show="save">
+    <div class="col-md-6 col-md-offset-3 justify-content-center btn-block text-center">
+        <button type="button" class="btn btn-primary " ng-disabled="form.$invalid" ng-click="kiemtra()">Lưu</button>
+        <button type="submit" class="btn btn-danger" ng-show="closehuy" ng-click="huy()">Hủy</button>
+    </div>
+</div>
+

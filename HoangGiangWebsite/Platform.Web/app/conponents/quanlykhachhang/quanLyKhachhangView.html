@@ -1,0 +1,222 @@
+﻿  <!-- Content Header (Page header) -->
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li><a ui-sref="quanlykhachhang">Quản lý khách hàng</a></li>
+    </ol>
+</section>
+<!-- Main content -->
+<div class="container">
+    <div class="row print">
+
+
+        <div class="input-group  col-md-12 hidden-xs justify-content-center">
+            <form class="">
+                <div class="input-group ">
+
+                    <div class="input-group-append">
+                        <a ng-click="gettatca()" class="form-control btn btn-primary text-white"> Xem tất cả</a>
+
+                    </div>
+                    &nbsp;&nbsp;&nbsp;
+                    <div class="input-group-append">
+                        <span class="input-group-text"><b>Phân loại khách hàng: </b></span>
+                    </div>
+                    <select class="selectpicker form-control" ng-model="PhanLoai">
+                        <option disabled value="">Chọn phân loại</option>
+                        <option value="Cá nhân">Cá nhân</option>
+                        <option value="Tổ chức">Tổ chức</option>
+                        <option value="">Xem tất cả</option>
+                    </select>
+                    &nbsp;&nbsp;&nbsp;
+
+                    <div class="input-group-append">
+                        <span class="input-group-text"><b>Tìm kiếm: </b></span>
+                    </div>
+
+                    <div class="input-group-append">
+                        <input ng-model="keyword" type="text" class="form-control" placeholder="Nhập từ khóa tìm kiếm">
+
+
+                    </div>  <div class="input-group-append">
+                        <a ng-click="getbykeyword(keyword)" class=" form-control btn btn-primary text-white"> Tìm</a>
+                    </div>
+                </div>
+
+            </form>
+
+
+        </div>
+
+        <div class="input-group  col-12 hidden-sm hidden-md hidden-lg  justify-content-center">
+            <form class="">
+                <div class="input-group ">
+
+                    <div class="input-group-append">
+                        <a ng-click="gettatca()" class="form-control btn btn-primary text-white"> Xem tất cả</a>
+
+                    </div>
+                    &nbsp;&nbsp;&nbsp;
+                    <div class="input-group-append">
+                        <span class="input-group-text"><b>Phân loại khách hàng: </b></span>
+                    </div>
+                    <select class="selectpicker form-control" ng-model="PhanLoai">
+                        <option disabled value="">Chọn phân loại</option>
+                        <option value="Cá nhân">Cá nhân</option>
+                        <option value="Tổ chức">Tổ chức</option>
+                        <option value="">Xem tất cả</option>
+                    </select>
+                    &nbsp;&nbsp;&nbsp;
+                </div><br />
+                <div class="input-group ">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><b>Tìm kiếm: </b></span>
+                    </div>
+
+                    <div class="input-group-append">
+                        <input ng-model="keyword" type="text" class="form-control" placeholder="Nhập từ khóa tìm kiếm">
+
+
+                    </div>  <div class="input-group-append">
+                        <a ng-click="getbykeyword(keyword)" class=" form-control btn btn-primary text-white"> Tìm</a>
+                    </div>
+                </div>
+
+            </form>
+
+
+        </div>
+        <br /><br /><br /><br />
+      
+        <div class="col-md-12 table-responsive" ng-show="bangxem">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr style="background:#74b9ff">
+                        <th>STT</th>
+                        <th>Mã khách hàng</th>
+                        <th>Nhóm khách hàng</th>
+                        <th>Phân loại</th>
+                        <th>Tên khách hàng</th>
+                        <th>Chi nhánh</th>
+                        <th>Địa chỉ</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in KhachHang|orderBy: 'MaKhachHang'|filter:{PhanLoai:PhanLoai}">
+
+                        <th>{{$index+1}}</th>
+
+                        <td>{{item.MaKhachHang}}</td>
+                        <td>{{item.NhomKH_NCC}}</td>
+                        <td>{{item.PhanLoai }}</td>
+                        <td><a href="" ng-click="getTTCN(item.MaKhachHang)">{{item.TenKhachHang}}</a></td>
+                        <td>{{item.ChiNhanh}}</td>
+                        <td>{{item.DiaChi}}</td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+        </div>
+
+        <div class="col-md-6 col-md-offset-3 table-responsive" ng-show="bangchitiet">
+            <table class="table table-hover table-bordered">
+
+
+                <tr class="text-left">
+                    <td>Mã khách hàng:</td>
+                    <th ng-show="view">{{TTCN.MaKhachHang}}</th>
+                    <th ng-show="edit">{{TTCN.MaKhachHang}}</th>
+                </tr>
+                
+                <tr class="text-left">
+                    <td>Nhóm khách hàng:</td>
+                    <th ng-show="view">{{TTCN.NhomKH_NCC}}</th>
+                    <th ng-show="edit">
+                        <select style="min-width:144px" class="selectpicker form-control" ng-model="TTCN.NhomKH_NCC"
+                                ng-options="item.NhomKH_NCC  as item.TenNhomKH_NCC + ' ('+''+item.NhomKH_NCC +') '   for item in NhomKH">
+                            <option disabled value="">Chọn nhóm khách hàng</option>
+                        </select>
+                    </th>
+                </tr>
+                <tr class="text-left">
+                    <td class="text-left">Phân loại:</td>
+                    <th ng-show="view">{{TTCN.PhanLoai}}</th>
+                    <th ng-show="edit">
+                        <select class="form-control" ng-model="TTCN.PhanLoai">
+                            <option value="Tổ chức">Tổ chức</option>
+                            <option value="Cá nhân">Cá nhân</option>
+                        </select>
+                    </th>
+                </tr>
+                <tr class="text-left">
+                    <td>Tên khách hàng</td>
+                    <th ng-show="view">{{TTCN.TenKhachHang}}</th>
+                    <th ng-show="edit"><input type="text" class="form-control" ng-model="TTCN.TenKhachHang" name="name" /></th>
+                </tr>
+                <tr class="text-left">
+                    <td>Chi nhánh</td>
+                    <th ng-show="view">{{TTCN.ChiNhanh}}</th>
+                    <th ng-show="edit"><input type="text" class="form-control" ng-model="TTCN.ChiNhanh" name="name" /></th>
+                </tr>
+                <tr class="text-left">
+                    <td>Địa chỉ</td>
+                    <th ng-show="view">{{TTCN.DiaChi}}</th>
+                    <th ng-show="edit"><input type="text" class="form-control" ng-model="TTCN.DiaChi" name="name" /></th>
+                </tr>
+                <tr class="text-left">
+                    <td>Số điện thoại</td>
+                    <th ng-show="view">{{TTCN.SoDienThoai}}</th>
+                    <th ng-show="edit"><input type="text" class="form-control" ng-model="TTCN.SoDienThoai" name="name" /></th>
+                </tr>
+                <tr class="text-left">
+                    <td>Fax</td>
+                    <th ng-show="view">{{TTCN.Fax}}</th>
+                    <th ng-show="edit"><input type="text" class="form-control" ng-model="TTCN.Fax" name="name" /></th>
+                </tr>
+                <tr class="text-left">
+                    <td>Email</td>
+                    <th ng-show="view">{{TTCN.Email}}</th>
+                    <th ng-show="edit"><input type="text" class="form-control" ng-model="TTCN.Email" name="name" /></th>
+                </tr>
+                <tr class="text-left">
+                    <td>Website</td>
+                    <th ng-show="view">{{TTCN.Website}}</th>
+                    <th ng-show="edit"><input type="text" class="form-control" ng-model="TTCN.Website" name="name" /></th>
+                </tr>
+                <tr class="text-left">
+                    <td>Mã số thuế</td>
+                    <th ng-show="view">{{TTCN.MaSoThue}}</th>
+                    <th ng-show="edit"><input type="text" class="form-control" ng-model="TTCN.MaSoThue" name="name" /></th>
+                </tr>
+                <tr class="text-left">
+                    <td>Số tài khoản ngân hàng</td>
+                    <th ng-show="view">{{TTCN.SoTaiKhoanNganHang}}</th>
+                    <th ng-show="edit"><input type="text" class="form-control" ng-model="TTCN.SoTaiKhoanNganHang" name="name" /></th>
+                </tr>
+                <tr class="text-left">
+                    <td>Tên ngân hàng</td>
+                    <th ng-show="view">{{TTCN.TenNganHang}}</th>
+                    <th ng-show="edit"><input type="text" class="form-control" ng-model="TTCN.TenNganHang" name="name" /></th>
+                </tr>
+                <tr class="text-left">
+                    <td>Người liên hệ</td>
+                    <th ng-show="view">{{TTCN.NguoiLienHe}}</th>
+                    <th ng-show="edit"><input type="text" class="form-control" ng-model="TTCN.NguoiLienHe" name="name" /></th>
+                </tr>
+
+            </table>
+
+            <div class="col-md-6 col-md-offset-3 justify-content-center btn-block text-center">
+                <button type="button" class="btn btn-danger" ng-show="view" ng-click="trove()">Trở về</button> &nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-primary " ng-show="view" ng-click="thaydoithongtin()">Thay đổi thông tin khách hàng</button>
+                <button type="button" class="btn btn-danger" ng-show="edit" ng-click="huy()">Hủy</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-primary" ng-show="edit" ng-click="updateTTCN()">Lưu</button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
