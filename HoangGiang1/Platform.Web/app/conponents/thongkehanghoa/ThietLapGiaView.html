@@ -1,0 +1,157 @@
+﻿  <!-- Content Header (Page header) -->
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li><a href="">Quản lý hàng hóa</a></li>
+        <li><a href="thietlapgia">Thiết lập giá</a></li>
+    </ol>
+</section>
+
+<div class="container-fluid" style="margin-bottom:20px">
+    <h1 style="margin-bottom:20px;text-align:center">Thiết lập giá</h1>
+    <br /><br /><br /><br />
+
+    <div class="row">
+        <div class="col-md-12" ng-show="true" style="padding:0px" ng-show="BangThietLapGia">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr style="background:#74b9ff">
+                            <th>Mã hàng hóa</th>
+                            <th>Tên hàng hóa</th>
+                            <th>Đơn vị tính</th>
+                            <th>Giá vốn</th>
+                            <th>Giá nhập cuối</th>
+                            <th>Giá chung</th>
+                            <th>Thiết lập</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat=" item in TatCaHangHoa">
+                            <td>{{item.MaHang}}</td>
+                            <td>{{item.TenHang}}</td>
+                            <td><select class="form-control"  ng-model="item.DonViTinh" ng-options="i  as i.TenDonViTinh for i in item.getdvt" ng-change="adddvt(item.DonViTinh.MaDonViTinh,$index)"></select></td>
+                            <td>{{item.DonViTinh.DonGia}}</td>
+                            <td></td>
+                            <td>
+                                 <input ng-show="thutu==$index" type="text" class="form-control" ng-model="item.DonViTinh.DonGia" name="GiaVon" />
+                                 <div ng-hide="thutu==$index">
+                                     {{item.DonViTinh.DonGia}}
+                                 </div> 
+                            </td>
+                            <td>
+                                <input type="button" class="btn btn-primary" ng-hide="thutu==$index"  ng-click="show($index)" name="edit" value="Sửa" />
+                                <input type="button" class="btn btn-primary" ng-show="thutu==$index" ng-click="Update(item)" name="save" value="Lưu" />
+                                <input type="button" class="btn btn-danger" ng-show="thutu==$index" ng-click="closeClick()" name="close" value="Hủy" />
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <!--<div class="row" ng-show="AllTenNhaCungcap" style="margin:30px 0px">
+
+        <div class="col-md-6 col-md-offset-3  table-responsive">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+
+                    <tr class="text-left">
+                        <td>Mã nhà cung cấp</td>
+                        <th ng-show="view">{{FilterTenNhaCungcap.MaNhaCungCap}}</th>
+                        <th ng-show="edit"><input type="text" ng-model="FilterTenNhaCungcap.MaNhaCungCap" /></th>
+                    </tr>
+                    <tr class="text-left">
+                        <td>Nhóm khách hàng nhà cung cấp</td>
+                        <th ng-show="view">{{FilterTenNhaCungcap.NhomKH_NCC}}</th>
+                        <th ng-show="edit"><input type="text" ng-model="FilterTenNhaCungcap.NhomKH_NCC" /></th>
+                    </tr>
+                    <tr class="text-left">
+                        <td>Phân loại</td>
+                        <th ng-show="view">{{FilterTenNhaCungcap.PhanLoai}}</th>
+                        <th ng-show="edit"><input type="text" ng-model="FilterTenNhaCungcap.PhanLoai" /></th>
+                    </tr>
+                    <tr class="text-left">
+                        <td>Tên nhà cung cấp </td>
+                        <th ng-show="view">{{FilterTenNhaCungcap.TenNhaCungCap}}</th>
+                        <th ng-show="edit"> <input type="text" ng-model="FilterTenNhaCungcap.TenNhaCungCap" /></th>
+                    </tr>
+                    <tr class="text-left">
+                        <td>Chi nhánh </td>
+                        <th ng-show="view">{{FilterTenNhaCungcap.ChiNhanh}}</th>
+                        <th ng-show="edit"><input type="text" ng-model="FilterTenNhaCungcap.ChiNhanh" /></th>
+                    </tr>
+                    <tr class="text-left">
+                        <td>Địa chỉ </td>
+                        <th ng-show="view">{{FilterTenNhaCungcap.DiaChi}}</th>
+                        <th ng-show="edit"> <input type="text" ng-model="FilterTenNhaCungcap.DiaChi" /></th>
+                    </tr>
+                    <tr class="text-left">
+                        <td>Số điện thoại</td>
+                        <th ng-show="view">{{FilterTenNhaCungcap.SoDienThoai}}</th>
+                        <th ng-show="edit"><input type="text" ng-model="FilterTenNhaCungcap.SoDienThoai" /></th>
+                    </tr>
+                    <tr class="text-left">
+                        <td>Fax</td>
+                        <th ng-show="view">{{FilterTenNhaCungcap.Fax}}</th>
+                        <th ng-show="edit"><input type="text" ng-model="FilterTenNhaCungcap.Fax" /></th>
+                    </tr>
+                    <tr class="text-left">
+                        <td>Email</td>
+                        <th ng-show="view">{{FilterTenNhaCungcap.Email}}</th>
+                        <th ng-show="edit"><input type="text" ng-model="FilterTenNhaCungcap.Email" /></th>
+                    </tr>
+                    <tr class="text-left">
+                        <td>Website</td>
+                        <th ng-show="view">{{FilterTenNhaCungcap.Website}}</th>
+                        <th ng-show="edit"><input type="text" ng-model="FilterTenNhaCungcap.Website" /></th>
+                    </tr>
+
+                    <tr class="text-left">
+                        <td>Mã số thuế</td>
+                        <th ng-show="view">{{FilterTenNhaCungcap.MaSoThue}}</th>
+                        <th ng-show="edit"><input type="text" ng-model="FilterTenNhaCungcap.MaSoThue" /></th>
+                    </tr>
+                    <tr class="text-left">
+                        <td>Số tài khoản ngân hàng</td>
+                        <th ng-show="view">{{FilterTenNhaCungcap.SoTaiKhoanNganHang}}</th>
+                        <th ng-show="edit"><input type="text" ng-model="FilterTenNhaCungcap.SoTaiKhoanNganHang" /></th>
+                    </tr>
+                    <tr class="text-left">
+                        <td>Tên ngân hàng</td>
+                        <th ng-show="view">{{FilterTenNhaCungcap.TenNganHang}}</th>
+                        <th ng-show="edit"><input type="text" ng-model="FilterTenNhaCungcap.TenNganHang" /></th>
+                    </tr>
+                    <tr class="text-left">
+                        <td>Người liên hệ</td>
+                        <th ng-show="view">{{FilterTenNhaCungcap.NguoiLienHe}}</th>
+                        <th ng-show="edit"><input type="text" ng-model="FilterTenNhaCungcap.NguoiLienHe" /></th>
+                    </tr>
+
+
+
+
+
+
+                </table>
+            </div>
+        </div>
+        <div class="col-md-6 col-md-offset-3 justify-content-center btn-block text-center">
+            <button type="button" class="btn btn-danger" ng-show="view" ng-click="trove()">Trở về</button> &nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-primary " ng-show="view" ng-click="thaydoithongtin()">Thay đổi thông tin khách hàng</button>
+            <button type="button" class="btn btn-danger" ng-show="edit" ng-click="huy()">Hủy</button>&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-primary" ng-show="edit" ng-click="update()">Lưu</button>
+
+        </div>-->
+
+    <!--</div>-->
+
+
+
+
+
+    <!--</div>-->
+<!--</div>-->

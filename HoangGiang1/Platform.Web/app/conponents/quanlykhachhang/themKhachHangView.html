@@ -1,0 +1,112 @@
+﻿  <!-- Content Header (Page header) -->
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+
+        <li><a ui-sref="themkhachhang">Thêm khách hàng mới</a></li>
+    </ol>
+</section>
+<form class="form-horizontal" data-toggle="validator" name="formtest" role="form" ng-submit="addKhachHang()">
+   
+    <div class="container-fluid" style="margin-bottom:20px">
+        <h1 style="margin-bottom:20px;text-align:center">Thêm khách hàng mới</h1>
+        <div class="row">
+          
+             
+                    <div class="col-md-6 col-md-offset-3 table-responsive">
+                        <table class="table table-hover table-bordered">
+
+
+                            <tr class="text-left">
+                                <td>Mã khách hàng:</td>
+
+                                <th >{{TTCN.MaKhachHang}}</th>
+                            </tr>
+                            <tr class="text-left">
+                                <td>Nhóm khách hàng <b><span ng-show="formtest.nhomkh.$error.required" class="has-error text-left"> &nbsp;* Bắt buộc</span></b></td>
+                                <th>
+                                    <select required name="nhomkh" style="min-width:144px" class="selectpicker form-control" ng-model="TTCN.NhomKH_NCC"
+                                            ng-options="item.NhomKH_NCC  as item.TenNhomKH_NCC + ' ('+''+item.NhomKH_NCC +') '   for item in NhomKH">
+                                        <option disabled value="">Chọn nhóm khách hàng</option>
+                                    </select>
+                                </th>
+                            </tr>
+                            <tr class="text-left">
+                                <td class="text-left">Phân loại <b><span ng-show="formtest.phanloai.$error.required" class="has-error text-left"> &nbsp;* Bắt buộc</span></b></td>
+                                <th>
+                                    <select required class="selectpicker form-control" name="phanloai" ng-model="TTCN.PhanLoai">
+                                        <option disabled value="">Chọn phân loại</option>
+                                        <option value="Cá nhân">Cá nhân</option>
+                                        <option value="Tổ chức">Tổ chức</option>
+                                    </select>
+                                </th>
+                            </tr>
+                            <tr class="text-left">
+                                <td>Tên khách hàng <b><span ng-show="formtest.tenkh.$error.required" class="has-error text-left"> &nbsp;* Bắt buộc</span></b></td>
+                                <th><input type="text" class="form-control" required ng-model="TTCN.TenKhachHang" name="tenkh" /></th>
+                            </tr>
+                            <tr class="text-left">
+                                <td>Chi nhánh</td>
+                                <th><input type="text" class="form-control" ng-model="TTCN.ChiNhanh" name="name" /></th>
+                            </tr>
+                            <tr class="text-left">
+                                <td>Địa chỉ</td>
+                                <th><input type="text" class="form-control" ng-model="TTCN.DiaChi" name="name" /></th>
+                            </tr>
+                            <tr class="text-left">
+                                <td>Số điện thoại</td>
+                                <th><input type="tel" pattern="[0-9]{1,12}" title="phải nhập số" class="form-control" ng-model="TTCN.SoDienThoai" name="name" /></th>
+                            </tr>
+                            <tr class="text-left">
+                                <td>Fax</td>
+                                <th><input type="text" title="định dạng email không hợp lệ" class="form-control" ng-model="TTCN.Fax" name="name" /></th>
+                            </tr>
+                            <tr class="text-left">
+                                <td>Email</td>
+                                <th><input type="email" class="form-control" ng-model="TTCN.Email" name="name" /></th>
+                            </tr>
+                            <tr class="text-left">
+                                <td>Website</td>
+                                <th><input type="text" class="form-control" ng-model="TTCN.Website" name="name" /></th>
+                            </tr>
+                            <tr class="text-left">
+                                <td>Mã số thuế</td>
+                                <th><input type="text" class="form-control" ng-model="TTCN.MaSoThue" name="name" /></th>
+                            </tr>
+                            <tr class="text-left">
+                                <td>Số tài khoản ngân hàng</td>
+                                <th><input type="text" class="form-control" ng-model="TTCN.SoTaiKhoanNganHang" name="name" /></th>
+                            </tr>
+                            <tr class="text-left">
+                                <td>Tên ngân hàng</td>
+                                <th><input type="text" class="form-control" ng-model="TTCN.TenNganHang" name="name" /></th>
+                            </tr>
+                            <tr class="text-left">
+                                <td>Người liên hệ</td>
+                                <th><input type="text" class="form-control" ng-model="TTCN.NguoiLienHe" name="name" /></th>
+                            </tr>
+
+                        </table>
+
+                        <div class="col-md-6 col-md-offset-3 justify-content-center btn-block text-center">
+                            <button type="button" class="btn btn-danger" ng-click="huy()">Hủy</button>&nbsp;&nbsp;&nbsp;
+                            <button type="submit" class="btn btn-primary">Lưu</button>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+
+       
+    </div>
+
+</form>
+
+
+
+
+
+</form>
+
+<!--  Begin embed angularJS  -->

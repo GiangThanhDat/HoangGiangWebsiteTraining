@@ -1,0 +1,826 @@
+﻿
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a ui-sref="trangchu"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li><a ui-sref="tongquan">Tổng quan</a></li>
+    </ol>
+</section>
+<!--{{authentication.ChucVu[0].MaChucVu}}-->
+
+<!-- Main content -->
+<div class="container-fluid " style="background-color:#d6d4ce">
+    <div class=" row">
+        <div class="col-md-12 mt-2" style="background-color:white;border-radius:5px;">
+            <h4 class="text-left">
+                KẾT QUẢ BÁN HÀNG HÔM NAY
+                <span ng-show="78<=authentication.ChucVu[0].MaChucVu&&authentication.ChucVu[0].MaChucVu<=79">
+                    <select class="form-control" style="display:inline!important;width:auto!important" ng-change="filtertheocoso()" ng-model="locdoanthutheonhanvien" ng-options="i.MaSoNhanVien as i.HoVaTen for i in nhanvienhomnay|unique:'MaSoNhanVien'">
+                        <option value="" disabled>Chọn nhân viên</option>
+                    </select>
+                </span>
+                <span ng-show="98<=authentication.ChucVu[0].MaChucVu&&authentication.ChucVu[0].MaChucVu<=99">
+                    <select class="form-control" style="display:inline!important;width:auto!important" ng-change="filtertheogiamdoc()" ng-model="locdoanthutheocoso" ng-options="i.MaCoSo as i.TenCoSo for i in cosohomnay|unique:'MaCoSo'">
+                        <option value="" disabled>Chọn cơ sở</option>
+                    </select>
+                </span>
+                <br />
+            </h4>
+
+            <table class="table border-right" style="float:left;width:15%">
+                <tr>
+                    <td width="15%" rowspan="3" style="vertical-align:middle;border-top:none"> <i style="color: #007bff;font-size: 20px;" class="fas ">&#xf155;</i></td>
+                    <td class="text-left " style="border-top:none"><b>{{demhoadon}} hóa đơn</b></td>
+                </tr>
+                <tr>
+                    <td class="text-left" style="font-size:30px;color:#007bff;border-top:none">{{danhthuhomnay|number}}</td>
+                </tr>
+                <tr>
+                    <td class="text-left" style="color:darkgrey;border-top:none">Doanh thu thuần</td>
+                </tr>
+
+            </table>
+            <table class="table border-right" style="float:left;width:15%">
+                <tr>
+                    <td width="15%" rowspan="3" style="vertical-align:middle;border-top:none"> <i style="color:orangered;font-size:20px" class="fas ">&#xf122;</i></td>
+                    <td class="text-left" style="border-top:none"><b>{{demhoadontrahang}} phiếu</b></td>
+                </tr>
+                <tr>
+                    <td class="text-left" style="font-size:30px;color:orangered;border-top:none">{{danhthuhomnaytrahang|number}}</td>
+                </tr>
+                <tr>
+                    <td class="text-left" style="color: darkgrey;border-top:none">Trả hàng</td>
+                </tr>
+
+            </table>
+            <table class="table border-right" style="float:left;width:15%">
+                <tr>
+                    <td width="15%" rowspan="3" style="vertical-align:middle;border-top:none">
+                        <i ng-show="(((danhthuhomnay)-(danhthuhomhomqua))/(danhthuhomhomqua))>0" style="color:deeppink;font-size:20px" class="fas ">&#xf062;</i>
+                        <i ng-show="(((danhthuhomnay)-(danhthuhomhomqua))/(danhthuhomhomqua))<0" style="color:deeppink;font-size:20px" class="fas ">&#xf063;</i>
+                    </td>
+                    <td class="text-left" style="height: 33.6px;border-top:none"><b></b></td>
+                </tr>
+                <tr>
+                    <td class="text-left" style="font-size:30px;color:deeppink;border-top:none" ng-show="danhthuhomhomqua>0">{{((danhthuhomnay)-(danhthuhomhomqua))/(danhthuhomhomqua)|number:2}}%</td>
+                    <td class="text-left" style="font-size:30px;color:deeppink;border-top:none" ng-show="danhthuhomhomqua<=0">0%</td>
+
+                </tr>
+                <tr>
+                    <td class="text-left" style="color:darkgrey;border-top:none">So với hôm qua</td>
+                </tr>
+
+            </table>
+            <table class="table " style="float:left;width:15%">
+                <tr>
+                    <td width="15%" rowspan="3" style="vertical-align:middle;border-top:none">
+                        <i ng-show="(((danhthuhomnay)-(danhthuhomthangtruoc))/(danhthuhomthangtruoc))>0" style="color:cyan;font-size:20px" class="fas ">&#xf062;</i>
+                        <i ng-show="(((danhthuhomnay)-(danhthuhomthangtruoc))/(danhthuhomthangtruoc))<0" style="color:cyan;font-size:20px" class="fas ">&#xf063;</i>
+                    </td>
+                    <td class="text-left" style="height:33.6px;border-top:none"><b></b></td>
+                </tr>
+                <tr>
+                    <td class="text-left" style="font-size:30px;color:cyan;border-top:none" ng-show="danhthuhomthangtruoc>0">{{((danhthuhomnay)-(danhthuhomthangtruoc))/(danhthuhomthangtruoc)|number:2}}%</td>
+                    <td class="text-left" style="font-size:30px;color:cyan;border-top:none" ng-show="danhthuhomthangtruoc<=0">0%</td>
+                </tr>
+                <tr>
+                    <td class="text-left" style="color:darkgrey;border-top:none">So với cùng kỳ tháng trước</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+        <div class="col-md-8 mt-5" style="background-color:white;border-radius:5px;width:98%!important">
+
+            <div class="mt-2">
+                <h4 class="text-left" style="width:50%;float:left;text-transform:uppercase">DOANH THU THUẦN {{textselect}} &nbsp;&nbsp;&nbsp;<i class="fas fa-arrow-right"></i> <span style="color:#007bff">{{(danhthutheoselect)|number}}</span></h4>
+                <span ng-show="78<=authentication.ChucVu[0].MaChucVu&&authentication.ChucVu[0].MaChucVu<=79">
+                    <select class="form-control" style="display:inline!important;width:auto!important" ng-change="filterchartbar()" ng-model="locnhanvienchartbar" ng-options="i.MaSoNhanVien as i.HoVaTen for i in nhanvienchartbar|unique:'MaSoNhanVien'">
+                        <option value="" disabled>Chọn nhân viên</option>
+                    </select>
+                </span>
+                <span ng-show="98<=authentication.ChucVu[0].MaChucVu&&authentication.ChucVu[0].MaChucVu<=99">
+                    <select class="form-control" style="display:inline!important;width:auto!important" ng-change="filterchartbar()" ng-model="loccosochartbar" ng-options="i.MaCoSo as i.TenCoSo for i in cosochartbar|unique:'MaCoSo'">
+                        <option value="" disabled>Chọn cơ sở</option>
+                    </select>
+                </span>
+                <div class="pull-right">
+                    <select class="form-control" ng-model="select" ng-change="setupngay()">
+                        <option value="homnay">Hôm nay</option>
+                        <option value="homqua">Hôm qua</option>
+                        <option value="7ngayqua">7 ngày qua</option>
+                        <option value="thangnay">Tháng này</option>
+                        <option value="thangtruoc">Tháng trước</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <ul class="nav nav-tabs">
+                    <li ng-class="{active: theongay==true,'':theongay==false}"><a ng-click="theongay=true;theogio=false;theothu=false;gettheongay()" data-toggle="tab">Theo ngày</a></li>
+                    <li ng-class="{active:theogio==true,'':theogio==false}"><a ng-click="theongay=false;theogio=true;theothu=false;gettheogio()" data-toggle="tab">Theo giờ</a></li>
+                    <li ng-class="{active:theothu==true,'':theothu==false}"><a ng-click="theongay=false;theogio=false;theothu=true;gettheothu()" data-toggle="tab">Theo thứ</a></li>
+                </ul>
+                <canvas id="bar" class="chart chart-bar" chart-colors="colors" chart-data="datatest" chart-labels="labels" chart-series="series" chart-legend="true" chart-options="options">
+                </canvas>
+                <div style="width: 100% !important;text-align: center; font-size: x-large;font-weight: bold;z-index:2;top:40%;position:absolute" ng-hide="isDataAvaiablebar">
+                    KHÔNG CÓ DỮ LIỆU
+                </div>
+            </div>
+
+            <div class="col-md-12" style="height:50px;background-color:#d6d4ce;width:100%!important;padding:0!important"></div>
+
+
+            <div class="mt-2">
+                <h4 class="text-left" style="width:80%;float:left;text-transform:uppercase;margin-top:5px">
+                    DOANH THU THUẦN THEO CHI NHÁNH {{textselect1}} &nbsp;&nbsp;&nbsp;<i class="fas fa-arrow-right"></i> <span style="color:#007bff">{{(danhthutheoselectcs)|number}}</span>
+                    <span ng-show="78<=authentication.ChucVu[0].MaChucVu&&authentication.ChucVu[0].MaChucVu<=79">
+                        <select class="form-control" style="display:inline!important;width:auto!important" ng-change="filterchartpie()" ng-model="locnhanvienchartpie" ng-options="i.MaSoNhanVien as i.HoVaTen for i in nhanvienchartpie|unique:'MaSoNhanVien'">
+                            <option value="" disabled>Chọn nhân viên</option>
+                        </select>
+                    </span>
+                    <span ng-show="98<=authentication.ChucVu[0].MaChucVu&&authentication.ChucVu[0].MaChucVu<=99">
+                        <select class="form-control" style="display:inline!important;width:auto!important" ng-change="filterchartpie()" ng-model="loccosochartpie" ng-options="i.MaCoSo as i.TenCoSo for i in cosochartpie|unique:'MaCoSo'">
+                            <option value="" disabled>Chọn cơ sở</option>
+                        </select>
+                    </span>
+                </h4>
+               
+
+                <div class="pull-right" style=";margin-top:5px">
+                    <select class="form-control" ng-model="select1" ng-change="setupngay1()">
+                        <option value="homnay">Hôm nay</option>
+                        <option value="homqua">Hôm qua</option>
+                        <option value="7ngayqua">7 ngày qua</option>
+                        <option value="thangnay">Tháng này</option>
+                        <option value="thangtruoc">Tháng trước</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <canvas id="pie" class="chart chart-pie"
+                        chart-data="datacs" chart-labels="labelscs" chart-legend="true" chart-series="seriescs" chart-options="optionscs">
+                </canvas>
+                <div style="width: 100% !important;text-align: center; font-size: x-large;font-weight: bold;z-index:2;top:40%;position:absolute" ng-hide="isDataAvaiablepie">
+                    KHÔNG CÓ DỮ LIỆU
+                </div>
+            </div>
+
+            <div class="col-md-12" style="height:50px;background-color:#d6d4ce;width:100%!important;padding:0!important"></div>
+
+
+            <div class="mt-2">
+                <h4 class="text-left" style="width:80%;float:left;text-transform:uppercase;margin-top:5px">
+                    TOP 10 HÀNG HÓA BÁN CHẠY {{textselect2}} &nbsp;&nbsp;&nbsp;
+                    <select class="form-control" style="display:inline!important;width:auto!important" ng-model="orderby" ng-change="getorderby()">
+                        <option value="doanhthu">THEO DOANH THU</option>
+                        <option value="soluong">THEO SỐ LƯỢNG</option>
+
+                    </select>
+                    <span ng-show="78<=authentication.ChucVu[0].MaChucVu&&authentication.ChucVu[0].MaChucVu<=79">
+                        <select class="form-control" style="display:inline!important;width:auto!important" ng-change="filtercharttop10()" ng-model="locnhanviencharttop10" ng-options="i.MaSoNhanVien as i.HoVaTen for i in nhanviencharttop10|unique:'MaSoNhanVien'">
+                            <option value="" disabled>Chọn nhân viên</option>
+                        </select>
+                    </span>
+                    <span ng-show="98<=authentication.ChucVu[0].MaChucVu&&authentication.ChucVu[0].MaChucVu<=99">
+                        <select class="form-control" style="display:inline!important;width:auto!important" ng-change="filtercharttop10()" ng-model="loccosocharttop10" ng-options="i.MaCoSo as i.TenCoSo for i in cosocharttop10|unique:'MaCoSo'">
+                            <option value="" disabled>Chọn cơ sở</option>
+                        </select>
+                    </span>
+                </h4>
+                <div class="pull-right" style=";margin-top:5px">
+                    <select class="form-control" ng-model="select2" ng-change="setupngay2()">
+                        <option value="homnay">Hôm nay</option>
+                        <option value="homqua">Hôm qua</option>
+                        <option value="7ngayqua">7 ngày qua</option>
+                        <option value="thangnay">Tháng này</option>
+                        <option value="thangtruoc">Tháng trước</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <canvas id="base" class="chart-horizontal-bar"
+                        chart-data="datatop10" chart-labels="labelstop10" chart-options="optionstop10">
+                </canvas>
+                <div style="width: 100% !important;height: 100% !important;text-align: center; font-size: x-large;font-weight: bold;" ng-hide="isDataAvaiabletop10">
+                    KHÔNG CÓ DỮ LIỆU
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="col-md-4 mt-5" style="background-color:white;border-radius:5px;max-width:31%!important;right:-1.5%">
+            <DIV class="mt-2">
+                <h4 class="text-left" style="width:50%;float:left">CÁC HOẠT ĐỘNG GẦN ĐÂY </h4>
+                &nbsp;&nbsp;&nbsp;
+                <span ng-show="98<=authentication.ChucVu[0].MaChucVu&&authentication.ChucVu[0].MaChucVu<=99">
+                    <select class="form-control" style="display:inline!important;width:auto!important" ng-model="loccoso" ng-options="i.MaCoSo as i.TenCoSo for i in cosotimeline|unique:'TenCoSo'">
+                        <option value="" disabled>Chọn cơ sở</option>
+                    </select>
+                </span>
+                <br />
+            </DIV>
+            <HR />
+            <div id="tracking">
+
+                <div class="tracking-list">
+                    <div class="tracking-item" ng-repeat="item in timeline|filter:{MaCoSo:loccoso}">
+                        <div class="tracking-icon status-intransit">
+
+                            <i style="font-size: 14px;color: #007bff;" class="fas fa-paste" ng-show="(item.Ma.indexOf('BH')>-1)"></i>
+                            <i style="font-size: 14px;color: deeppink;" class="fas fa-flip-horizontal" ng-show="(item.Ma.indexOf('NK')>-1)">&#xf122;</i>
+                            <i style="font-size: 14px;color: cyan;" class="fas fa-flip-horizontal" ng-show="(item.Ma.indexOf('NK')==-1)&&(item.Ma.indexOf('BH')==-1)">&#xf122;</i>
+                        </div>
+                        <div class="tracking-date">{{item.Ngay|date:'dd/MM/yyyy '}}<span>{{item.Ngay|date:'hh:mm:ss a '}}</span></div>
+                        <div class="tracking-content" ng-show="(item.Ma.indexOf('NK')>-1)"><a style="color:#007bff;cursor:pointer" data-toggle="modal" data-target=".bs-example-modal-lg" ng-click="GetLyLichNhanVien(item.MaSoNhanVien)">{{item.HoVaTen}}</a> vừa <a style="color:#007bff;cursor:pointer" data-toggle="modal" data-target=".bs-example-modal-lg2" ng-click="getNhapKho(item.Ma)">{{gettentimeline(item.Ma)}}</a> với giá trị <b>{{item.Tien}}</b><span></span></div>
+                        <div class="tracking-content" ng-show="(item.Ma.indexOf('BH')>-1)"><a style="color:#007bff;cursor:pointer" data-toggle="modal" data-target=".bs-example-modal-lg" ng-click="GetLyLichNhanVien(item.MaSoNhanVien)">{{item.HoVaTen}}</a> vừa <a style="color:#007bff;cursor:pointer" data-toggle="modal" data-target=".bs-example-modal-lg1" ng-click="getBanHang(item.Ma)">{{gettentimeline(item.Ma)}}</a> với giá trị <b>{{item.Tien}}</b><span></span></div>
+                        <div class="tracking-content" ng-show="(item.Ma.indexOf('NK')==-1)&&(item.Ma.indexOf('BH')==-1)"><a style="color:#007bff;cursor:pointer" data-toggle="modal" data-target=".bs-example-modal-lg" ng-click="GetLyLichNhanVien(item.MaSoNhanVien)">{{item.HoVaTen}}</a> vừa <a style="color:#007bff;cursor:pointer"  data-toggle="modal" data-target=".bs-example-modal-lg3" ng-click="getNhapHang(item.Ma)">{{gettentimeline(item.Ma)}}</a> <span></span></div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="modal fade bs-example-modal-lg" id="off" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false" data-keyboard="false" data-focus-on="input:first">
+            <div class="modal-dialog modal-lg" role="document" style="max-width: 1305px;">
+                <div class="modal-content" style="border-radius: 10px;">
+                    <div class="modal-header">
+                        <h3 style="text-align:center;color:#007bff">Thông tin cá nhân</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                            <span aria-hidden="true" style="color:red">&times; Đóng</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="form1" role="form">
+                            <md-content class="page-container">
+                                <md-card class="page">
+                                    <div class="table-responsive">
+                                        <table class="table  table-bordered chuphai">
+                                            <tr>
+
+                                                <td width="25%">
+                                                    <b>Họ và tên:</b>
+                                                    <span>{{LyLichNhanVien.HoVaTen}}</span>
+                                                </td>
+                                                <td width="25%" colspan="2">
+                                                    <b>Số hiệu nhân viên:</b>
+                                                    <span>{{LyLichNhanVien.MaSoNhanVien}} ({{LyLichNhanVien.TenChucVu}})</span>
+                                                </td>
+                                                <td width="30%" rowspan="4">
+                                                    <img class="img-fluid" src="{{LyLichNhanVien.Hinh}}" /><br />
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <b>Phái:</b>
+                                                    <span>{{LyLichNhanVien.GioiTinh}}</span>
+                                                </td>
+                                                <td colspan="2">
+                                                    <b>CMND:</b>
+                                                    <span>{{LyLichNhanVien.SoCMND}}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <b>Ngày Cấp:</b>
+                                                    <span>{{LyLichNhanVien.NgayCapCMND|date:'dd/MM/yyyy'}}</span>
+                                                </td>
+                                                <td colspan="2">
+                                                    <b>Nơi cấp:</b>
+                                                    <span>{{LyLichNhanVien.NoiCapCMND}}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <b>Ngày sinh:</b>
+                                                    <span>{{LyLichNhanVien.NgaySinh|date:'dd/MM/yyyy' }}</span>
+                                                </td>
+                                                <td colspan="2">
+                                                    <b>Tình trạng hôn nhân:</b>
+                                                    <span>{{LyLichNhanVien.TinhTrangHonNhan}}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <b>Quốc tịch:</b>
+                                                    <span>{{LyLichNhanVien.QuocTich}}</span>
+                                                </td>
+                                                <td colspan="2">
+                                                    <b>Địa chỉ:</b>
+                                                    <span>{{LyLichNhanVien.DiaChi}}</span>
+                                                </td>
+                                                <td>
+                                                    <b>Họ tên liên hệ khẩn cấp:</b>
+                                                    <span>{{LyLichNhanVien.HoTenLienHeKhanCap}}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+
+                                                <td>
+                                                    <b>Số điện thoại:</b>
+                                                    <span>{{LyLichNhanVien.SoDienThoai}}</span>
+
+                                                </td>
+                                                <td colspan="2">
+                                                    <b>Email:</b>
+                                                    <span>{{LyLichNhanVien.Email}}</span>
+                                                </td>
+
+                                                <td>
+                                                    <b>Quan hệ liên hệ khẩn cấp:</b>
+                                                    <span>{{LyLichNhanVien.QuanHeLienHeKhanCap}}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4">
+                                                    <b>Địa chỉ liên hệ khẩn cấp:</b>
+                                                    <span>{{LyLichNhanVien.DiaChiLienHeKhanCap}}</span>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4">
+                                                    <b>Số điện thoại liên hệ khẩn cấp:</b>
+                                                    <span>{{LyLichNhanVien.SDTLienHeKhanCap}}</span>
+                                                </td>
+                                            </tr>
+
+                                        </table>
+
+                                    </div>
+                                </md-card>
+                            </md-content>
+                            <div class="col-md-6 col-md-offset-3 justify-content-center btn-block text-center">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>&nbsp;&nbsp;&nbsp;
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal fade bs-example-modal-lg1" id="off" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="static" data-keyboard="false" data-focus-on="input:first">
+
+            <div class="modal-dialog modal-lg" role="document" style="max-width: 1305px;">
+                <div class="modal-content" style="border-radius: 10px;min-height:670px
+                     ">
+                    <div class="modal-header">
+                        <h3 style="text-align:center;color:#007bff">Thông tin chi tiết chứng từ bán hàng</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                            <span aria-hidden="true" style="color:red">&times; Đóng</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="form1" role="form">
+                            <div class="row">
+                                <div class="col-md-9 table-responsive">
+                                    <fieldset class="well">
+                                        <legend class="well-legend">Thông tin chung</legend>
+
+                                        <table class="table table-bordered" style="border:solid #ddd 1px">
+                                            <tr>
+                                                <td> <b>Khách hàng </b></td>
+                                                <td width="85%">
+                                                    <div class="input-group">
+
+                                                        <input disabled ng-model="singer.TenKhachHang" type="text" class="form-control">
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><b>Mã số thuế</b></td>
+                                                <td>
+                                                    <div class="input-group">
+                                                        <div class="input-group-append">
+                                                            <input disabled ng-model="singer.MaSoThue" type="text" class="form-control">
+                                                        </div>
+                                                        &nbsp;  &nbsp;  &nbsp;  &nbsp;
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">Người liên hệ</span>
+                                                        </div>
+
+                                                        <input disabled ng-model="singer.NguoiLienHe" type="text" class="form-control">
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Địa chỉ</b></td>
+                                                <td><input disabled ng-model="singer.DiaChi" type="text" class="form-control"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Diễn giải</b></td>
+                                                <td><input disabled ng-model="singer.DienGiai" type="text" class="form-control"></td>
+                                            </tr>
+                                            <tr>
+                                                <td> <b>Nhân viên bán hàng</b></td>
+                                                <td width="85%">
+                                                    <div class="input-group">
+                                                        <input disabled ng-model="singer.HoVaTen" type="text" class="form-control" placeholder="">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-3 table-responsive">
+                                    <fieldset class="well">
+                                        <legend class="well-legend">Báo giá</legend>
+                                        <table class="table table-bordered" style="border:solid #ddd 1px">
+                                            <tr>
+                                                <td> <b> Ngày hoạch toán</b></td>
+                                                <td width="60%">
+                                                    <input disabled ng-model="singer.NgayHoachToan" type="text" class="form-control">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Ngày chứng từ</b></td>
+                                                <td><input disabled ng-model="singer.NgayChungTu" type="text" class="form-control"></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td> <b>Số chứng từ</b></td>
+                                                <td>
+                                                    <input disabled ng-model="singer.MaChungTuBanHang" type="text" class="form-control">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </fieldset>
+                                </div>
+                                &nbsp;&nbsp;&nbsp;
+                            </div>
+                            <div class="col-md-12" style="overflow-x:auto;background-color:#f5f5f5">
+                                <table border="1">
+                                    <caption style="caption-side:top">Hoạch toán</caption>
+                                    <tr style="background:#74b9ff">
+
+                                        <th width="20%">Mã hàng</th>
+                                        <th>Tên hàng</th>
+                                        <th>ĐVT</th>
+                                        <th>Số lượng</th>
+                                        <th>Đơn giá</th>
+                                        <th>Thành tiền</th>
+                                        <th>Tỷ lệ CK (%)</th>
+                                        <th>Tiền chiết khấu</th>
+                                        <th>% thuế GTGT</th>
+                                        <th>Tiền thuế GTGT</th>
+
+                                    </tr>
+                                    <tr ng-repeat="item in XemChiTiet">
+                                        <td>{{item.MaHang }}</td>
+                                        <td>{{item.TenHang }}</td>
+                                        <td>{{item.getdvt.TenDonViTinh }}</td>
+                                        <td>{{item.SoLuong }}</td>
+                                        <td>{{item.GiaKhuyenMai }}</td>
+                                        <td>{{item.ThanhTien }}</td>
+                                        <td>{{item.ChietKhau }}</td>
+                                        <td>{{item.TienChietKhau }}</td>
+                                        <td>{{item.VAT}}</td>
+                                        <td>{{item.TienThueGTGT }}</td>
+
+
+                                    </tr>
+
+                                </table>
+
+
+
+                            </div>
+
+
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal fade bs-example-modal-lg2" id="off" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false" data-keyboard="false" data-focus-on="input:first">
+
+            <div class="modal-dialog modal-lg" role="document" style="max-width: 1305px;">
+                <div class="modal-content" style="border-radius: 10px;min-height:670px
+                     ">
+                    <div class="modal-header">
+                        <h3 style="text-align:center;color:red">Thông tin chi tiết phiếu nhập kho </h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                            <span aria-hidden="true" style="color:#007bff">&times; Đóng</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="form1" role="form">
+                            <div class="row">
+                                <div class="col-md-9 table-responsive">
+                                    <fieldset class="well">
+                                        <legend class="well-legend">Thông tin chung</legend>
+
+                                        <table class="table table-bordered" style="border:solid #ddd 1px">
+                                            <tr>
+                                                <td> <b>Đối tượng</b></td>
+                                                <td width="85%">
+                                                    <div class="input-group">
+                                                        <input disabled ng-model="singer1.TenKhachHang" type="text" class="form-control">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Người giao hàng</b></td>
+                                                <td><input disabled ng-model="singer1.NguoiNhan" type="text" class="form-control"></td>
+                                            </tr>
+                                            <tr>
+                                                <td> <b>Diễn Giải</b></td>
+                                                <td width="85%">
+                                                    <div class="input-group">
+                                                        <input disabled ng-model="singer1.DienGiai" type="text" class="form-control" placeholder="">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Kèm theo</b></td>
+                                                <td>
+                                                    <div class="input-group">
+
+                                                        <input disabled ng-model="singer1.ChungTuGoc" type="text" class="form-control" placeholder="">
+
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <div class="input-group-append   ">
+                                                            <span class="input-group-text "><b>Chứng từ gốc</b></span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-3 table-responsive">
+                                    <fieldset class="well">
+                                        <legend class="well-legend">Chứng từ</legend>
+                                        <table class="table table-bordered" style="border:solid #ddd 1px">
+                                            <tr>
+                                                <td> <b>Ngày hoạch toán </b></td>
+                                                <td width="60%">
+                                                    <input disabled ng-model="singer1.NgayHoachToan" type="text" class="form-control">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Ngày chứng từ</b></td>
+                                                <td><input disabled ng-model="singer1.NgayChungTu" type="text" class="form-control"></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td> <b>Số chứng từ </b></td>
+                                                <td>
+                                                    <input disabled ng-model="singer1.MaPhieuXuat" type="text" class="form-control" ng-model-options="{timezone:'UTC',}">
+
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                    </fieldset>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12" style="overflow-x:auto;background-color:#f5f5f5">
+                                <table border="1">
+                                    <caption style="caption-side:top">Hoạch toán</caption>
+                                    <tr style="background:#74b9ff">
+
+                                        <th width="20%">Mã hàng</th>
+                                        <th>Tên hàng</th>
+                                        <th>Kho</th>
+                                        <th>TK Nợ</th>
+                                        <th>TK Có</th>
+                                        <th>Đơn vị tính</th>
+
+                                        <th>Số lượng</th>
+                                        <th>Đơn giá</th>
+                                        <th>Lệnh sản xuất</th>
+                                        <th>Thành phẩm</th>
+                                        <th>Số lô</th>
+                                        <th>Hạn sử dụng</th>
+
+
+
+                                    </tr>
+                                    <tr ng-repeat="i in ChitietNK">
+                                        <td> {{i.MaHang}}</td>
+                                        <td>{{i.TenHang}}</td>
+                                        <td> {{i.Kho}}</td>
+                                        <td> {{i.TKNo}}</td>
+                                        <td> {{i.TKCo}}</td>
+                                        <td> {{i.DonViTinh}}</td>
+                                        <td> </td>
+                                        <td> {{i.GiaKhuyenMai}}</td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+
+                                    </tr>
+
+                                </table>
+
+
+
+                            </div>
+
+
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal fade bs-example-modal-lg3" id="off" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false" data-keyboard="false" data-focus-on="input:first">
+
+            <div class="modal-dialog modal-lg" role="document" style="max-width: 1305px;">
+                <div class="modal-content" style="border-radius: 10px;min-height:452px
+                     ">
+                    <div class="modal-header">
+                        <h3 style="text-align:center;color:red">Thông tin chi tiết hàng hóa </h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                            <span aria-hidden="true" style="color:#007bff">&times; Đóng</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="form1" role="form">
+                            <div class="row">
+
+
+
+                                <div class="col-md-9 table-responsive">
+                                    <fieldset class="well">
+                                        <legend class="well-legend">Thông tin chung</legend>
+
+                                        <table class="table table-bordered" style="border:solid #ddd 1px">
+                                            <tr>
+                                                <td> <b>Mã hàng </b></td>
+                                                <td width="85%">
+
+
+                                                    <div class="input-group">
+                                                        <div class="input-group-append">
+                                                            <input disabled ng-model="singer3.MaHang" type="text" class="form-control">
+                                                        </div>
+                                                        &nbsp;  &nbsp;  &nbsp;  &nbsp;
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">Tên hàng</span>
+                                                        </div>
+
+                                                        <input disabled ng-model="singer3.TenHang" type="text" class="form-control">
+                                                    </div>
+
+
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><b>Tên nhóm</b></td>
+                                                <td>
+
+                                                    <div class="input-group">
+
+                                                        <input disabled ng-model="singer3.NhomHangHoa.TenNhom" type="text" class="form-control">
+
+                                                        &nbsp;  &nbsp;  &nbsp;  &nbsp;
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">Tính chất</span>
+                                                        </div>
+
+                                                        <input disabled ng-model="singer3.TinhChatHangHoa.TenTinhChat" type="text" class="form-control">
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td> <b>Bảo hành</b></td>
+                                                <td width="85%">
+
+
+                                                    <div class="input-group">
+                                                        <div class="input-group-append">
+                                                            <input disabled ng-model="singer3.BaoHanh" type="text" class="form-control">
+                                                        </div>
+                                                        &nbsp;  &nbsp;  &nbsp;  &nbsp;
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">Hạn sử dụng</span>
+                                                        </div>
+
+                                                        <input disabled ng-model="singer3.HanSuDung" type="text" class="form-control">
+                                                    </div>
+
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td> <b>Xuất xứ </b></td>
+                                                <td width="85%">
+
+
+                                                    <div class="input-group">
+                                                        <div class="input-group-append">
+                                                            <input disabled ng-model="singer3.NguonGoc" type="text" class="form-control">
+                                                        </div>
+                                                        &nbsp;  &nbsp;  &nbsp;  &nbsp;
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">Số lô</span>
+                                                        </div>
+
+                                                        <input disabled ng-model="singer3.SoLo" type="text" class="form-control">
+                                                    </div>
+
+
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td> <b>Mô tả</b></td>
+                                                <td width="85%">
+                                                    <div class="input-group">
+
+                                                        <textarea disabled style="width:100%" ng-model="singer3.MoTa" type="text" class="form-control" placeholder=""></textarea>
+
+
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Giá</b></td>
+
+                                                <td>
+                                                    <div class="input-group">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">Giá nhập</span>
+                                                        </div>
+                                                        <div class="input-group-append">
+                                                            <input disabled ng-model="singer3.GiaNhap" type="text" class="form-control">
+                                                        </div>
+                                                        &nbsp;  &nbsp;  &nbsp;  &nbsp;
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">Giá bán</span>
+                                                        </div>
+
+
+                                                        <input disabled ng-model="singer3.GiaBan" type="text" class="form-control">
+                                                        &nbsp;  &nbsp;  &nbsp;  &nbsp;
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">Giá khuyến mãi</span>
+                                                        </div>
+
+                                                        <input disabled ng-model="singer3.GiaKhuyenMai" type="text" class="form-control">
+                                                        &nbsp;  &nbsp;  &nbsp;  &nbsp;
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">Thuế GTGT</span>
+                                                        </div>
+
+                                                        <input disabled ng-model="singer3.VAT" type="text" class="form-control">
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+
+
+                                        </table>
+
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-3 table-responsive">
+                                    <fieldset class="well">
+                                        <legend class="well-legend">Ảnh sản phẩm</legend>
+                                        <div class="col-md-3">
+                                            <img style="margin:10px;max-width:300px;max-height:255px" src="{{singer3.HinhAnh}}" /><br />
+
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            
+
+
+
+
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>

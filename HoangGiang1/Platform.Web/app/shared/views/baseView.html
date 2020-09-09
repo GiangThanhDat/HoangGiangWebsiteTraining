@@ -1,0 +1,493 @@
+﻿<div class="platform ">
+    <!--<div class="row" id="header">
+
+        <div class=" col-12 col-md-12  " >
+            <div class="btn-group"  style="position: absolute;bottom:10%;right: 5%;" role="group" aria-label="Basic example">
+                <h4>{{authentication.userName}}</h4> &nbsp;&nbsp;
+                <h4><a href="javascript:void(0)" ng-click="logOut()">Thoát</a></h4>
+            </div>
+
+        </div>
+
+    </div>-->
+
+    <div class="container-fluid" ng-hide="'banhangnv' | includedByState">
+        <div class="row">
+            <div class="col-md-5" style="margin: 5px 0px">
+                <img src="../../../Assets/sinhvien/image/MekongName.png" class=".img-fluid img-responsive" alt="logo" style="z-index:10;width:100%;max-height:100%;display:block" />
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid submenu" ng-hide="'banhangnv' | includedByState">
+        <div class=" row " style="height:100%">
+            <div class="col-md-5 col-lg-6 hidden-xs col-xl-7"></div>
+            <div class="col-md-7 col-lg-6 col-12 col-xs-12 mt-2 col-xl-5" style="height:100%">
+                <span class="hidden-xs" style="margin-right:10px;line-height:40px;font-size:17px;font-weight:bold ;color:white">
+                    Trang thông tin &nbsp;|
+                </span>
+                <span style="font-size:17px;font-weight:bold;color:white;margin-right:5px">{{authentication.fullName}} </span>
+                <span style="font-size:17px;font-weight:bold;" ng-click="logOut()"><a href="javascript:void(0)">Đăng xuất</a></span>
+            </div>
+
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" ng-hide="'banhangnv' | includedByState">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse menu" id="navbarSupportedContent">
+            <ul class="navbar-nav nav nav-tabs mr-auto activemenu" role="tablist">
+                <li role="presentation" ui-sref-active="active"><a ui-sref="trangchu">Trang Chủ</a></li>
+                <li ng-show="(kiemtrarole('NhomNguoiDung')=='NhomNguoiDung')" role="presentation" ui-sref-active="active"><a ui-sref="application_groups">Nhóm người dùng</a></li>
+                <li ng-show="(kiemtrarole('Quyen')=='Quyen')" role="presentation" ui-sref-active="active"><a ui-sref="application_roles">Quyền</a></li>
+                <li ng-show="(kiemtrarole('NguoiDung')=='NguoiDung')" role="presentation" ui-sref-active="active"><a ui-sref="application_users">Người dùng</a></li>
+                <li ng-show="(kiemtrarole('QuanLyChiPhiSeo')=='QuanLyChiPhiSeo')" role="presentation" ui-sref-active="active"><a ui-sref="quanlychiphiseo">Quản lý chi phí seo</a></li>
+
+                <li ng-show="(kiemtrarole('QuanLyHangHoa')=='QuanLyHangHoa')" role="presentation" ui-sref-active="active" class="nav-item dropdown">
+                    <a class="dropdown-toggle" id="navbardrop" data-toggle="dropdown">Quản lý hàng hóa</a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item"><a ui-sref="quanlyhanghoa">Thêm hàng hóa</a></li>
+                        <li class="dropdown-item"><a ui-sref="thongkehanghoa">Thống kê hàng hóa</a></li>
+                        <li class="dropdown-item"><a ui-sref="thietlapgia">Thiết lập giá</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown" ng-show="(kiemtrarole('QuanLyKhachHang')=='QuanLyKhachHang')" role="presentation" ui-sref-active="active">
+                    <a class=" dropdown-toggle" id="navbardrop" data-toggle="dropdown">Quản lý khách hàng</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" ui-sref="themkhachhang">Thêm khách hàng mới</a>
+                        <a class="dropdown-item" ui-sref="quanlykhachhang">Xem thông tin khách hàng</a>
+                    </div>
+                </li>
+                <li ng-show="(kiemtrarole('QuanLyKho')=='QuanLyKho')" role="presentation" ui-sref-active="active"><a ui-sref="quanlykho">Quản lý kho</a></li>
+                <li class="nav-item dropdown" ng-show="(kiemtrarole('QuanLyNhanSu')=='QuanLyNhanSu')" role="presentation" ui-sref-active="active">
+                    <a class=" dropdown-toggle" id="navbardrop" data-toggle="dropdown">Quản lý nhân sự</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" ui-sref="xemthongtinnhanvien">Xem thông tin nhân viên</a>
+                        <a class="dropdown-item" ui-sref="themnhanvienmoi">Thêm nhân viên mới</a>
+                        <a class="dropdown-item" ui-sref="quanlyvangmat">Quản lý vắng mặt</a>
+                        <a class="dropdown-item" ui-sref="quanlycongtacadmin">Quản lý công tác</a>
+                        <a class="dropdown-item" ui-sref="quanlyngaynghiadmin">Quản lý ngày nghỉ</a>
+                        <a class="dropdown-item" ui-sref="quanlyquagio">Quản lý quá giờ</a>
+                        <a class="dropdown-item" ui-sref="quanlythe">Quản lý thẻ</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown" ng-show="(kiemtrarole('QuanLyQuyTien')=='QuanLyQuyTien')" role="presentation" ui-sref-active="active">
+                    <a class=" dropdown-toggle" id="navbardrop" data-toggle="dropdown">Quản lý quỹ tiền</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" ui-sref="themphieuthu">Thêm phiếu thu</a>
+                        <a class="dropdown-item" ui-sref="themphieuchi">Thêm phiếu chi</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown " ui-sref-active="active" ng-show="(kiemtrarole('KeToan')=='KeToan')">
+
+                    <a class=" dropdown-toggle" data-toggle="dropdown">
+                        Kế toán
+                    </a>
+
+                    <div class="dropdown-menu">
+
+
+
+                        <div class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle">Dữ liệu</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item">Thông tin dữ liệu</a></li>
+                                <li><a class="dropdown-item">Trích xuất dữ liệu</a></li>
+                                <li><a class="dropdown-item">Nạp dữ liệu</a></li>
+                                <li><a class="dropdown-item">Cập nhật số dư từ năm trước</a></li>
+                                <li><a class="dropdown-item">Nạp dữ liệu từ Excel</a></li>
+
+                            </ul>
+                        </div>
+                        <div class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle">Danh mục</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle">Tài khoản</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item"><a ui-sref="hethongtaikhoan">Hệ thống tài khoản</a></li>
+                                        <li class="dropdown-item"><a ui-sref="taikhoanketchuyen">Tài khoản kết chuyển</a></li>
+                                        <li class="dropdown-item"><a>Tài khoản ngầm định</a></li>
+                                        <li class="dropdown-item"><a ui-sref="dinhkhoantudong">Định khoản tự động</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-item"><a ui-sref="cocautochuc"> Cơ cấu tổ chức</a></li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle">Đối tượng</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item"><a ui-sref="khachhang">Khách hàng</a></li>
+                                        <li class="dropdown-item"><a ui-sref="nhacungcap">Nhà cung cấp</a></li>
+                                        <li class="dropdown-item"><a ui-sref="nhanvien">Nhân viên</a></li>
+                                        <li class="dropdown-item"><a ui-sref="nhomkh_ncc">Nhóm khách hàng, nhà cung cấp</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle">Lương nhân viên</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item"><a>Ký hiệu chấm công</a></li>
+                                        <li class="dropdown-item"><a>Biểu tính thuế thu nhập</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-item"><a ui-sref="loaicongcudungcu">Loại công cụ dụng cụ</a></li>
+                                <li class="dropdown-item"><a ui-sref="loaitaisancodinh">Loại tài sản cố định</a></li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item  dropdown-toggle">Vật tư hàng hoá</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item"><a>Vật tư hàng hoá</a></li>
+                                        <li class="dropdown-item"><a>Kho</a></li>
+                                        <li class="dropdown-item"><a>Nhóm vật tư, hàng hoá, dịch vụ</a></li>
+                                        <li class="dropdown-item"><a>Đơn vị tính</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-item"><a>Đối tượng tập hợp chi phí</a></li>
+                                <li class="dropdown-item"><a>Khoản mục chi phí</a></li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle">Công trình</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item"><a>Công trình</a></li>
+                                        <li class="dropdown-item"><a>Loại công trình</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item  dropdown-toggle">Ngân hàng</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item"><a>Ngân hàng</a></li>
+                                        <li class="dropdown-item"><a>Tài khoản ngân hàng</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle">Khác</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item"><a>Điều khoản thanh toán</a></li>
+                                        <li class="dropdown-item"><a>Mục thu/chi</a></li>
+                                        <li class="dropdown-item"><a>Mã thống kê</a></li>
+                                        <li class="dropdown-item"><a>Biểu thuế tiêu thụ đặc biệt</a></li>
+                                        <li class="dropdown-item"><a>Biểu thuế tài nguyên</a></li>
+                                        <li class="dropdown-item"><a>Loại tiền</a></li>
+                                        <li class="dropdown-item"><a>Loại chứng từ</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="dropdown-submenu">
+                            <a class="dropdown-item  dropdown-toggle">Nghiệp vụ</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" ui-sref="quy">Quỹ</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item"><a ui-sref="quy">Thông tin tổng hợp</a></li>
+                                        <li class="dropdown-item"><a ui-sref="thutien">Thu tiền</a></li>
+                                        <li class="dropdown-item"><a>Thu tiền khách hàng</a></li>
+                                        <li class="dropdown-item"><a>Thu tiền khách hàng hàng loạt</a></li>
+                                        <li class="dropdown-item"><a ui-sref="chitien">Chi tiền</a></li>
+                                        <li class="dropdown-item"><a>Trả tiền nhà cung cấp</a></li>
+                                        <li class="dropdown-item"><a>Nộp thuế</a></li>
+                                        <li class="dropdown-item"><a>Nộp bảo hiểm</a></li>
+                                        <li class="dropdown-item"><a>Trả lương</a></li>
+                                        <li class="dropdown-item"><a>Kiểm kê</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle">Ngân hàng</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item"><a>Thông tin tổng hợp</a></li>
+                                        <li class="dropdown-item"><a>Thu tiền</a></li>
+                                        <li class="dropdown-item"><a>Thu tiền khách hàng</a></li>
+                                        <li class="dropdown-item"><a>Thu tiền khách hàng hàng loạt</a></li>
+                                        <li class="dropdown-item"><a>Chi tiền</a></li>
+                                        <li class="dropdown-item"><a>Trả tiền nhà cung cấp</a></li>
+                                        <li class="dropdown-item"><a>Nộp thuế</a></li>
+                                        <li class="dropdown-item"><a>Nộp bảo hiểm</a></li>
+                                        <li class="dropdown-item"><a>Trả lương</a></li>
+                                        <li class="dropdown-item"><a>Chuyển tiền nội bộ</a></li>
+                                        <li class="dropdown-item"><a>Đối chiếu ngân hàng</a></li>
+                                        <li class="dropdown-item"><a>Lệnh chuyển tiền</a></li>
+                                        <li class="dropdown-item"><a>Tra cứu số dư tài khoản</a></li>
+                                        <li class="dropdown-item"><a>Tra cứu lịch sử giao dịch</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" ui-sref="muahang">Mua hàng</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item"><a ui-sref="muahang">Thông tin tổng hợp</a></li>
+                                        <li class="dropdown-item"><a ui-sref="donmuahang">Đơn mua hàng</a></li>
+                                        <li class="dropdown-item"><a ui-sref="hopdongmuahang">Hợp đồng mua hàng</a></li>
+                                        <li class="dropdown-item"><a ui-sref="chungtumuahang">Chứng từ mua hàng</a></li>
+                                        <li class="dropdown-item"><a ui-sref="chungtumuahangnhieuhoadon">Chứng từ mua hàng nhiều hoá đơn</a></li>
+                                        <li class="dropdown-item"><a ui-sref="chungtumuadichvu">Chứng từ mua dịch vụ</a></li>
+                                        <li class="dropdown-item"><a ui-sref="nhanhoadon">Nhận hoá đơn</a></li>
+                                        <li class="dropdown-item"><a ui-sref="tralaihangmua">Trả lại hàng mua</a></li>
+                                        <li class="dropdown-item"><a ui-sref="giamgiahangmua">Giảm giá hàng mua</a></li>
+                                        <li class="dropdown-item"><a>Đối trừ chứng từ</a></li>
+                                        <li class="dropdown-item"><a>Đối trừ chứng từ nhiều đối tượng</a></li>
+                                        <li class="dropdown-item"><a>Bỏ đối trừ</a></li>
+                                        <li class="dropdown-item"><a>Bù trừ công nợ</a></li>
+                                        <li class="dropdown-item"><a>Trả tiền nhà cung cấp</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" ui-sref="banhang">Bán hàng</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item"><a ui-sref="banhang">Thông tin tổng hợp</a></li>
+                                        <li class="dropdown-item"><a ui-sref="baogia">Báo giá</a></li>
+                                        <li class="dropdown-item"><a ui-sref="dondathang">Đơn đặt hàng</a></li>
+                                        <li class="dropdown-item"><a ui-sref="chungtubanhang">Chứng từ bán hàng</a></li>
+                                        <li class="dropdown-item"><a ui-sref="hoadon">Hoá đơn</a></li>
+                                        <li class="dropdown-item"><a ui-sref="giamgiahangban">Giảm giá hàng bán</a></li>
+                                        <li class="dropdown-item"><a ui-sref="tralaihangban">Trả lại hàng bán</a></li>
+                                        <li class="dropdown-item"><a>Thu tiền khách hàng</a></li>
+                                        <li class="dropdown-item"><a>Thu tiền khách hàng hàng loạt</a></li>
+                                        <li class="dropdown-item"><a>Đối trừ chứng từ</a></li>
+                                        <li class="dropdown-item"><a>Đối trừ chứng từ nhiều đối tượng</a></li>
+                                        <li class="dropdown-item"><a>Bỏ đối trừ</a></li>
+                                        <li class="dropdown-item"><a>Bù trừ công nợ</a></li>
+                                        <li class="dropdown-item"><a>Đợt thu nợ</a></li>
+                                        <li class="dropdown-item"><a>Chính sách giá</a></li>
+                                        <li class="dropdown-item"><a>Tính giá bán</a></li>
+                                        <li class="dropdown-item"><a>Đối chiếu bán hàng và hoá đơn</a></li>
+                                        <li class="dropdown-item"><a>Đối chiếu bán hàng và xuất kho</a></li>
+                                        <li class="dropdown-item"><a>Đối chiếu hàng bán trả lại và nhập kho</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle">Hoá đơn điện tử</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item"><a>Phát hành hoá đơn điện tử hàng loạt</a></li>
+                                        <li class="dropdown-item"><a>Thiết lập ký số</a></li>
+                                        <li class="dropdown-item"><a>Gửi hoá đơn hàng loạt cho khách hàng</a></li>
+                                        <li class="dropdown-item"><a>Chuyển thành hoá đơn giấy hàng loạt</a></li>
+                                        <li class="dropdown-item"><a>Tải hoá đơn điện tử hàng loạt</a></li>
+                                        <li class="dropdown-item"><a>Thiết lập email gửi hoá đơn</a></li>
+                                        <li class="dropdown-item"><a>Thiết lập nội dung email gửi hoá đơn</a></li>
+                                        <li class="dropdown-item"><a>Thiết lập kết nối đến dịch vụ hoá đơn điện tử</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle">Quản lý hoá đơn</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item"><a>Khởi tạo mẫu hoá đơn</a></li>
+                                        <li class="dropdown-item"><a>Đăng ký sử dụng hoá đơn</a></li>
+                                        <li class="dropdown-item"><a>Thông báo phát hành hoá đơn</a></li>
+                                        <li class="dropdown-item"><a>Phân bổ số lượng hoá đơn cho từng chi nhánh phụ thuộc</a></li>
+                                        <li class="dropdown-item"><a>Huỷ hoá đơn</a></li>
+                                        <li class="dropdown-item"><a>Mất, cháy, hỏng hoá đơn</a></li>
+                                        <li class="dropdown-item"><a>Xoá hoá đơn</a></li>
+                                        <li class="dropdown-item"><a>Thông báo điều chỉnh thông tin hoá đơn</a></li>
+                                        <li class="dropdown-item"><a>Báo cáo tình hình sử dụng hoá đơn</a></li>
+
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle">Kho</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item"><a ui-sref="thongkenhapxuatkho">Thông tin tổng hợp</a></li>
+                                        <li class="dropdown-item"><a ui-sref="nhapkho">Nhập kho</a></li>
+                                        <li class="dropdown-item"><a ui-sref="xuatkho">Xuất kho</a></li>
+                                        <li class="dropdown-item"><a>Chuyển kho</a></li>
+                                        <li class="dropdown-item"><a ui-sref="lenhsanxuat">Lệnh sản xuất</a></li>
+                                        <li class="dropdown-item"><a ui-sref="laprapthaodo">Lệnh lắp ráp, tháo dỡ</a></li>
+                                        <li class="dropdown-item"><a>Tính giá xuất kho</a></li>
+                                        <li class="dropdown-item"><a>Kiểm kê</a></li>
+                                        <li class="dropdown-item"><a>Sắp xếp thứ tự chứng từ nhập, xuất</a></li>
+                                        <li class="dropdown-item"><a>Cập nhật giá nhập kho thành phẩm</a></li>
+
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle">Công cụ dụng cụ</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item"><a>Thông tin tổng hợp</a></li>
+                                        <li class="dropdown-item"><a>Ghi tăng</a></li>
+                                        <li class="dropdown-item"><a>Ghi tăng CCDC hàng loạt</a></li>
+                                        <li class="dropdown-item"><a>Phân bổ chi phí</a></li>
+                                        <li class="dropdown-item"><a>Điều chuyển</a></li>
+                                        <li class="dropdown-item"><a>Điều chỉnh</a></li>
+                                        <li class="dropdown-item"><a>Ghi giảm</a></li>
+                                        <li class="dropdown-item"><a>Kiểm kê</a></li>
+                                        <li class="dropdown-item"><a>Khai báo CCDC đầu kỳ</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle">Tài sản cố định</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item"><a>Thông tin tổng hợp</a></li>
+                                        <li class="dropdown-item"><a>Ghi tăng</a></li>
+                                        <li class="dropdown-item"><a>Tính khấu hao</a></li>
+                                        <li class="dropdown-item"><a>Đánh giá lại</a></li>
+                                        <li class="dropdown-item"><a>Điều chuyển</a></li>
+                                        <li class="dropdown-item"><a>Ghi giảm</a></li>
+                                        <li class="dropdown-item"><a>Chuyển TS thuê tài chính thành TS sở hữu</a></li>
+                                        <li class="dropdown-item"><a>Kiểm kê</a></li>
+                                        <li class="dropdown-item"><a>Khai báo tài sản đầu kỳ</a></li>
+                                        <li class="dropdown-item"><a>aaa</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle">Tiền lương</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item"><a>Chấm công</a></li>
+                                        <li class="dropdown-item"><a>Tổng hợp chấm công</a></li>
+                                        <li class="dropdown-item"><a>Tính lương</a></li>
+                                        <li class="dropdown-item"><a>Hạch toán chi phí lương</a></li>
+                                        <li class="dropdown-item"><a>Trả lương</a></li>
+                                        <li class="dropdown-item"><a>Nộp bảo hiểm</a></li>
+                                        <li class="dropdown-item"><a>Quy định lương</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle">Thuế</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item"><a>TT26 -  tờ khai thuế GTGT khấu trừ (01/GTGT)</a></li>
+                                        <li class="dropdown-item"><a>TT119 - tờ khai thuết GTGT khấu trừ (01/GTGT)</a></li>
+                                        <li class="dropdown-item"><a>Tờ khai thuế GTGT cho dự án đầu tư (02/GTGT)</a></li>
+                                        <li class="dropdown-item"><a>Tờ khai thuế GTGT trực tiếp trên GTGT (03/GTGT)</a></li>
+                                        <li class="dropdown-item"><a>Khấu trừ thuế GTGT</a></li>
+                                        <li class="dropdown-item"><a>Quyết toán thuế TNDN năm (03/TNDN)</a></li>
+                                        <li class="dropdown-item"><a>Tờ khai thuế TTĐB (01/TNĐB)</a></li>
+                                        <li class="dropdown-item"><a>Tờ khai thuế tài nguyên (01/TAIN)</a></li>
+                                        <li class="dropdown-item"><a>Nộp thuế</a></li>
+                                        <li class="dropdown-item"><a>Thiết lập thông tin cơ quan thuế; đại lý thuế; đơn vị cung cấp DV kế toán</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle">Giá thành</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item"><a>Sản xuất liên lục giản đơn</a></li>
+                                        <li class="dropdown-item"><a>Sản xuất liên tục hệ số, tỷ lệ</a></li>
+                                        <li class="dropdown-item"><a>Công trình</a></li>
+                                        <li class="dropdown-item"><a>Đơn hàng</a></li>
+                                        <li class="dropdown-item"><a>Hợp đồng</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle">Tổng hợp</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item"><a>Chứng từ nghiệp vụ khác</a></li>
+                                        <li class="dropdown-item"><a>Chứng từ quyết toán tạm ứng</a></li>
+                                        <li class="dropdown-item"><a>Kết chuyển lãi lỗ</a></li>
+                                        <li class="dropdown-item"><a>Chứng từ ghi sổ</a></li>
+                                        <li class="dropdown-item"><a>Tính tỷ giá xuất quỹ</a></li>
+                                        <li class="dropdown-item"><a>Đánh giá lại tài khoản ngoại tệ</a></li>
+                                        <li class="dropdown-item"><a>Khoá sổ kỳ kế toán</a></li>
+                                        <li class="dropdown-item"><a>Bỏ khoá sổ kỳ kế toán</a></li>
+                                        <li class="dropdown-item"><a>Phân bổ chi phí BH, QLDN khác</a></li>
+                                        <li class="dropdown-item"><a>Doanh thu nhận trước</a></li>
+                                        <li class="dropdown-item"><a>Chi phí trả trước</a></li>
+                                        <li class="dropdown-item"><a>Lập báo cáo tài chính</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-item"><a>Hợp đồng</a></li>
+                                <li class="dropdown-item"><a>Ngân sách</a></li>
+                                <li class="dropdown-item"><a>Nhập số dư ban đầu</a></li>
+
+                            </ul>
+                        </div>
+                        <div class="dropdown-submenu">
+                            <a class="dropdown-item  dropdown-toggle">Hệ thống</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-item"><a tabindex="-1">Giao diện</a></li>
+                                <li class="dropdown-item"><a tabindex="-1">Ngày hạch toán</a></li>
+                                <li class="dropdown-item"><a tabindex="-1">Quản lý tài nguyên</a></li>
+                                <li class="dropdown-item"><a tabindex="-1">Quản lý người dùng</a></li>
+                                <li class="dropdown-item"><a tabindex="-1">Vai trò và quyền hạn</a></li>
+                                <li class="dropdown-item"><a tabindex="-1">Quản lý người dùng mobile</a></li>
+                                <li class="dropdown-item"><a tabindex="-1">Thiết lập ký số</a></li>
+                                <li class="dropdown-item"><a tabindex="-1">Nhật ký truy cập</a></li>
+                                <li class="dropdown-item"><a tabindex="-1">Tuỳ chọn</a></li>
+
+                            </ul>
+                        </div>
+                        <a class="dropdown-item" ui-sref="tienich">Tiện ích</a>
+                        <a class="dropdown-item" ui-sref="trogiup">Trợ giúp</a>
+
+
+                    </div>
+
+                </li>
+                <li ng-show="(kiemtrarole('ThongKe')=='ThongKe')" role="presentation" ui-sref-active="active"><a ui-sref="thongke">Thống kê</a></li>
+                <li class="nav-item dropdown" ng-show="(kiemtrarole('ThongTinCaNhan')=='ThongTinCaNhan')" role="presentation" ui-sref-active="active">
+                    <a class=" dropdown-toggle" id="navbardrop" data-toggle="dropdown">
+                        Thông tin cá nhân
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" ui-sref="thongtincanhan">Lý lịch cá nhân</a>
+                        <a class="dropdown-item" ui-sref="quatrinhdaodao">Quá trình đào tạo </a>
+                        <a class="dropdown-item" ui-sref="ngonngu">Ngôn ngữ</a>
+                        <a class="dropdown-item" ui-sref="lichsulamviec">Lịch sử lảm việc</a>
+                        <a class="dropdown-item" ui-sref="thongtintuyendung">Thông tin tuyển dụng</a>
+                        <a class="dropdown-item" ui-sref="quanlycongtac">Quản lý công tác</a>
+                        <a class="dropdown-item" ui-sref="the">Quản lý thẻ</a>
+                        <a class="dropdown-item" ui-sref="hoanthanhcongviec">Hoàn thành công việc</a>
+                        <a class="dropdown-item" ui-sref="quanlyngaynghi">Quản lý ngày nghỉ</a>
+                        <a class="dropdown-item" ui-sref="quanlyquagio">Quản lý quá giờ</a>
+
+
+
+
+                    </div>
+                </li>
+                <li ng-show="(kiemtrarole('QuanLyTaiSan')=='QuanLyTaiSan')" class="nav-item dropdown" role="presentation" ui-sref-active="active">
+                    <a class=" dropdown-toggle" id="navbardrop" data-toggle="dropdown">
+                        Quản lý tài sản
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" ui-sref="nhaptaisan">Nhập tài sản</a>
+                        <a class="dropdown-item" ui-sref="thongketaisan">Thống kê tài sản</a>
+
+                    </div>
+                </li>
+                <li ng-show="(kiemtrarole('NopDon')=='NopDon')" role="presentation" ui-sref-active="active"><a ui-sref="nopdon">Nộp đơn</a></li>
+                <li class="nav-item dropdown" role="presentation" ui-sref-active="active" ng-show="(kiemtrarole('QuanLyNhaCungCap')=='QuanLyNhaCungCap')">
+
+                    <a class=" dropdown-toggle" id="navbardrop" data-toggle="dropdown">
+                        Quản lý nhà cung cấp
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" ui-sref="quanlynhacungcap">xem thông tin nhà cung cấp</a>
+                        <a class="dropdown-item" ui-sref="themquanlynhacungcap">Thêm Quản lý nhà cung cấp</a>
+
+                    </div>
+
+                </li>
+                <li ng-show="(kiemtrarole('BanHang')=='BanHang')" role="presentation" ui-sref-active="active"><a ui-sref="banhangnv">Bán hàng</a></li>
+                <li ng-show="(kiemtrarole('QuanLyCuaHang')=='QuanLyCuaHang')" role="presentation" ui-sref-active="active"><a ui-sref="quanlycuahang">Quản lý cửa hàng</a></li>
+                <li ng-show="(kiemtrarole('TongQuan')=='TongQuan')" role="presentation" ui-sref-active="active"><a ui-sref="tongquan">Tổng quan</a></li>
+
+
+            </ul>
+
+
+        </div>
+    </nav>
+
+    <!-- content -->
+    <div class="content" ui-view>
+        <div>
+
+        </div>
+        <div class="">
+
+        </div>
+        <div class="">
+
+        </div>
+    </div>
+
+
+    <!-- content -->
+    <div class="footer navbar-fixed-bottom" ng-hide="'banhangnv' | includedByState">
+        <div class="Designer">
+            <a href="http://mekong-tech.com">Designed by <span>Mekong</span>-tech</a>
+        </div>
+    </div>
+
+</div>
+  
+
+
+<script src="../../../Assets/sinhvien/js/activemenu.js"></script>
